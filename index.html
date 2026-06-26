@@ -5,287 +5,318 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Utazz velünk Dubaiba</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b0b0b;
-      color: white;
-    }
-    header {
-      min-height: 100vh;
-      background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
-        url("https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      padding: 40px 20px;
-      position: relative;
-    }
-    .topbar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 22px 30px;
-      z-index: 10;
-    }
-    .social-icons {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-    .social-icons a {
-      width: 34px;
-      height: 34px;
-      color: white;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.3s;
-    }
-    .social-icons a:hover {
-      transform: scale(1.15);
-      opacity: 0.8;
-    }
-    .social-icons svg {
-      width: 25px;
-      height: 25px;
-      fill: currentColor;
-    }
-    .hero {
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
-    .hero p {
-      font-size: 21px;
-      line-height: 1.6;
-      color: #f1f1f1;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 15px 30px;
-      background: #d4af37;
-      color: #111;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-    }
-    section {
-      padding: 70px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    h2 {
-      text-align: center;
-      font-size: 34px;
-      margin-bottom: 40px;
-      color: #d4af37;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-    }
-    .card {
-      background: #171717;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    }
-    .card img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      display: block;
-    }
-    .card-content {
-      padding: 25px;
-    }
-    .card h3 {
-      margin-top: 0;
-      color: #fff;
-    }
-    .card p {
-      color: #cfcfcf;
-      line-height: 1.6;
-    }
-    details {
-      margin-top: 15px;
-      color: #d4af37;
-      cursor: pointer;
-    }
-    details p {
-      color: #cfcfcf;
-    }
-    .why {
-      background: #111;
-      border-radius: 25px;
-      padding: 40px;
-      text-align: center;
-    }
-    .packages .card {
-      border: 1px solid #333;
-    }
-    .price {
-      font-size: 24px;
-      color: #d4af37;
-      font-weight: bold;
-    }
-    .contact {
-      text-align: center;
-      background: linear-gradient(135deg, #111, #222);
-      border-radius: 25px;
-      padding: 50px 20px;
-    }
-    footer {
-      text-align: center;
-      padding: 25px;
-      background: #050505;
-      color: #aaa;
-    }
-    @media (max-width: 600px) {
-      .topbar {
-        padding: 18px 20px;
-      }
-      .social-icons {
-        gap: 12px;
-      }
-      .social-icons a {
-        width: 30px;
-        height: 30px;
-      }
-      .social-icons svg {
-        width: 23px;
-        height: 23px;
-      }
-      .hero h1 {
-        font-size: 36px;
-      }
-      .hero p {
-        font-size: 18px;
-      }
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: white;
+  }
+
+  header {
+    min-height: 100vh;
+    background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+      url("https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+  }
+
+  .topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 22px 30px;
+    z-index: 10;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .social-icons a {
+    width: 34px;
+    height: 34px;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+  }
+
+  .social-icons a:hover {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+
+  .social-icons svg {
+    width: 25px;
+    height: 25px;
+    fill: currentColor;
+  }
+
+  .hero {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+  }
+
+  .hero p {
+    font-size: 21px;
+    line-height: 1.6;
+    color: #f1f1f1;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 15px 30px;
+    background: #d4af37;
+    color: #111;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+  }
+
+  section {
+    padding: 70px 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 40px;
+    color: #d4af37;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+  }
+
+  .card {
+    background: #171717;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+
+  .card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-content {
+    padding: 25px;
+  }
+
+  .card h3 {
+    margin-top: 0;
+    color: #fff;
+  }
+
+  .card p {
+    color: #cfcfcf;
+    line-height: 1.6;
+  }
+
+  details {
+    margin-top: 15px;
+    color: #d4af37;
+    cursor: pointer;
+  }
+
+  details p {
+    color: #cfcfcf;
+  }
+
+  .why {
+    background: #111;
+    border-radius: 25px;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .packages .card {
+    border: 1px solid #333;
+  }
+
+  .price {
+    font-size: 24px;
+    color: #d4af37;
+    font-weight: bold;
+  }
+
+  .contact {
+    text-align: center;
+    background: linear-gradient(135deg, #111, #222);
+    border-radius: 25px;
+    padding: 50px 20px;
+  }
+
   .transfer-form {
-  margin-top: 20px;
-}
+    margin-top: 20px;
+  }
 
-.transfer-form h3 {
-  color: #d4af37;
-  text-align: center;
-  margin-bottom: 20px;
-}
+  .transfer-form h3 {
+    color: #d4af37;
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-.transfer-form input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 12px;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
-  background: #fff;
-  color: #111;
-}
+  .transfer-form input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    background: #fff;
+    color: #111;
+  }
 
-.transfer-form input:focus {
-  outline: 2px solid #d4af37;
-}
+  .transfer-form input:focus {
+    outline: 2px solid #d4af37;
+  }
 
-.whatsapp-form-btn {
-  width: 100%;
-  padding: 15px;
-  background: #25D366;
-  color: white;
-  border: none;
-  border-radius: 30px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
+  .whatsapp-form-btn {
+    width: 100%;
+    padding: 15px;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
 
-.whatsapp-form-btn:hover {
-  background: #1ebe5d;
-}
-}
-.whatsapp-form-btn:hover {
-  background: #1ebe5d;
-}
+  .whatsapp-form-btn:hover {
+    background: #1ebe5d;
+  }
 
-}
+  .fb-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+  }
 
-.fb-popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 20px;
-}
+  .fb-popup-box {
+    background: linear-gradient(135deg, #111, #1f1f1f);
+    border: 1px solid #333;
+    border-radius: 24px;
+    max-width: 420px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
 
-.fb-popup-box {
-  background: linear-gradient(135deg, #111, #1f1f1f);
-  border: 1px solid #333;
-  border-radius: 24px;
-  max-width: 420px;
-  width: 100%;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-}
+  .fb-popup-box h2 {
+    color: #d4af37;
+    margin-top: 0;
+  }
 
-.fb-popup-box h2 {
-  color: #d4af37;
-  margin-top: 0;
-}
+  .fb-popup-box p {
+    color: #ddd;
+    line-height: 1.6;
+  }
 
-.fb-popup-box p {
-  color: #ddd;
-  line-height: 1.6;
-}
+  .fb-popup-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+  }
 
-.fb-popup-buttons {
-  display: flex;
-  gap: 12px;
-  margin-top: 25px;
-}
+  .fb-join-btn,
+  .fb-close-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 30px;
+    border: none;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-.fb-join-btn,
-.fb-close-btn {
-  flex: 1;
-  padding: 14px;
-  border-radius: 30px;
-  border: none;
-  font-weight: bold;
-  text-decoration: none;
-  cursor: pointer;
-}
+  .fb-join-btn {
+    background: #1877f2;
+    color: white;
+  }
 
-.fb-join-btn {
-  background: #1877f2;
-  color: white;
-}
+  .fb-close-btn {
+    background: #333;
+    color: white;
+  }
 
-.fb-close-btn {
-  background: #333;
-  color: white;
-}
+  footer {
+    text-align: center;
+    padding: 25px;
+    background: #050505;
+    color: #aaa;
+  }
 
+  @media (max-width: 600px) {
+    .topbar {
+      padding: 18px 20px;
+    }
+
+    .social-icons {
+      gap: 12px;
+    }
+
+    .social-icons a {
+      width: 30px;
+      height: 30px;
+    }
+
+    .social-icons svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+    }
+
+    .hero p {
+      font-size: 18px;
+    }
+
+    .fb-popup-buttons {
+      flex-direction: column;
+    }
+  }
 </style>
 </head>
 <body>
@@ -436,7 +467,7 @@
 <footer>
   <p>© 2026 Utazz velünk Dubaiba. Minden jog fenntartva.</p>
 </footer>
-<div id="fbPopup" class="fb-popup" style="display: none;">
+<div id="fbPopup" class="fb-popup">
   <div class="fb-popup-box">
     <h2>🇭🇺 Csatlakozz közösségünkhöz!</h2>
 
@@ -498,16 +529,28 @@ ${document.getElementById("suitcases").value}`;
 
   window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
 }
+
 let fbPopupShown = false;
+
+function showFbPopup() {
+  const popup = document.getElementById("fbPopup");
+  if (!fbPopupShown && popup) {
+    popup.style.display = "flex";
+    fbPopupShown = true;
+  }
+}
 
 window.addEventListener("scroll", function () {
   const scrollPosition = window.scrollY + window.innerHeight;
   const pageHeight = document.documentElement.scrollHeight;
 
-  if (!fbPopupShown && scrollPosition > pageHeight - 300) {
-    document.getElementById("fbPopup").style.display = "flex";
-    fbPopupShown = true;
+  if (scrollPosition > pageHeight - 300) {
+    showFbPopup();
   }
+});
+
+window.addEventListener("load", function () {
+  setTimeout(showFbPopup, 5000);
 });
 
 function closeFbPopup() {
