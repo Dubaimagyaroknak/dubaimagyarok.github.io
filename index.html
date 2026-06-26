@@ -1045,6 +1045,78 @@
     }
   }
 
+
+  /* Extra szolgáltatások kollázs kártya */
+  .services-collage {
+    height: 190px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    background: #050505;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services-collage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.42)),
+      linear-gradient(135deg, rgba(212,175,55,0.20), transparent 55%);
+    z-index: 2;
+  }
+
+  .services-collage span {
+    background-size: cover;
+    background-position: center;
+    filter: saturate(0.98) contrast(1.06) brightness(0.88);
+  }
+
+  .services-collage .ticket {
+    background-image: url("https://images.unsplash.com/photo-1560264280-88b68371db39?auto=format&fit=crop&w=700&q=80");
+  }
+
+  .services-collage .dinner {
+    background-image: url("https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=700&q=80");
+  }
+
+  .services-collage .jetski {
+    background-image: url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=700&q=80");
+  }
+
+  .services-collage .luxurycar {
+    background-image: url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=700&q=80");
+  }
+
+  .service-icons-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0 10px;
+  }
+
+  .service-icon-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 10px;
+    border-radius: 14px;
+    color: #f3e2a7;
+    background: rgba(212,175,55,0.08);
+    border: 1px solid rgba(212,175,55,0.22);
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  @media (max-width: 600px) {
+    .service-icons-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -1091,7 +1163,7 @@
 Személyre szabott, magyar nyelvű privát programok családoknak, pároknak, baráti társaságoknak, utazási irodáknak és céges csoportoknak.
 </p>
 
-  <h2>Programok Dubaiban</h2>
+  <h2>Szolgáltatásaink Dubaiban</h2>
   <div class="cards">
     <div class="card">
       <img src="61752960-E739-48F9-8A50-AD24C0085F5A.png" alt="Hotel foglalás Dubaiban">
@@ -1237,6 +1309,31 @@ A kilátók belépőjegyei nem tartoznak a városnézés árába, azonban kedvez
         <details>
           <summary>További info</summary>
           <p>Próba</p>
+        </details>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="services-collage" aria-label="Belépőjegyek, hajós vacsorák, jetski és luxusautó bérlés kollázs">
+        <span class="ticket"></span>
+        <span class="dinner"></span>
+        <span class="jetski"></span>
+        <span class="luxurycar"></span>
+      </div>
+      <div class="card-content">
+        <h3>Belépőjegyek, hajós vacsorák és bérlések</h3>
+        <p>Belépőjegyek, hajós vacsorák, jetski bérlés és luxusautó bérlés egy helyen, kedvező árakkal és magyar segítséggel.</p>
+
+        <div class="service-icons-row">
+          <div class="service-icon-pill">🎫 Belépőjegyek</div>
+          <div class="service-icon-pill">🚤 Hajós vacsorák</div>
+          <div class="service-icon-pill">🌊 Jetski bérlés</div>
+          <div class="service-icon-pill">🏎️ Luxusautó bérlés</div>
+        </div>
+
+        <details>
+          <summary>További info</summary>
+          <p>Leírás hamarosan...</p>
         </details>
       </div>
     </div>
