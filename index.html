@@ -507,7 +507,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(212,175,55,0.06));
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(212,175,55,0.10));
     border: 1px solid rgba(255,255,255,0.18);
     box-shadow: 0 18px 42px rgba(0,0,0,0.30), inset 0 0 20px rgba(255,255,255,0.06);
     backdrop-filter: blur(14px);
@@ -792,7 +792,7 @@
   }
 
 
-  /* DESERT BREEZE - időnkénti prémium arany homokszél */
+  /* DESERT BREEZE - erősebb, sűrűbb prémium arany homokszél */
   .desert-breeze {
     position: fixed;
     inset: 0;
@@ -811,8 +811,8 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 30% 35%, rgba(212,175,55,0.10), transparent 34%),
-                linear-gradient(110deg, transparent 0%, rgba(212,175,55,0.06) 45%, transparent 78%);
+    background: radial-gradient(circle at 30% 35%, rgba(212,175,55,0.16), transparent 34%),
+                linear-gradient(110deg, transparent 0%, rgba(212,175,55,0.10) 45%, transparent 78%);
     opacity: 0;
     animation: desertWarmGlow 5.4s ease forwards;
   }
@@ -824,8 +824,8 @@
     width: var(--size);
     height: var(--size);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,235,170,0.95), rgba(212,175,55,0.52) 48%, rgba(175,125,48,0) 78%);
-    box-shadow: 0 0 10px rgba(212,175,55,0.20);
+    background: radial-gradient(circle, rgba(255,238,180,1), rgba(212,175,55,0.72) 48%, rgba(175,125,48,0) 78%);
+    box-shadow: 0 0 14px rgba(212,175,55,0.34);
     filter: blur(var(--blur));
     opacity: 0;
     animation: desertSandDrift var(--duration) linear forwards;
@@ -833,13 +833,13 @@
   }
 
   .sand-grain.soft {
-    background: radial-gradient(circle, rgba(218,178,96,0.48), rgba(168,118,47,0.20) 55%, rgba(168,118,47,0) 80%);
+    background: radial-gradient(circle, rgba(228,186,98,0.62), rgba(180,126,48,0.32) 55%, rgba(168,118,47,0) 80%);
     box-shadow: none;
   }
 
   .sand-grain.spark {
-    background: radial-gradient(circle, rgba(255,252,220,1), rgba(244,215,125,0.75) 44%, rgba(212,175,55,0) 76%);
-    box-shadow: 0 0 16px rgba(244,215,125,0.52);
+    background: radial-gradient(circle, rgba(255,252,220,1), rgba(244,215,125,0.92) 44%, rgba(212,175,55,0) 76%);
+    box-shadow: 0 0 22px rgba(244,215,125,0.72);
   }
 
   @keyframes desertSandDrift {
@@ -1148,22 +1148,22 @@ function launchDesertBreeze() {
   desertBreeze.innerHTML = "";
   desertBreeze.classList.add("active");
 
-  const grainCount = window.innerWidth < 600 ? 24 : 42;
+  const grainCount = window.innerWidth < 600 ? 48 : 84;
 
   for (let i = 0; i < grainCount; i++) {
     const grain = document.createElement("span");
     grain.className = "sand-grain";
 
-    if (Math.random() > 0.70) grain.classList.add("soft");
-    if (Math.random() > 0.90) grain.classList.add("spark");
+    if (Math.random() > 0.58) grain.classList.add("soft");
+    if (Math.random() > 0.82) grain.classList.add("spark");
 
-    grain.style.setProperty("--top", randomBetween(8, 92) + "vh");
-    grain.style.setProperty("--size", randomBetween(1.1, 4.4) + "px");
+    grain.style.setProperty("--top", randomBetween(4, 96) + "vh");
+    grain.style.setProperty("--size", randomBetween(1.3, 5.8) + "px");
     grain.style.setProperty("--blur", randomBetween(0, 1.1) + "px");
-    grain.style.setProperty("--duration", randomBetween(3.3, 5.1) + "s");
-    grain.style.setProperty("--delay", randomBetween(0, 1.35) + "s");
-    grain.style.setProperty("--rise", randomBetween(-68, 34) + "px");
-    grain.style.setProperty("--opacity", randomBetween(0.16, 0.52));
+    grain.style.setProperty("--duration", randomBetween(3.1, 5.0) + "s");
+    grain.style.setProperty("--delay", randomBetween(0, 1.15) + "s");
+    grain.style.setProperty("--rise", randomBetween(-90, 42) + "px");
+    grain.style.setProperty("--opacity", randomBetween(0.28, 0.78));
 
     desertBreeze.appendChild(grain);
   }
