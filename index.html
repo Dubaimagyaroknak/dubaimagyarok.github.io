@@ -791,9 +791,89 @@
     }
   }
 
+
+  /* DESERT BREEZE - időnkénti prémium arany homokszél */
+  .desert-breeze {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 7;
+    opacity: 0;
+    transition: opacity 1.1s ease;
+  }
+
+  .desert-breeze.active {
+    opacity: 1;
+  }
+
+  .desert-breeze::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 35%, rgba(212,175,55,0.10), transparent 34%),
+                linear-gradient(110deg, transparent 0%, rgba(212,175,55,0.06) 45%, transparent 78%);
+    opacity: 0;
+    animation: desertWarmGlow 5.4s ease forwards;
+  }
+
+  .sand-grain {
+    position: absolute;
+    left: -50px;
+    top: var(--top);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,235,170,0.95), rgba(212,175,55,0.52) 48%, rgba(175,125,48,0) 78%);
+    box-shadow: 0 0 10px rgba(212,175,55,0.20);
+    filter: blur(var(--blur));
+    opacity: 0;
+    animation: desertSandDrift var(--duration) linear forwards;
+    animation-delay: var(--delay);
+  }
+
+  .sand-grain.soft {
+    background: radial-gradient(circle, rgba(218,178,96,0.48), rgba(168,118,47,0.20) 55%, rgba(168,118,47,0) 80%);
+    box-shadow: none;
+  }
+
+  .sand-grain.spark {
+    background: radial-gradient(circle, rgba(255,252,220,1), rgba(244,215,125,0.75) 44%, rgba(212,175,55,0) 76%);
+    box-shadow: 0 0 16px rgba(244,215,125,0.52);
+  }
+
+  @keyframes desertSandDrift {
+    0% {
+      opacity: 0;
+      transform: translate3d(-12vw, 0, 0) scale(0.65);
+    }
+    14% {
+      opacity: var(--opacity);
+    }
+    76% {
+      opacity: var(--opacity);
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(116vw, var(--rise), 0) scale(1.06);
+    }
+  }
+
+  @keyframes desertWarmGlow {
+    0%, 100% { opacity: 0; }
+    28%, 68% { opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    .desert-breeze {
+      z-index: 5;
+    }
+  }
+
 </style>
 </head>
 <body>
+<div id="desertBreeze" class="desert-breeze" aria-hidden="true"></div>
 <header>
   <div class="topbar">
     <div class="social-icons">
@@ -1052,6 +1132,64 @@ window.addEventListener("load", function () {
     const hint = document.getElementById("loungeHint");
     if (hint) hint.classList.add("hide");
   }, 6500);
+});
+
+
+/* Időnkénti Desert Breeze homok effekt */
+const desertBreeze = document.getElementById("desertBreeze");
+
+function randomBetween(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function launchDesertBreeze() {
+  if (!desertBreeze) return;
+
+  desertBreeze.innerHTML = "";
+  desertBreeze.classList.add("active");
+
+  const grainCount = window.innerWidth < 600 ? 24 : 42;
+
+  for (let i = 0; i < grainCount; i++) {
+    const grain = document.createElement("span");
+    grain.className = "sand-grain";
+
+    if (Math.random() > 0.70) grain.classList.add("soft");
+    if (Math.random() > 0.90) grain.classList.add("spark");
+
+    grain.style.setProperty("--top", randomBetween(8, 92) + "vh");
+    grain.style.setProperty("--size", randomBetween(1.1, 4.4) + "px");
+    grain.style.setProperty("--blur", randomBetween(0, 1.1) + "px");
+    grain.style.setProperty("--duration", randomBetween(3.3, 5.1) + "s");
+    grain.style.setProperty("--delay", randomBetween(0, 1.35) + "s");
+    grain.style.setProperty("--rise", randomBetween(-68, 34) + "px");
+    grain.style.setProperty("--opacity", randomBetween(0.16, 0.52));
+
+    desertBreeze.appendChild(grain);
+  }
+
+  setTimeout(function () {
+    desertBreeze.classList.remove("active");
+  }, 5400);
+
+  setTimeout(function () {
+    desertBreeze.innerHTML = "";
+  }, 7400);
+}
+
+function scheduleDesertBreeze() {
+  const nextDelay = randomBetween(20000, 45000);
+  setTimeout(function () {
+    launchDesertBreeze();
+    scheduleDesertBreeze();
+  }, nextDelay);
+}
+
+window.addEventListener("load", function () {
+  setTimeout(function () {
+    launchDesertBreeze();
+    scheduleDesertBreeze();
+  }, 9000);
 });
 
 function sendTransferWhatsApp() {
