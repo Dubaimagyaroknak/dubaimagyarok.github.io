@@ -499,5 +499,20 @@ ${document.getElementById("suitcases").value}`;
 
   window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
 }
+let fbPopupShown = false;
+
+window.addEventListener("scroll", function () {
+  const scrollPosition = window.scrollY + window.innerHeight;
+  const pageHeight = document.documentElement.scrollHeight;
+
+  if (!fbPopupShown && scrollPosition > pageHeight - 300) {
+    document.getElementById("fbPopup").style.display = "flex";
+    fbPopupShown = true;
+  }
+});
+
+function closeFbPopup() {
+  document.getElementById("fbPopup").style.display = "none";
+}
 </script>
 </html>
