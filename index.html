@@ -1274,6 +1274,171 @@
     }
   }
 
+
+
+  /* EXTRA PRÉMIUM FOGLALÁSI FELÜLET - utazási iroda hatás */
+  .booking-panels {
+    margin-top: 22px !important;
+  }
+
+  .booking-panel {
+    position: relative;
+    margin-top: 16px !important;
+    border-radius: 22px !important;
+    background:
+      radial-gradient(circle at 18% 0%, rgba(244,215,125,0.17), transparent 34%),
+      linear-gradient(145deg, rgba(28,23,12,0.96), rgba(8,8,8,0.98)) !important;
+    border: 1px solid rgba(212,175,55,0.34) !important;
+    box-shadow:
+      0 16px 42px rgba(0,0,0,0.42),
+      inset 0 0 26px rgba(212,175,55,0.045) !important;
+  }
+
+  .booking-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(255,237,177,0.12), transparent 36%, rgba(212,175,55,0.08));
+    opacity: 0.8;
+  }
+
+  .booking-panel summary {
+    position: relative;
+    padding: 18px 18px !important;
+    background: linear-gradient(135deg, rgba(255,255,255,0.07), rgba(212,175,55,0.045));
+    border-bottom: 1px solid rgba(212,175,55,0.16);
+    font-size: 16px;
+    letter-spacing: 0.2px;
+  }
+
+  .booking-panel[open] summary {
+    color: #fff1b8 !important;
+    border-bottom-color: rgba(212,175,55,0.30);
+  }
+
+  .booking-panel summary::after {
+    width: 31px !important;
+    height: 31px !important;
+    box-shadow: 0 8px 20px rgba(212,175,55,0.25);
+  }
+
+  .booking-panel-body {
+    position: relative;
+    padding: 18px 18px 20px !important;
+    animation: bookingPanelOpen 0.35s ease both;
+  }
+
+  @keyframes bookingPanelOpen {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .booking-note {
+    margin: 0 0 16px !important;
+    padding: 16px 17px !important;
+    border-radius: 18px !important;
+    border-left: 5px solid #d4af37 !important;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255,245,210,0.10), transparent 30%),
+      rgba(212,175,55,0.09) !important;
+    box-shadow: inset 0 0 22px rgba(0,0,0,0.18);
+  }
+
+  .price-coming {
+    margin: 0 0 16px !important;
+    padding: 9px 14px !important;
+    background: linear-gradient(135deg, rgba(212,175,55,0.14), rgba(255,255,255,0.035)) !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+  }
+
+  .booking-form-grid {
+    gap: 14px !important;
+    align-items: end;
+  }
+
+  .booking-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .booking-field.full {
+    grid-column: 1 / -1;
+  }
+
+  .booking-field label {
+    color: #f0d98a;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.2px;
+    text-shadow: 0 0 10px rgba(212,175,55,0.22);
+  }
+
+  .booking-field input,
+  .booking-field select,
+  .booking-field textarea,
+  .booking-form-grid input,
+  .booking-form-grid select,
+  .booking-form-grid textarea {
+    min-height: 52px;
+    border-radius: 16px !important;
+    border: 1px solid rgba(212,175,55,0.28) !important;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.055)) !important;
+    box-shadow: inset 0 0 18px rgba(0,0,0,0.18), 0 8px 18px rgba(0,0,0,0.16);
+    color: #fff !important;
+    color-scheme: dark;
+  }
+
+  .booking-field input[type="date"],
+  .booking-field input[type="time"],
+  .booking-form-grid input[type="date"],
+  .booking-form-grid input[type="time"] {
+    color: rgba(255,255,255,0.92) !important;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .booking-field input:focus,
+  .booking-field select:focus,
+  .booking-field textarea:focus,
+  .booking-form-grid input:focus,
+  .booking-form-grid select:focus,
+  .booking-form-grid textarea:focus {
+    outline: none !important;
+    border-color: rgba(244,215,125,0.78) !important;
+    box-shadow:
+      0 0 0 3px rgba(212,175,55,0.16),
+      0 12px 24px rgba(0,0,0,0.22),
+      inset 0 0 18px rgba(0,0,0,0.18) !important;
+  }
+
+  .booking-disclaimer {
+    margin: 16px 0 !important;
+    padding: 15px !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(212,175,55,0.045)) !important;
+  }
+
+  .booking-whatsapp-btn {
+    padding: 16px !important;
+    border-radius: 999px !important;
+    font-size: 16px !important;
+    box-shadow: 0 14px 30px rgba(37,211,102,0.26), inset 0 0 12px rgba(255,255,255,0.12) !important;
+  }
+
+  @media (max-width: 600px) {
+    .booking-panel summary {
+      font-size: 15px;
+      padding: 17px 16px !important;
+    }
+    .booking-panel-body {
+      padding: 16px 14px 18px !important;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -1511,6 +1676,9 @@ A belépőjegyek (pl. Qasr Al Watan, Louvre Abu Dhabi) nem tartalmazzák a túra
         </div>
 
         <div class="booking-panels">
+          <div class="booking-note" style="margin-bottom:16px;">
+            ✨ Válaszd ki a szolgáltatást, töltsd ki az adatokat, majd küldd el nekünk WhatsAppon. Mi ellenőrizzük az elérhetőséget, visszaigazoljuk, és fizetés után küldjük a jegyet vagy vouchert.
+          </div>
           <details class="booking-panel">
             <summary>🎫 Belépőjegyek foglalási kérelem</summary>
             <div class="booking-panel-body">
@@ -1547,8 +1715,14 @@ A belépőjegyek (pl. Qasr Al Watan, Louvre Abu Dhabi) nem tartalmazzák a túra
                   <option>House of Hype Dubai</option>
                   <option>Másik program / egyedi kérés</option>
                 </select>
-                <input id="ticketDate" type="date">
-                <input id="ticketTime" type="time">
+                <div class="booking-field">
+                  <label for="ticketDate">📅 Dátum kiválasztása</label>
+                  <input id="ticketDate" type="date">
+                </div>
+                <div class="booking-field">
+                  <label for="ticketTime">🕒 Időpont kiválasztása</label>
+                  <input id="ticketTime" type="time">
+                </div>
                 <input id="ticketAdults" type="number" min="0" placeholder="Felnőttek száma">
                 <input id="ticketChildren" type="number" min="0" placeholder="Gyerekek száma">
                 <input id="ticketName" type="text" placeholder="Teljes név">
@@ -1573,8 +1747,14 @@ A belépőjegyek (pl. Qasr Al Watan, Louvre Abu Dhabi) nem tartalmazzák a túra
                   <option>Marina Dhow hajó – alsó fedélzet</option>
                   <option>Marina Dhow hajó – felső fedélzet</option>
                 </select>
-                <input id="dinnerDate" type="date">
-                <input id="dinnerTime" type="time">
+                <div class="booking-field">
+                  <label for="dinnerDate">📅 Dátum kiválasztása</label>
+                  <input id="dinnerDate" type="date">
+                </div>
+                <div class="booking-field">
+                  <label for="dinnerTime">🕒 Időpont kiválasztása</label>
+                  <input id="dinnerTime" type="time">
+                </div>
                 <input id="dinnerAdults" type="number" min="0" placeholder="Felnőttek száma">
                 <input id="dinnerChildren" type="number" min="0" placeholder="Gyerekek száma">
                 <input id="dinnerName" type="text" placeholder="Teljes név">
@@ -1594,8 +1774,14 @@ A belépőjegyek (pl. Qasr Al Watan, Louvre Abu Dhabi) nem tartalmazzák a túra
               <span class="price-coming">Árak hamarosan érkeznek</span>
 
               <div class="booking-form-grid">
-                <input id="jetskiDate" type="date">
-                <input id="jetskiTime" type="time">
+                <div class="booking-field">
+                  <label for="jetskiDate">📅 Dátum kiválasztása</label>
+                  <input id="jetskiDate" type="date">
+                </div>
+                <div class="booking-field">
+                  <label for="jetskiTime">🕒 Időpont kiválasztása</label>
+                  <input id="jetskiTime" type="time">
+                </div>
                 <input id="jetskiPeople" type="number" min="1" placeholder="Hány fő">
                 <input id="jetskiName" type="text" placeholder="Teljes név">
                 <input id="jetskiPhone" type="text" placeholder="WhatsApp telefonszám">
@@ -1615,8 +1801,14 @@ A belépőjegyek (pl. Qasr Al Watan, Louvre Abu Dhabi) nem tartalmazzák a túra
 
               <div class="booking-form-grid">
                 <input id="carType" class="full" type="text" placeholder="Milyen autó érdekel? Pl. Lamborghini, Ferrari, G-Wagon">
-                <input id="carDate" type="date">
-                <input id="carDuration" type="text" placeholder="Időtartam / napok száma">
+                <div class="booking-field">
+                  <label for="carDate">📅 Bérlés dátuma</label>
+                  <input id="carDate" type="date">
+                </div>
+                <div class="booking-field">
+                  <label for="carDuration">⏳ Időtartam</label>
+                  <input id="carDuration" type="text" placeholder="Időtartam / napok száma">
+                </div>
                 <input id="carName" type="text" placeholder="Teljes név">
                 <input id="carPhone" type="text" placeholder="WhatsApp telefonszám">
                 <textarea id="carNote" class="full" placeholder="Megjegyzés / szállítási hely / egyedi kérés"></textarea>
