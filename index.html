@@ -1117,6 +1117,163 @@
     }
   }
 
+
+
+  /* Prémium foglalási panelek - belépők, hajós vacsora, jetski, luxusautó */
+  .booking-panels {
+    margin-top: 18px;
+  }
+
+  .booking-panel {
+    margin-top: 13px;
+    border: 1px solid rgba(212,175,55,0.24);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(255,255,255,0.025));
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(212,175,55,0.035);
+  }
+
+  .booking-panel summary {
+    list-style: none;
+    padding: 15px 16px;
+    color: #f3e2a7;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .booking-panel summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .booking-panel summary::after {
+    content: "+";
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #111;
+    background: linear-gradient(135deg, #f4d77d, #d4af37);
+    flex: 0 0 auto;
+  }
+
+  .booking-panel[open] summary::after {
+    content: "–";
+  }
+
+  .booking-panel-body {
+    padding: 0 16px 18px;
+    color: #d7d7d7;
+  }
+
+  .booking-note {
+    margin: 10px 0 14px;
+    padding: 12px 13px;
+    border-radius: 14px;
+    border-left: 4px solid #d4af37;
+    background: rgba(212,175,55,0.08);
+    color: #e8dfbd;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .price-coming {
+    display: inline-block;
+    margin: 4px 0 14px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    color: #d4af37;
+    border: 1px solid rgba(212,175,55,0.32);
+    background: rgba(255,255,255,0.035);
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .booking-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .booking-form-grid .full {
+    grid-column: 1 / -1;
+  }
+
+  .booking-form-grid input,
+  .booking-form-grid select,
+  .booking-form-grid textarea {
+    width: 100%;
+    padding: 13px 12px;
+    border: 1px solid rgba(212,175,55,0.20);
+    border-radius: 12px;
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+  }
+
+  .booking-form-grid select option {
+    color: #111;
+  }
+
+  .booking-form-grid textarea {
+    min-height: 86px;
+    resize: vertical;
+  }
+
+  .booking-form-grid input::placeholder,
+  .booking-form-grid textarea::placeholder {
+    color: rgba(255,255,255,0.62);
+  }
+
+  .booking-form-grid input:focus,
+  .booking-form-grid select:focus,
+  .booking-form-grid textarea:focus {
+    outline: 2px solid rgba(212,175,55,0.55);
+    border-color: rgba(212,175,55,0.55);
+  }
+
+  .booking-disclaimer {
+    margin: 14px 0;
+    padding: 13px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(212,175,55,0.18);
+    color: #cfcfcf;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .booking-whatsapp-btn {
+    width: 100%;
+    padding: 14px;
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 10px 24px rgba(37,211,102,0.20);
+  }
+
+  .booking-whatsapp-btn:hover {
+    background: #1ebe5d;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 600px) {
+    .booking-form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -1353,10 +1510,123 @@ A belépőjegyek (pl. Qasr Al Watan, Louvre Abu Dhabi) nem tartalmazzák a túra
           <div class="service-icon-pill">🏎️ Luxusautó bérlés</div>
         </div>
 
-        <details>
-          <summary>További info</summary>
-          <p>Leírás hamarosan...</p>
-        </details>
+        <div class="booking-panels">
+          <details class="booking-panel">
+            <summary>🎫 Belépőjegyek foglalási kérelem</summary>
+            <div class="booking-panel-body">
+              <p class="booking-note">Válaszd ki a kívánt dubaji programot, add meg a dátumot, időpontot és létszámot. A pontos elérhetőséget minden esetben ellenőrizzük.</p>
+              <span class="price-coming">Árak hamarosan érkeznek</span>
+
+              <div class="booking-form-grid">
+                <select id="ticketAttraction" class="full">
+                  <option value="">Válassz belépőjegyet / attrakciót</option>
+                  <option>Burj Khalifa</option>
+                  <option>View at The Palm</option>
+                  <option>The Dubai Frame</option>
+                  <option>Museum of the Future</option>
+                  <option>Dubai Aquarium & Underwater Zoo</option>
+                  <option>Dubai Miracle Garden</option>
+                  <option>Global Village</option>
+                  <option>The Green Planet</option>
+                  <option>IMG Worlds of Adventure</option>
+                  <option>Atlantis Aquaventure Waterpark</option>
+                  <option>Lost Chambers Aquarium</option>
+                  <option>Dubai Safari Park</option>
+                  <option>Ski Dubai</option>
+                  <option>AYA Universe</option>
+                  <option>Dubai Dolphinarium</option>
+                  <option>XLine Dubai Marina</option>
+                  <option>Sky Views Observatory</option>
+                  <option>Inside Burj Al Arab</option>
+                  <option>Dubai Parks and Resorts</option>
+                  <option>Motiongate Dubai</option>
+                  <option>Legoland Dubai</option>
+                  <option>Legoland Water Park</option>
+                  <option>Real Madrid World Dubai</option>
+                  <option>Madame Tussauds Dubai</option>
+                  <option>House of Hype Dubai</option>
+                  <option>Másik program / egyedi kérés</option>
+                </select>
+                <input id="ticketDate" type="date">
+                <input id="ticketTime" type="time">
+                <input id="ticketAdults" type="number" min="0" placeholder="Felnőttek száma">
+                <input id="ticketChildren" type="number" min="0" placeholder="Gyerekek száma">
+                <input id="ticketName" type="text" placeholder="Teljes név">
+                <input id="ticketPhone" type="text" placeholder="WhatsApp telefonszám">
+                <textarea id="ticketNote" class="full" placeholder="Megjegyzés / egyedi kérés"></textarea>
+              </div>
+
+              <div class="booking-disclaimer"><strong>Fontos:</strong> A foglalási kérelem elküldése nem jelent automatikus foglalást. A szolgáltatás elérhetőségét minden esetben ellenőrizzük partnerünknél. A végleges foglalás visszaigazolás és fizetés után történik. A voucher ezt követően WhatsAppon vagy e-mailben kerül elküldésre.</div>
+              <button onclick="sendTicketWhatsApp()" class="booking-whatsapp-btn">Foglalási kérelem küldése WhatsAppon</button>
+            </div>
+          </details>
+
+          <details class="booking-panel">
+            <summary>🚤 Hajós vacsora foglalási kérelem</summary>
+            <div class="booking-panel-body">
+              <p class="booking-note">Marina Dhow hajós vacsora alsó vagy felső fedélzettel. Felnőtt és gyerek árak később kerülnek feltöltésre.</p>
+              <span class="price-coming">Árak hamarosan érkeznek</span>
+
+              <div class="booking-form-grid">
+                <select id="dinnerType" class="full">
+                  <option value="">Válassz hajós vacsorát</option>
+                  <option>Marina Dhow hajó – alsó fedélzet</option>
+                  <option>Marina Dhow hajó – felső fedélzet</option>
+                </select>
+                <input id="dinnerDate" type="date">
+                <input id="dinnerTime" type="time">
+                <input id="dinnerAdults" type="number" min="0" placeholder="Felnőttek száma">
+                <input id="dinnerChildren" type="number" min="0" placeholder="Gyerekek száma">
+                <input id="dinnerName" type="text" placeholder="Teljes név">
+                <input id="dinnerPhone" type="text" placeholder="WhatsApp telefonszám">
+                <textarea id="dinnerNote" class="full" placeholder="Megjegyzés / ételallergia / egyedi kérés"></textarea>
+              </div>
+
+              <div class="booking-disclaimer"><strong>Fontos:</strong> A foglalási kérelem elküldése nem jelent automatikus foglalást. A szolgáltatás elérhetőségét minden esetben ellenőrizzük partnerünknél. A végleges foglalás visszaigazolás és fizetés után történik. A voucher ezt követően WhatsAppon vagy e-mailben kerül elküldésre.</div>
+              <button onclick="sendDinnerWhatsApp()" class="booking-whatsapp-btn">Foglalási kérelem küldése WhatsAppon</button>
+            </div>
+          </details>
+
+          <details class="booking-panel">
+            <summary>🌊 Jetski bérlés foglalási kérelem</summary>
+            <div class="booking-panel-body">
+              <p class="booking-note">Add meg, melyik napon, hány főre és körülbelül milyen időpontra szeretnétek jetskizni.</p>
+              <span class="price-coming">Árak hamarosan érkeznek</span>
+
+              <div class="booking-form-grid">
+                <input id="jetskiDate" type="date">
+                <input id="jetskiTime" type="time">
+                <input id="jetskiPeople" type="number" min="1" placeholder="Hány fő">
+                <input id="jetskiName" type="text" placeholder="Teljes név">
+                <input id="jetskiPhone" type="text" placeholder="WhatsApp telefonszám">
+                <textarea id="jetskiNote" class="full" placeholder="Megjegyzés / egyedi kérés"></textarea>
+              </div>
+
+              <div class="booking-disclaimer"><strong>Fontos:</strong> A foglalási kérelem elküldése nem jelent automatikus foglalást. A szolgáltatás elérhetőségét minden esetben ellenőrizzük partnerünknél. A végleges foglalás visszaigazolás és fizetés után történik. A voucher ezt követően WhatsAppon vagy e-mailben kerül elküldésre.</div>
+              <button onclick="sendJetskiWhatsApp()" class="booking-whatsapp-btn">Foglalási kérelem küldése WhatsAppon</button>
+            </div>
+          </details>
+
+          <details class="booking-panel">
+            <summary>🏎️ Luxusautó bérlés ajánlatkérés</summary>
+            <div class="booking-panel-body">
+              <p class="booking-note">A luxusautók ára és elérhetősége folyamatosan változik. Küldd el, milyen autót keresel, mikorra és mennyi időre, mi pedig visszajelzünk az aktuálisan elérhető opciókkal.</p>
+              <span class="price-coming">Egyedi ár és elérhetőség alapján</span>
+
+              <div class="booking-form-grid">
+                <input id="carType" class="full" type="text" placeholder="Milyen autó érdekel? Pl. Lamborghini, Ferrari, G-Wagon">
+                <input id="carDate" type="date">
+                <input id="carDuration" type="text" placeholder="Időtartam / napok száma">
+                <input id="carName" type="text" placeholder="Teljes név">
+                <input id="carPhone" type="text" placeholder="WhatsApp telefonszám">
+                <textarea id="carNote" class="full" placeholder="Megjegyzés / szállítási hely / egyedi kérés"></textarea>
+              </div>
+
+              <div class="booking-disclaimer"><strong>Fontos:</strong> Az ajánlatkérés elküldése nem jelent automatikus foglalást. Az autó elérhetőségét és árát minden esetben ellenőrizzük partnerünknél. A végleges foglalás visszaigazolás és fizetés után történik.</div>
+              <button onclick="sendCarWhatsApp()" class="booking-whatsapp-btn">Ajánlatkérés küldése WhatsAppon</button>
+            </div>
+          </details>
+        </div>
       </div>
     </div>
     <div class="card">
@@ -1592,6 +1862,138 @@ window.addEventListener("load", function () {
     scheduleDesertBreeze();
   }, 9000);
 });
+
+
+
+function getValue(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : "";
+}
+
+function openWhatsAppMessage(message) {
+  const phoneNumber = "971505109603";
+  window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
+}
+
+function sendTicketWhatsApp() {
+  const message =
+`🎫 Új belépőjegy foglalási kérelem
+
+Választott attrakció / jegytípus:
+${getValue("ticketAttraction")}
+
+Dátum:
+${getValue("ticketDate")}
+
+Időpont:
+${getValue("ticketTime")}
+
+Felnőttek száma:
+${getValue("ticketAdults")}
+
+Gyerekek száma:
+${getValue("ticketChildren")}
+
+Teljes név:
+${getValue("ticketName")}
+
+WhatsApp szám:
+${getValue("ticketPhone")}
+
+Megjegyzés:
+${getValue("ticketNote")}
+
+Fontos: tudomásul veszem, hogy ez foglalási kérelem, a végleges foglalás visszaigazolás és fizetés után történik.`;
+
+  openWhatsAppMessage(message);
+}
+
+function sendDinnerWhatsApp() {
+  const message =
+`🚤 Új hajós vacsora foglalási kérelem
+
+Választott program:
+${getValue("dinnerType")}
+
+Dátum:
+${getValue("dinnerDate")}
+
+Időpont:
+${getValue("dinnerTime")}
+
+Felnőttek száma:
+${getValue("dinnerAdults")}
+
+Gyerekek száma:
+${getValue("dinnerChildren")}
+
+Teljes név:
+${getValue("dinnerName")}
+
+WhatsApp szám:
+${getValue("dinnerPhone")}
+
+Megjegyzés:
+${getValue("dinnerNote")}
+
+Fontos: tudomásul veszem, hogy ez foglalási kérelem, a végleges foglalás visszaigazolás és fizetés után történik.`;
+
+  openWhatsAppMessage(message);
+}
+
+function sendJetskiWhatsApp() {
+  const message =
+`🌊 Új jetski bérlés foglalási kérelem
+
+Dátum:
+${getValue("jetskiDate")}
+
+Időpont:
+${getValue("jetskiTime")}
+
+Hány fő:
+${getValue("jetskiPeople")}
+
+Teljes név:
+${getValue("jetskiName")}
+
+WhatsApp szám:
+${getValue("jetskiPhone")}
+
+Megjegyzés:
+${getValue("jetskiNote")}
+
+Fontos: tudomásul veszem, hogy ez foglalási kérelem, a végleges foglalás visszaigazolás és fizetés után történik.`;
+
+  openWhatsAppMessage(message);
+}
+
+function sendCarWhatsApp() {
+  const message =
+`🏎️ Új luxusautó bérlés ajánlatkérés
+
+Milyen autó érdekel:
+${getValue("carType")}
+
+Dátum:
+${getValue("carDate")}
+
+Időtartam:
+${getValue("carDuration")}
+
+Teljes név:
+${getValue("carName")}
+
+WhatsApp szám:
+${getValue("carPhone")}
+
+Megjegyzés:
+${getValue("carNote")}
+
+Fontos: tudomásul veszem, hogy ez ajánlatkérés, a végleges foglalás visszaigazolás és fizetés után történik.`;
+
+  openWhatsAppMessage(message);
+}
 
 function sendTransferWhatsApp() {
   const phoneNumber = "971505109603";
