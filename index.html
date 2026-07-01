@@ -1498,7 +1498,7 @@
     background:
       linear-gradient(90deg, rgba(3,16,28,0.96) 0%, rgba(4,31,47,0.86) 42%, rgba(4,34,55,0.40) 100%),
       linear-gradient(180deg, rgba(3,23,34,0.10), rgba(3,23,34,0.98)),
-      url("https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1800&q=85") !important;
+      url("https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1800&q=85") !important;
     background-size: cover !important;
     background-position: center !important;
   }
@@ -2377,11 +2377,92 @@
       font-size: 13px !important;
     }
   }
+
+/* ==========================================================
+   HERO 2.0 - 5 képes prémium háttérváltás / 8 mp
+   Finom fade + Ken Burns mozgás, Deep Ocean filterrel
+========================================================== */
+header {
+  isolation: isolate;
+  background: #031722 !important;
+}
+
+.hero-bg-stack {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #031722;
+}
+
+.hero-bg-slide {
+  position: absolute;
+  inset: -3%;
+  opacity: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.035) translate3d(0,0,0);
+  transition: opacity 1.45s ease-in-out;
+  will-change: opacity, transform;
+  filter: saturate(1.06) contrast(1.06) brightness(0.92);
+}
+
+.hero-bg-slide.is-active {
+  opacity: 1;
+  animation: heroKenBurns 8s ease-out forwards;
+}
+
+@keyframes heroKenBurns {
+  from { transform: scale(1.035) translate3d(0,0,0); }
+  to { transform: scale(1.085) translate3d(-0.8%, -0.6%, 0); }
+}
+
+.hero-bg-stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(3,16,28,0.96) 0%, rgba(4,31,47,0.82) 42%, rgba(4,34,55,0.40) 100%),
+    linear-gradient(180deg, rgba(3,23,34,0.06), rgba(3,23,34,0.98) 94%),
+    radial-gradient(circle at 76% 18%, rgba(34,217,210,0.17), transparent 35%);
+}
+
+header::before,
+header::after {
+  z-index: 1 !important;
+}
+
+.topbar,
+.hero,
+.scroll-cue {
+  z-index: 3 !important;
+}
+
+@media (max-width: 600px) {
+  header {
+    background: #031722 !important;
+  }
+
+  .hero-bg-slide {
+    inset: -5%;
+    background-position: center;
+  }
+
+  .hero-bg-stack::after {
+    background:
+      linear-gradient(180deg, rgba(3,16,28,0.68) 0%, rgba(3,16,28,0.88) 52%, rgba(3,23,34,0.98) 100%),
+      radial-gradient(circle at 70% 16%, rgba(34,217,210,0.12), transparent 35%);
+  }
+}
+
 </style>
 </head>
 <body>
 <div id="desertBreeze" class="desert-breeze" aria-hidden="true"></div>
 <header>
+  <div class="hero-bg-stack" aria-hidden="true"><div class="hero-bg-slide is-active"></div><div class="hero-bg-slide"></div></div>
   <div class="topbar">
     <div class="social-icons">
       <a href="https://www.facebook.com/share/g/1D439ntaYg/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
@@ -2865,6 +2946,68 @@ A belépőjegyek (pl. Qasr Al Watan, Louvre Abu Dhabi) nem tartalmazzák a túra
     </div>
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const heroImages = [
+    {
+      name: 'Luxusyacht / Burj Khalifa',
+      url: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=2200&q=90'
+    },
+    {
+      name: 'Red Dunes Desert Safari',
+      url: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=2200&q=90'
+    },
+    {
+      name: 'Dubai Marina este',
+      url: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2200&q=90'
+    },
+    {
+      name: 'Sheikh Zayed mecset',
+      url: 'https://images.unsplash.com/photo-1546412414-8035e1776c9a?auto=format&fit=crop&w=2200&q=90'
+    },
+    {
+      name: 'Palm Jumeirah / türkiz tenger',
+      url: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=2200&q=90'
+    }
+  ];
+
+  const slides = Array.from(document.querySelectorAll('.hero-bg-slide'));
+  if (!slides.length) return;
+
+  let index = 0;
+  let activeLayer = 0;
+  const changeEveryMs = 8000;
+
+  slides[0].style.backgroundImage = `url("${heroImages[0].url}")`;
+  slides[0].setAttribute('data-scene', heroImages[0].name);
+
+  // Előtöltés, hogy a váltások ne villanjanak.
+  heroImages.forEach((image) => {
+    const preload = new Image();
+    preload.src = image.url;
+  });
+
+  setInterval(() => {
+    index = (index + 1) % heroImages.length;
+    const nextLayer = activeLayer === 0 ? 1 : 0;
+
+    slides[nextLayer].style.backgroundImage = `url("${heroImages[index].url}")`;
+    slides[nextLayer].setAttribute('data-scene', heroImages[index].name);
+
+    slides[nextLayer].classList.add('is-active');
+    slides[activeLayer].classList.remove('is-active');
+
+    // Ken Burns animáció újraindítása minden képnél.
+    slides[nextLayer].style.animation = 'none';
+    slides[nextLayer].offsetHeight;
+    slides[nextLayer].style.animation = '';
+
+    activeLayer = nextLayer;
+  }, changeEveryMs);
+});
+</script>
+
 </body>
 <script>
 
