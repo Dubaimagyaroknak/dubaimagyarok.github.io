@@ -2458,7 +2458,231 @@ header::after {
   }
 }
 
+
+
+/* ==========================================================
+   JOGI / BIZALMI BLOKKOK + COOKIE SÁV
+========================================================== */
+.legal-footer {
+  background: linear-gradient(180deg, rgba(3,19,29,0.98), rgba(2,10,16,1)) !important;
+  border-top: 1px solid rgba(142,247,242,0.14) !important;
+  padding: 54px 20px 30px !important;
+  color: rgba(226,246,255,0.72) !important;
+}
+.footer-inner {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 28px;
+  text-align: left;
+}
+.footer-brand h3 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: 24px;
+  letter-spacing: -0.4px;
+}
+.footer-brand p,
+.footer-col p {
+  margin: 7px 0;
+  line-height: 1.55;
+}
+.footer-col h4 {
+  color: #8ef7f2;
+  margin: 0 0 12px;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+.footer-col a,
+.footer-legal-links a {
+  color: rgba(226,246,255,0.78);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+.footer-col a:hover,
+.footer-legal-links a:hover {
+  color: #8ef7f2;
+}
+.trust-list {
+  display: grid;
+  gap: 8px;
+}
+.trust-list span {
+  display: block;
+  padding: 9px 11px;
+  border-radius: 14px;
+  border: 1px solid rgba(142,247,242,0.13);
+  background: rgba(255,255,255,0.045);
+}
+.footer-bottom {
+  width: min(1120px, 100%);
+  margin: 32px auto 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(142,247,242,0.11);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.footer-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+.legal-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.legal-modal.active { display: flex; }
+.legal-modal-card {
+  width: min(980px, 100%);
+  max-height: min(86vh, 860px);
+  overflow: auto;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(5,34,53,0.98), rgba(3,19,29,0.99));
+  border: 1px solid rgba(142,247,242,0.22);
+  box-shadow: 0 28px 90px rgba(0,0,0,0.55);
+  padding: 30px;
+  color: rgba(226,246,255,0.84);
+}
+.legal-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(142,247,242,0.13);
+}
+.legal-modal-head h2 {
+  text-align: left !important;
+  margin: 0 !important;
+  font-size: clamp(26px, 4vw, 42px) !important;
+  color: #fff !important;
+}
+.legal-close {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(142,247,242,0.20);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+.legal-content h3 {
+  color: #8ef7f2;
+  margin: 24px 0 8px;
+}
+.legal-content p,
+.legal-content li {
+  line-height: 1.68;
+}
+.legal-content ul { padding-left: 20px; }
+.legal-note {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(34,217,210,0.08);
+  border: 1px solid rgba(142,247,242,0.15);
+  color: rgba(226,246,255,0.82);
+}
+.cookie-banner {
+  position: fixed;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 10010;
+  display: none;
+  justify-content: center;
+}
+.cookie-banner.active { display: flex; }
+.cookie-box {
+  width: min(920px, 100%);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(3,18,31,0.92);
+  border: 1px solid rgba(142,247,242,0.20);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.42);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.cookie-box p { margin: 4px 0 0; color: rgba(226,246,255,0.76); line-height: 1.45; }
+.cookie-box strong { color: #fff; }
+.cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.cookie-actions button,
+.cookie-actions a {
+  border: 1px solid rgba(142,247,242,0.22);
+  border-radius: 999px;
+  padding: 12px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cookie-accept { background: linear-gradient(135deg, #7af9f2, #16c7c9 48%, #078aa6); color: #042032; }
+.cookie-decline,
+.cookie-details { background: rgba(255,255,255,0.075); color: #eaffff; }
+@media (max-width: 760px) {
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { align-items: flex-start; flex-direction: column; }
+  .cookie-box { grid-template-columns: 1fr; }
+  .cookie-actions { width: 100%; }
+  .cookie-actions button,
+  .cookie-actions a { flex: 1; text-align: center; }
+  .legal-modal-card { padding: 22px; border-radius: 22px; }
+}
+
 </style>
+
+  <!-- SEO / közösségi megosztás / strukturált cégadatok -->
+  <meta name="description" content="Dubai Magyaroknak: szállások, programok, városnézés, Abu Dhabi túra, sivatagi szafari, transzferek és prémium concierge segítség magyar utazóknak Dubajban.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dubaimagyaroknak.hu/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dubai Magyaroknak | Szállások és Programok">
+  <meta property="og:description" content="Magyar nyelvű dubaji concierge: szállások, programok, városnézés, Abu Dhabi, sivatagi szafari és transzferek.">
+  <meta property="og:url" content="https://dubaimagyaroknak.hu/">
+  <meta property="og:locale" content="hu_HU">
+  <meta name="theme-color" content="#052235">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Dubai Magyaroknak",
+    "legalName": "Holiday Xtreme Tourism L.L.C.",
+    "url": "https://dubaimagyaroknak.hu/",
+    "email": "info@dubaimagyaroknak.hu",
+    "telephone": "+971505109603",
+    "areaServed": ["Dubai", "Abu Dhabi", "United Arab Emirates"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Dubai",
+      "addressCountry": "AE"
+    },
+    "sameAs": [
+      "https://www.facebook.com/share/g/1D439ntaYg/?mibextid=wwXIfr",
+      "https://www.instagram.com/desert_cinematography?igsh=MXZzN24xOTRnMDI4eg=="
+    ]
+  }
+  </script>
+
 </head>
 <body>
 <div id="desertBreeze" class="desert-breeze" aria-hidden="true"></div>
@@ -2916,13 +3140,70 @@ A belépőjegyek (pl. Qasr Al Watan, Louvre Abu Dhabi) nem tartalmazzák a túra
     <h2>Kapcsolat</h2>
     <p>Írj nekünk, és segítünk megtervezni a dubaji utazásodat.</p>
     <p><strong>WhatsApp:</strong> +971 50 510 9603</p>
-    <p><strong>Email:</strong> info@utazzvelunkdubaiba.hu</p>
+    <p><strong>Email:</strong> info@dubaimagyaroknak.hu</p>
     <a href="https://wa.me/+971505109603" class="btn">Írás WhatsAppon</a>
   </div>
 </section>
-<footer>
-  <p>© 2026 Utazz velünk Dubaiba. Minden jog fenntartva.</p>
+<footer class="legal-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Dubai Magyaroknak</h3>
+      <p>Prémium dubaji szállás-, program- és concierge segítség magyar utazóknak.</p>
+      <p><strong>Üzemeltető:</strong> Holiday Xtreme Tourism L.L.C.</p>
+      <p><strong>Helyszín:</strong> Dubai, United Arab Emirates</p>
+    </div>
+    <div class="footer-col">
+      <h4>Kapcsolat</h4>
+      <p><a href="tel:+971505109603">+971 50 510 9603</a></p>
+      <p><a href="mailto:info@dubaimagyaroknak.hu">info@dubaimagyaroknak.hu</a></p>
+      <p><a href="https://wa.me/971505109603" target="_blank" rel="noopener">WhatsApp üzenet küldése</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Bizalom</h4>
+      <div class="trust-list">
+        <span>✓ Dubaji bejegyzett vállalkozás</span>
+        <span>✓ Magyar ügyfélkapcsolat</span>
+        <span>✓ Személyre szabott ajánlatok</span>
+        <span>✓ Biztonságos ajánlatkérés</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Dubai Magyaroknak / Holiday Xtreme Tourism L.L.C. Minden jog fenntartva.</div>
+    <div class="footer-legal-links">
+      <a href="#adatkezeles" data-legal="adatkezeles">Adatkezelési tájékoztató</a>
+      <a href="#cookie" data-legal="cookie">Cookie szabályzat</a>
+      <a href="#aszf" data-legal="aszf">ÁSZF</a>
+      <a href="#impresszum" data-legal="impresszum">Impresszum</a>
+      <a href="#lemondas" data-legal="lemondas">Lemondási feltételek</a>
+      <a href="#felelosseg" data-legal="felelosseg">Felelősségkizárás</a>
+    </div>
+  </div>
 </footer>
+
+<div id="legalModal" class="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+  <div class="legal-modal-card">
+    <div class="legal-modal-head">
+      <h2 id="legalTitle">Jogi tájékoztató</h2>
+      <button class="legal-close" type="button" onclick="closeLegalModal()" aria-label="Bezárás">×</button>
+    </div>
+    <div id="legalContent" class="legal-content"></div>
+  </div>
+</div>
+
+<div id="cookieBanner" class="cookie-banner" role="region" aria-label="Cookie tájékoztató">
+  <div class="cookie-box">
+    <div>
+      <strong>🍪 Ez a weboldal sütiket használ</strong>
+      <p>Az alapvető működéshez szükséges sütik mellett csak hozzájárulás esetén használunk statisztikai vagy marketing célú sütiket.</p>
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-accept" type="button" onclick="setCookieConsent('accepted')">Elfogadom</button>
+      <button class="cookie-decline" type="button" onclick="setCookieConsent('declined')">Elutasítom</button>
+      <a class="cookie-details" href="#cookie" data-legal="cookie">Részletek</a>
+    </div>
+  </div>
+</div>
 
 <div class="lounge-player" aria-label="Arabic lounge háttérzene lejátszó">
   <div id="loungeHint" class="lounge-hint">🎵 Kapcsold be az Arabic Lounge háttérzenét</div>
@@ -3006,6 +3287,126 @@ document.addEventListener('DOMContentLoaded', () => {
 
     activeLayer = nextLayer;
   }, changeEveryMs);
+});
+</script>
+
+
+<script>
+const legalTexts = {
+  adatkezeles: {
+    title: "Adatkezelési tájékoztató",
+    html: `
+      <p><strong>Hatályos:</strong> 2026. július 7.</p>
+      <p>A dubaimagyaroknak.hu weboldal üzemeltetője a <strong>Holiday Xtreme Tourism L.L.C.</strong> (Dubai, United Arab Emirates). A weboldal célja dubaji szállásokkal, programokkal, városnézéssel, Abu Dhabi túrával, sivatagi szafarival, transzferekkel és egyéb concierge szolgáltatásokkal kapcsolatos ajánlatkérések kezelése.</p>
+      <h3>Milyen adatokat kezelünk?</h3>
+      <ul><li>név, e-mail cím, telefonszám;</li><li>utazási dátum, létszám, járatszám, felvételi és érkezési cím;</li><li>a kiválasztott program vagy szolgáltatás részletei;</li><li>az üzenetben önként megadott egyéb információk.</li></ul>
+      <h3>Miért kezeljük ezeket?</h3>
+      <p>Ajánlatküldés, foglalási egyeztetés, ügyfélkapcsolat, szolgáltatásszervezés, panaszkezelés és jogszabályi kötelezettségek teljesítése céljából.</p>
+      <h3>Adattovábbítás</h3>
+      <p>A foglalás teljesítéséhez szükséges adatokat továbbíthatjuk megbízható helyi partnereknek, például transzfer-, hotel-, program- vagy belépőszolgáltatóknak. Csak a szükséges adatokat adjuk át.</p>
+      <h3>Megőrzési idő</h3>
+      <p>Az adatokat az ügyintézéshez és az esetleges későbbi adminisztrációhoz szükséges ideig őrizzük meg, illetve ameddig jogszabály vagy jogos üzleti érdek indokolja.</p>
+      <h3>Érintetti jogok</h3>
+      <p>Kérheted az adataidhoz való hozzáférést, azok helyesbítését, törlését, kezelésének korlátozását, illetve tiltakozhatsz az adatkezelés ellen. Kapcsolat: <a href="mailto:info@dubaimagyaroknak.hu">info@dubaimagyaroknak.hu</a>.</p>
+      <div class="legal-note">Ez a tájékoztató gyakorlati weboldal-szövegként készült, nem minősül ügyvédi jogi tanácsadásnak. Éles üzleti használat előtt jogi ellenőrzés ajánlott.</div>`
+  },
+  cookie: {
+    title: "Cookie szabályzat",
+    html: `
+      <p>A weboldal sütiket használhat a megfelelő működés, a felhasználói élmény javítása, valamint később statisztikai vagy marketing célok érdekében.</p>
+      <h3>Szükséges sütik</h3><p>Ezek biztosítják az oldal alapvető működését, például a cookie választás megjegyzését vagy egyes felületi beállításokat.</p>
+      <h3>Statisztikai és marketing sütik</h3><p>Ilyen lehet például Google Analytics, Meta/Facebook Pixel vagy más mérőkód. Ezeket csak akkor használjuk, ha a látogató hozzájárul, és ilyen szolgáltatás ténylegesen be van építve az oldalba.</p>
+      <h3>Hozzájárulás módosítása</h3><p>A böngészőben a sütik törölhetők, illetve a cookie döntés újra megadható. A jelenlegi oldal a választást a böngésző helyi tárhelyében tárolja.</p>`
+  },
+  aszf: {
+    title: "Általános Szerződési Feltételek",
+    html: `
+      <h3>1. Szolgáltató</h3><p>Holiday Xtreme Tourism L.L.C., Dubai, United Arab Emirates. Weboldal: dubaimagyaroknak.hu. Kapcsolat: info@dubaimagyaroknak.hu, +971 50 510 9603.</p>
+      <h3>2. Szolgáltatások</h3><p>A weboldalon dubaji és Egyesült Arab Emírségekben elérhető szállás-, program-, transzfer-, városnézés-, Abu Dhabi-, sivatagi szafari- és concierge ajánlatkérés indítható.</p>
+      <h3>3. Foglalás menete</h3><p>A weboldalon vagy WhatsAppon elküldött üzenet ajánlatkérésnek minősül. A foglalás akkor válik véglegessé, amikor azt a szolgáltató írásban visszaigazolja, és az esetlegesen szükséges előleg vagy teljes díj rendezésre kerül.</p>
+      <h3>4. Árak és fizetés</h3><p>Az árak szolgáltatástól, dátumtól, létszámtól, elérhetőségtől és partnerfeltételektől függően változhatnak. A végleges ár mindig az írásban visszaigazolt ajánlatban szerepel.</p>
+      <h3>5. Lemondás és módosítás</h3><p>A lemondási és módosítási feltételek szolgáltatásonként eltérhetnek. Egyes belépők, szállások vagy külső partnerek szolgáltatásai nem visszatéríthetők.</p>
+      <h3>6. Ügyfél felelőssége</h3><p>Az utas felelős az útlevél, vízum, biztosítás, egészségügyi és beutazási feltételek ellenőrzéséért, valamint azért, hogy pontos adatokat adjon meg.</p>`
+  },
+  impresszum: {
+    title: "Impresszum",
+    html: `
+      <p><strong>Weboldal neve:</strong> Dubai Magyaroknak</p>
+      <p><strong>Domain:</strong> dubaimagyaroknak.hu</p>
+      <p><strong>Üzemeltető:</strong> Holiday Xtreme Tourism L.L.C.</p>
+      <p><strong>Székhely / működési hely:</strong> Dubai, United Arab Emirates</p>
+      <p><strong>E-mail:</strong> <a href="mailto:info@dubaimagyaroknak.hu">info@dubaimagyaroknak.hu</a></p>
+      <p><strong>Telefon / WhatsApp:</strong> <a href="tel:+971505109603">+971 50 510 9603</a></p>
+      <p><strong>Tevékenység:</strong> turisztikai, program-, szállás-, transzfer- és concierge szolgáltatások szervezése / közvetítése.</p>
+      <div class="legal-note">A cégjegyzék-, engedély- vagy adószám mezőt érdemes később a hivatalos dubaji cégadatok alapján pontosítani.</div>`
+  },
+  lemondas: {
+    title: "Lemondási és visszatérítési feltételek",
+    html: `
+      <p>A lemondási feltételek mindig az adott szolgáltatástól, partnertől és időponttól függnek.</p>
+      <h3>Általános irányelv</h3><ul><li>A módosítási vagy lemondási kérelmet írásban, WhatsAppon vagy e-mailben kell jelezni.</li><li>A visszatérítés lehetősége a szolgáltató partner feltételeitől függ.</li><li>Fix dátumos belépők, last minute foglalások, szállások vagy egyedi programok esetén előfordulhat, hogy nincs visszatérítés.</li></ul>
+      <h3>Időjárás, forgalom, hatósági ok</h3><p>Rossz időjárás, útlezárás, hatósági döntés vagy vis maior esetén a program időpontja módosulhat, vagy alternatív megoldást ajánlhatunk.</p>`
+  },
+  felelosseg: {
+    title: "Felelősségkizáró nyilatkozat",
+    html: `
+      <p>A weboldalon szereplő információk tájékoztató jellegűek. Az árak, programok, nyitvatartások, elérhetőségek és útvonalak előzetes értesítés nélkül változhatnak.</p>
+      <h3>Külső partnerek</h3><p>Egyes szolgáltatásokat külső partnerek teljesíthetnek. Ilyenek lehetnek szállodák, transzfercégek, belépőszolgáltatók, hajós programok vagy élményprogram-szervezők.</p>
+      <h3>Utazói felelősség</h3><p>Az utazó felelős azért, hogy egészségi állapota, biztosítása, úti okmányai és beutazási feltételei megfeleljenek az utazáshoz és a kiválasztott programokhoz.</p>
+      <h3>Vis maior</h3><p>Nem vállalunk felelősséget olyan eseményekért, amelyek rajtunk kívül állnak, például időjárás, késés, járattörlés, forgalmi helyzet, hatósági intézkedés vagy egyéb vis maior körülmény.</p>`
+  }
+};
+
+function openLegalModal(key) {
+  const data = legalTexts[key];
+  if (!data) return;
+  const modal = document.getElementById('legalModal');
+  const title = document.getElementById('legalTitle');
+  const content = document.getElementById('legalContent');
+  if (!modal || !title || !content) return;
+  title.textContent = data.title;
+  content.innerHTML = data.html;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLegalModal() {
+  const modal = document.getElementById('legalModal');
+  if (modal) modal.classList.remove('active');
+  document.body.style.overflow = '';
+  if (location.hash && legalTexts[location.hash.replace('#','')]) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+}
+
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('[data-legal]');
+  if (link) {
+    e.preventDefault();
+    const key = link.getAttribute('data-legal');
+    openLegalModal(key);
+    history.replaceState(null, '', '#' + key);
+  }
+  if (e.target && e.target.id === 'legalModal') closeLegalModal();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLegalModal();
+});
+
+function setCookieConsent(value) {
+  localStorage.setItem('dubaiCookieConsent', value);
+  const banner = document.getElementById('cookieBanner');
+  if (banner) banner.classList.remove('active');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const banner = document.getElementById('cookieBanner');
+  if (banner && !localStorage.getItem('dubaiCookieConsent')) {
+    setTimeout(() => banner.classList.add('active'), 900);
+  }
+  const key = location.hash.replace('#','');
+  if (legalTexts[key]) openLegalModal(key);
 });
 </script>
 
