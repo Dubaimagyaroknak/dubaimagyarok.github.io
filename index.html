@@ -2649,6 +2649,65 @@ header::after {
   .legal-modal-card { padding: 22px; border-radius: 22px; }
 }
 
+
+  /* Hotelajánlatok Facebook blokk */
+  .hotel-offers-box {
+    margin-top: 18px;
+    padding: 18px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(34,217,210,0.05));
+    border: 1px solid rgba(142,247,242,0.20);
+    box-shadow: inset 0 0 24px rgba(255,255,255,0.025);
+    color: rgba(226,246,255,0.86);
+  }
+
+  .hotel-offers-box h4 {
+    margin: 0 0 10px;
+    color: #8ef7f2;
+    font-size: 19px;
+    line-height: 1.25;
+  }
+
+  .hotel-offers-box p {
+    margin: 0 0 14px;
+  }
+
+  .hotel-offers-list {
+    display: grid;
+    gap: 8px;
+    margin: 14px 0 18px;
+    padding: 0;
+    list-style: none;
+    color: rgba(226,246,255,0.86);
+  }
+
+  .hotel-offers-list li {
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.065);
+    border: 1px solid rgba(142,247,242,0.13);
+  }
+
+  .hotel-offers-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 999px;
+    color: #042032 !important;
+    background: linear-gradient(135deg, #7af9f2, #16c7c9 48%, #078aa6);
+    border: 1px solid rgba(210,255,255,0.55);
+    text-decoration: none;
+    font-weight: 800;
+    box-shadow: 0 18px 38px rgba(22,199,201,0.20), inset 0 1px 0 rgba(255,255,255,0.45);
+  }
+
+  .hotel-offers-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 24px 54px rgba(34,217,210,0.28), inset 0 1px 0 rgba(255,255,255,0.55);
+  }
+
 </style>
 
   <!-- SEO / közösségi megosztás / strukturált cégadatok -->
@@ -2738,6 +2797,18 @@ Személyre szabott, magyar nyelvű privát programok családoknak, pároknak, ba
         <p>Segítünk megtalálni és lefoglalni a legjobb dubai szállást, legyen szó városi hotelről vagy tengerparti üdülőről.</p>
         <details>
           <summary>További info</summary>
+          <div class="hotel-offers-box">
+            <h4>📍 Aktuális hotelajánlatok</h4>
+            <p><strong>🏨 Böngészd végig a legfrissebb szállásajánlatainkat!</strong></p>
+            <p>Folyamatosan frissülő hotelajánlatokat teszünk közzé Facebook oldalunkon a világ minden tájáról. Dubai, Maldív-szigetek, Thaiföld, Görögország, Törökország, Egyiptom és még sok más úti cél vár rád.</p>
+            <ul class="hotel-offers-list">
+              <li>✔️ Napi új ajánlatok</li>
+              <li>✔️ Kedvezményes árak</li>
+              <li>✔️ Magyar nyelvű segítség</li>
+              <li>✔️ Egyszerű kapcsolatfelvétel</li>
+            </ul>
+            <a class="hotel-offers-btn" href="https://www.facebook.com/share/1KwoXAFPLU/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">➡️ Megnézem a hotelajánlatokat</a>
+          </div>
           <p>Segítünk kiválasztani a legjobb szállást, apartmant vagy hotelt az igényeidnek és költségvetésednek megfelelően. Magyar nyelvű segítséget nyújtunk a foglalás teljes folyamatában.</p>
         </details>
       </div>
