@@ -2839,33 +2839,186 @@ header::after {
   opacity: 1;
   transform: translateY(0);
 }
+
 .camel-page-transition {
   position: fixed;
   inset: 0;
   z-index: 30000;
   pointer-events: none;
   opacity: 0;
+  overflow: hidden;
   background:
-    radial-gradient(circle at 75% 25%, rgba(255,221,140,.95), transparent 8%),
-    repeating-radial-gradient(ellipse at 50% 110%, #e6a551 0 7%, #bf6b32 8% 14%, #8b4728 15% 20%);
-  transform: translateY(100%);
+    radial-gradient(circle at var(--portal-x, 88%) var(--portal-y, 88%), rgba(255,238,184,.98) 0 2%, rgba(239,177,76,.9) 7%, rgba(166,82,35,.72) 17%, transparent 31%),
+    linear-gradient(180deg, rgba(6,20,31,.15), rgba(63,27,14,.78));
+  transition: opacity .2s ease;
 }
 .camel-page-transition.active {
-  animation: camelPortalRise .9s cubic-bezier(.2,.8,.2,1) forwards;
+  opacity: 1;
+  pointer-events: auto;
 }
-.camel-page-transition::before {
-  content: "🐪";
+.camel-page-transition .portal-vortex {
+  position: absolute;
+  left: var(--portal-x, 88%);
+  top: var(--portal-y, 88%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transform: translate(-50%,-50%) scale(.2) rotate(0deg);
+  background:
+    repeating-conic-gradient(from 0deg,
+      rgba(255,238,179,.95) 0 8deg,
+      rgba(226,153,58,.8) 8deg 18deg,
+      rgba(120,54,27,.8) 18deg 28deg);
+  box-shadow:
+    0 0 35px rgba(255,209,113,.8),
+    0 0 100px rgba(224,132,43,.55),
+    inset 0 0 32px rgba(70,25,10,.75);
+  filter: blur(.2px);
+}
+.camel-page-transition.active .portal-vortex {
+  animation: portalVortexGrow 1.75s cubic-bezier(.18,.8,.2,1) forwards;
+}
+.camel-page-transition .portal-vortex::before {
+  content: "";
+  position: absolute;
+  inset: 19%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #140907 0 28%, rgba(74,30,13,.96) 48%, rgba(255,188,74,.45) 72%, transparent 74%);
+  box-shadow: inset 0 0 28px rgba(0,0,0,.85);
+}
+.camel-page-transition .portal-vortex::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  border: 3px dashed rgba(255,225,153,.5);
+  animation: portalRingSpin .7s linear infinite;
+}
+.camel-page-transition .portal-particles {
+  position: absolute;
+  inset: 0;
+}
+.camel-page-transition .portal-particles i {
+  position: absolute;
+  left: var(--portal-x, 88%);
+  top: var(--portal-y, 88%);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff3c0, #e6a34b 60%, transparent 72%);
+  box-shadow: 0 0 10px rgba(255,205,107,.7);
+  opacity: 0;
+}
+.camel-page-transition.active .portal-particles i {
+  animation: portalParticleFly var(--duration) cubic-bezier(.1,.7,.15,1) var(--delay) forwards;
+}
+.camel-page-transition .portal-title {
   position: absolute;
   left: 50%;
-  top: 46%;
-  font-size: 72px;
-  transform: translate(-50%,-50%);
-  filter: drop-shadow(0 12px 18px rgba(0,0,0,.35));
+  top: 45%;
+  width: min(90vw, 680px);
+  transform: translate(-50%,-50%) scale(.72);
+  text-align: center;
+  opacity: 0;
+  color: #fff4cc;
+  text-shadow: 0 8px 30px rgba(0,0,0,.7), 0 0 28px rgba(244,177,68,.5);
 }
-@keyframes camelPortalRise {
-  0% { opacity: 0; transform: translateY(100%); filter: blur(10px); }
-  55% { opacity: 1; transform: translateY(0); filter: blur(2px); }
-  100% { opacity: 1; transform: translateY(0); filter: none; }
+.camel-page-transition .portal-title strong {
+  display: block;
+  font-size: clamp(34px,8vw,82px);
+  line-height: .95;
+  letter-spacing: -2px;
+}
+.camel-page-transition .portal-title span {
+  display: block;
+  margin-top: 11px;
+  font-size: clamp(12px,2.5vw,18px);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,236,185,.85);
+}
+.camel-page-transition.active .portal-title {
+  animation: portalTitleIn 1s ease .68s forwards;
+}
+.camel-page-transition .portal-camel {
+  position: absolute;
+  left: -35vw;
+  bottom: 18%;
+  font-size: clamp(58px,14vw,118px);
+  filter: sepia(1) brightness(.3) drop-shadow(0 12px 12px rgba(0,0,0,.5));
+  transform: scaleX(-1);
+}
+.camel-page-transition.active .portal-camel {
+  animation: portalCamelRun 1.55s cubic-bezier(.2,.7,.25,1) .25s forwards;
+}
+.camel-page-transition .portal-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff0bd;
+  opacity: 0;
+}
+.camel-page-transition.active .portal-flash {
+  animation: portalFlash 1.85s ease forwards;
+}
+body.camel-portal-opening > *:not(.camel-page-transition) {
+  animation: portalPageZoom 1.7s cubic-bezier(.2,.8,.2,1) forwards;
+  transform-origin: var(--portal-x, 88%) var(--portal-y, 88%);
+}
+body.camel-portal-opening {
+  overflow: hidden !important;
+}
+@keyframes portalVortexGrow {
+  0% { transform: translate(-50%,-50%) scale(.2) rotate(0deg); }
+  46% { transform: translate(-50%,-50%) scale(6) rotate(210deg); }
+  100% { transform: translate(-50%,-50%) scale(65) rotate(760deg); }
+}
+@keyframes portalRingSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes portalParticleFly {
+  0% { opacity: 0; transform: translate(-50%,-50%) scale(.2); }
+  12% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(2.4);
+  }
+}
+@keyframes portalTitleIn {
+  0% { opacity: 0; transform: translate(-50%,-50%) scale(.72); filter: blur(12px); }
+  70% { opacity: 1; transform: translate(-50%,-50%) scale(1.04); filter: blur(0); }
+  100% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+}
+@keyframes portalCamelRun {
+  0% { left: -35vw; transform: scaleX(-1) translateY(0) rotate(-4deg); }
+  30% { transform: scaleX(-1) translateY(-12px) rotate(2deg); }
+  60% { transform: scaleX(-1) translateY(0) rotate(-2deg); }
+  100% { left: 115vw; transform: scaleX(-1) translateY(-8px) rotate(2deg); }
+}
+@keyframes portalFlash {
+  0%,72% { opacity: 0; }
+  84% { opacity: .18; }
+  100% { opacity: .72; }
+}
+@keyframes portalPageZoom {
+  0% { transform: scale(1); filter: blur(0) brightness(1); }
+  55% { transform: scale(1.06); filter: blur(1px) brightness(.82); }
+  100% { transform: scale(1.32); filter: blur(8px) brightness(.38); }
+}
+@keyframes camelPortalShake {
+  0%,100% { transform: translate(0,0); }
+  20% { transform: translate(-2px,1px); }
+  40% { transform: translate(3px,-2px); }
+  60% { transform: translate(-3px,2px); }
+  80% { transform: translate(2px,-1px); }
+}
+.camel-footprint-secret.portal-ready {
+  opacity: 1;
+  animation: camelPortalShake .22s linear 4;
+  box-shadow: 0 0 42px rgba(255,196,80,.82), inset 0 0 18px rgba(255,237,190,.35);
+}
+.camel-footprint-secret.portal-ready .footprint-icon {
+  transform: rotate(0deg) scale(1.38);
+  filter: drop-shadow(0 0 15px rgba(255,214,123,1));
 }
 @media (max-width:600px) {
   .camel-footprint-secret { right: 10px; bottom: 62px; width: 42px; height: 42px; }
@@ -3664,7 +3817,16 @@ document.addEventListener('DOMContentLoaded', function() {
     </svg>
   </span>
 </button>
-<div id="camelPageTransition" class="camel-page-transition" aria-hidden="true"></div>
+<div id="camelPageTransition" class="camel-page-transition" aria-hidden="true">
+  <div class="portal-vortex"></div>
+  <div class="portal-particles" id="camelPortalParticles"></div>
+  <div class="portal-camel" aria-hidden="true">🐪</div>
+  <div class="portal-title">
+    <strong>SECRET CAMEL CUP</strong>
+    <span>Belépés a titkos sivatagi világba</span>
+  </div>
+  <div class="portal-flash"></div>
+</div>
 
 </body>
 <script>
@@ -3993,15 +4155,17 @@ function closeFbPopup() {
 }
 
 
-/* Titkos teveverseny: 3 másodperces nyomva tartás */
+/* Titkos teveverseny: 3 másodperces nyomva tartás + filmes homokportál */
 (function () {
   const trigger = document.getElementById('camelFootprintSecret');
   const toast = document.getElementById('camelHoldToast');
   const transition = document.getElementById('camelPageTransition');
+  const particleBox = document.getElementById('camelPortalParticles');
   if (!trigger || !transition) return;
 
   let holdTimer = null;
   let opened = false;
+  let audioContext = null;
   const HOLD_MS = 3000;
 
   function showHint() {
@@ -4014,24 +4178,107 @@ function closeFbPopup() {
   function cancelHold() {
     window.clearTimeout(holdTimer);
     holdTimer = null;
-    trigger.classList.remove('holding');
+    if (!opened) trigger.classList.remove('holding');
+  }
+
+  function createPortalParticles() {
+    if (!particleBox) return;
+    particleBox.innerHTML = '';
+    for (let i = 0; i < 70; i++) {
+      const particle = document.createElement('i');
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 80 + Math.random() * Math.max(innerWidth, innerHeight) * .72;
+      particle.style.setProperty('--dx', `${Math.cos(angle) * distance}px`);
+      particle.style.setProperty('--dy', `${Math.sin(angle) * distance}px`);
+      particle.style.setProperty('--size', `${2 + Math.random() * 8}px`);
+      particle.style.setProperty('--duration', `${.7 + Math.random() * 1.05}s`);
+      particle.style.setProperty('--delay', `${Math.random() * .42}s`);
+      particleBox.appendChild(particle);
+    }
+  }
+
+  function setPortalOrigin() {
+    const rect = trigger.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const xPercent = (x / innerWidth) * 100;
+    const yPercent = (y / innerHeight) * 100;
+    document.documentElement.style.setProperty('--portal-x', `${xPercent}%`);
+    document.documentElement.style.setProperty('--portal-y', `${yPercent}%`);
+  }
+
+  function ensureAudio() {
+    try {
+      if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioContext.state === 'suspended') audioContext.resume();
+    } catch (_) {}
+  }
+
+  function playPortalSound() {
+    if (!audioContext) return;
+    const now = audioContext.currentTime;
+
+    [0, .18, .36].forEach((delay, index) => {
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(115 - index * 13, now + delay);
+      osc.frequency.exponentialRampToValueAtTime(45, now + delay + .2);
+      gain.gain.setValueAtTime(.13 + index * .025, now + delay);
+      gain.gain.exponentialRampToValueAtTime(.001, now + delay + .22);
+      osc.connect(gain).connect(audioContext.destination);
+      osc.start(now + delay);
+      osc.stop(now + delay + .24);
+    });
+
+    const length = Math.floor(audioContext.sampleRate * 1.6);
+    const buffer = audioContext.createBuffer(1, length, audioContext.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < length; i++) {
+      const fade = 1 - i / length;
+      data[i] = (Math.random() * 2 - 1) * fade;
+    }
+    const source = audioContext.createBufferSource();
+    const filter = audioContext.createBiquadFilter();
+    const gain = audioContext.createGain();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(950, now);
+    filter.frequency.exponentialRampToValueAtTime(180, now + 1.5);
+    gain.gain.setValueAtTime(.0001, now);
+    gain.gain.exponentialRampToValueAtTime(.085, now + .25);
+    gain.gain.exponentialRampToValueAtTime(.001, now + 1.55);
+    source.buffer = buffer;
+    source.connect(filter).connect(gain).connect(audioContext.destination);
+    source.start(now);
   }
 
   function openRace() {
     if (opened) return;
     opened = true;
     cancelHold();
+    setPortalOrigin();
+    createPortalParticles();
+    trigger.classList.add('portal-ready');
+    document.body.classList.add('camel-portal-opening');
     transition.classList.add('active');
     transition.setAttribute('aria-hidden', 'false');
-    if (navigator.vibrate) navigator.vibrate([45, 35, 80]);
+    playPortalSound();
+
+    try {
+      localStorage.setItem('camelCupPortalEntry', '1');
+    } catch (_) {}
+
+    if (navigator.vibrate) navigator.vibrate([55, 35, 90, 40, 150]);
+
     window.setTimeout(() => {
-      window.location.href = 'teveverseny.html';
-    }, 760);
+      window.location.href = 'teveverseny.html?portal=1';
+    }, 1780);
   }
 
   function startHold(event) {
     if (event) event.preventDefault();
     if (opened || holdTimer) return;
+    ensureAudio();
     trigger.classList.add('holding');
     holdTimer = window.setTimeout(openRace, HOLD_MS);
   }
@@ -4054,8 +4301,13 @@ function closeFbPopup() {
   function resetCamelPortal() {
     opened = false;
     cancelHold();
+    trigger.classList.remove('portal-ready');
     transition.classList.remove('active');
     transition.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('camel-portal-opening');
+    document.documentElement.style.removeProperty('--portal-x');
+    document.documentElement.style.removeProperty('--portal-y');
+    if (particleBox) particleBox.innerHTML = '';
     if (toast) toast.classList.remove('show');
   }
 
