@@ -2724,15 +2724,15 @@ header::after {
   place-items: center;
   padding: 0;
   color: rgba(220,255,255,.55);
-  background: rgba(3,18,31,.28);
-  box-shadow: 0 10px 30px rgba(0,0,0,.22);
+  background: radial-gradient(circle at 40% 35%, rgba(219,174,96,.11), rgba(3,18,31,.18) 68%);
+  box-shadow: inset 0 0 14px rgba(219,174,96,.025);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   touch-action: none;
-  opacity: .42;
+  opacity: .24;
   transition: opacity .25s ease, transform .25s ease, box-shadow .25s ease;
 }
 .camel-footprint-secret:hover,
@@ -2741,27 +2741,77 @@ header::after {
   transform: scale(1.06);
 }
 .camel-footprint-secret .footprint-icon {
-  font-size: 24px;
-  line-height: 1;
-  transform: rotate(-18deg);
+  width: 29px;
+  height: 29px;
+  display: block;
+  transform: rotate(-14deg);
+  transition: transform .35s ease, filter .35s ease;
+}
+.camel-footprint-secret .footprint-icon svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.camel-footprint-secret .footprint-icon path {
+  fill: rgba(205,162,92,.62);
+  stroke: rgba(255,226,168,.12);
+  stroke-width: .8;
+  transition: fill .35s ease, stroke .35s ease, filter .35s ease;
+}
+.camel-footprint-secret .footprint-icon .footprint-groove {
+  fill: none;
+  stroke: rgba(74,42,22,.34);
+  stroke-width: 2.3;
+  stroke-linecap: round;
+}
+.camel-footprint-secret::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(219,174,96,.16), transparent 68%);
+  opacity: .45;
+  filter: blur(5px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+.camel-footprint-secret:hover .footprint-icon,
+.camel-footprint-secret:focus-visible .footprint-icon {
+  transform: rotate(-10deg) scale(1.05);
+}
+.camel-footprint-secret.holding .footprint-icon {
+  transform: rotate(-6deg) scale(1.16);
+  filter: drop-shadow(0 0 10px rgba(255,210,120,.72));
+}
+.camel-footprint-secret.holding .footprint-icon path {
+  fill: rgba(255,210,128,.95);
+  stroke: rgba(255,245,215,.5);
+  filter: drop-shadow(0 0 7px rgba(255,207,114,.46));
+}
+.camel-footprint-secret.holding .footprint-icon .footprint-groove {
+  fill: none;
+  stroke: rgba(92,49,20,.56);
+}
+.camel-footprint-secret.holding::before {
+  opacity: 1;
+  transform: scale(1.3);
 }
 .camel-footprint-secret::after {
   content: "";
   position: absolute;
   inset: 3px;
   border-radius: 50%;
-  border: 2px solid rgba(142,247,242,.18);
+  border: 2px solid rgba(219,174,96,.12);
   clip-path: inset(100% 0 0 0);
 }
 .camel-footprint-secret.holding::after {
   animation: camelHoldProgress 3s linear forwards;
-  border-color: rgba(142,247,242,.9);
-  box-shadow: 0 0 18px rgba(34,217,210,.42);
+  border-color: rgba(255,210,128,.9);
+  box-shadow: 0 0 18px rgba(255,195,92,.42);
 }
 .camel-footprint-secret.holding {
   opacity: 1;
   transform: scale(1.12);
-  box-shadow: 0 0 30px rgba(34,217,210,.32);
+  box-shadow: 0 0 30px rgba(255,195,92,.28), inset 0 0 18px rgba(255,220,150,.08);
 }
 @keyframes camelHoldProgress {
   from { clip-path: inset(100% 0 0 0); }
@@ -3603,7 +3653,16 @@ document.addEventListener('DOMContentLoaded', function() {
 <div id="camelHoldToast" class="camel-hold-toast">Tartsd nyomva a teve lábnyomát 3 másodpercig…</div>
 <button id="camelFootprintSecret" class="camel-footprint-secret" type="button"
         aria-label="Titkos teveverseny megnyitása – tartsd nyomva 3 másodpercig">
-  <span class="footprint-icon" aria-hidden="true">🐾</span>
+  <span class="footprint-icon" aria-hidden="true">
+    <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
+      <path d="M18 14c4.8 0 8.7 4.7 8.7 10.5S22.8 35 18 35 9.3 30.3 9.3 24.5 13.2 14 18 14Z"/>
+      <path d="M46 14c4.8 0 8.7 4.7 8.7 10.5S50.8 35 46 35s-8.7-4.7-8.7-10.5S41.2 14 46 14Z"/>
+      <path d="M32 29c8.7 0 16 6.4 16 14.3 0 8-7.3 12.7-16 12.7s-16-4.7-16-12.7C16 35.4 23.3 29 32 29Z"/>
+      <path d="M31.8 29c-2.2 4.1-3.2 8.4-3.2 13.2 0 4.7 1.1 9.2 3.4 13.4" class="footprint-groove"/>
+      <path d="M20.5 17.2c-1.7 3.3-2 7.1-.8 11.2" class="footprint-groove"/>
+      <path d="M43.5 17.2c1.7 3.3 2 7.1.8 11.2" class="footprint-groove"/>
+    </svg>
+  </span>
 </button>
 <div id="camelPageTransition" class="camel-page-transition" aria-hidden="true"></div>
 
