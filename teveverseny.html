@@ -3,227 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#bf642f">
+<meta name="theme-color" content="#b45d2e">
 <title>Secret Camel Cup – Dubai Magyaroknak</title>
 <style>
 *{box-sizing:border-box}
 :root{
-  --gold:#ffe7a3;
-  --gold2:#f6b845;
-  --sand:#dfa04d;
-  --sand2:#bd642f;
-  --dark:#21110d;
-  --glass:rgba(30,15,12,.72);
-  --line:rgba(255,235,188,.25);
+  --gold:#ffe7a3;--gold2:#f4b447;--sand:#dfa04d;--sand2:#bd642f;
+  --dark:#21110d;--glass:rgba(28,14,11,.76);--line:rgba(255,235,188,.24);
+  --accent:#ffd87c;--sky1:#123b59;--sky2:#d56e38;--dune1:#dc8742;--dune2:#8c4025;
 }
-html,body{
-  margin:0;
-  min-height:100%;
-  font-family:Inter,Arial,sans-serif;
-  color:#fff;
-  background:#1c0f0c;
-  overflow-x:hidden;
-}
-body{
-  min-height:100svh;
-  background:linear-gradient(#103957 0%,#d67038 40%,#eda64f 68%,#71361f 100%);
-  touch-action:manipulation;
-}
-button,input{font:inherit}
-button{-webkit-tap-highlight-color:transparent}
-.world{position:fixed;inset:0;overflow:hidden;pointer-events:none}
-.skyglow{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(circle at 77% 15%,rgba(255,247,203,.9) 0 4%,rgba(255,205,102,.28) 12%,transparent 28%),
-    linear-gradient(180deg,rgba(17,73,106,.1),transparent 45%);
-}
-.sun{
-  position:absolute;width:110px;height:110px;border-radius:50%;
-  right:8%;top:8%;
-  background:radial-gradient(circle,#fffbd8 0 20%,#ffd873 46%,rgba(255,173,65,.08) 70%);
-  box-shadow:0 0 70px rgba(255,213,112,.62);
-}
+html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:#fff;background:#1c0f0c;overflow-x:hidden}
+body{min-height:100svh;background:linear-gradient(var(--sky1),var(--sky2) 43%,#eda64f 68%,#71361f 100%);touch-action:manipulation}
+button,input{font:inherit}button{-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+
+.world{position:fixed;inset:0;overflow:hidden;pointer-events:none;transition:filter .5s ease}
+.skyglow{position:absolute;inset:0;background:radial-gradient(circle at 77% 15%,rgba(255,247,203,.9) 0 4%,rgba(255,205,102,.25) 12%,transparent 28%)}
+.sun{position:absolute;width:110px;height:110px;border-radius:50%;right:8%;top:8%;background:radial-gradient(circle,#fffbd8 0 20%,#ffd873 46%,rgba(255,173,65,.08) 70%);box-shadow:0 0 70px rgba(255,213,112,.62)}
+.moon{display:none;position:absolute;width:75px;height:75px;border-radius:50%;right:10%;top:9%;background:#f7f1d7;box-shadow:0 0 42px rgba(235,245,255,.55)}
+.stars{display:none;position:absolute;inset:0;background-image:radial-gradient(#fff 0 1px,transparent 1.4px);background-size:41px 41px;opacity:.55}
+.cloud{position:absolute;width:170px;height:32px;border-radius:50%;background:rgba(255,255,255,.11);filter:blur(5px);animation:cloudMove 24s linear infinite}
+.cloud.c1{top:15%;left:-25%}.cloud.c2{top:28%;left:-45%;animation-duration:34s;transform:scale(.7)}
+@keyframes cloudMove{to{left:115%}}
 .mountains{position:absolute;inset:auto 0 27% 0;height:28%}
-.mountains::before,.mountains::after{
-  content:"";position:absolute;bottom:0;left:-6%;width:65%;height:100%;
-  background:#814026;clip-path:polygon(0 100%,24% 32%,37% 58%,55% 20%,77% 62%,100% 100%);
-  opacity:.78;
-}
-.mountains::after{
-  left:40%;width:70%;background:#9b4b29;opacity:.55;
-  clip-path:polygon(0 100%,18% 55%,32% 28%,45% 66%,64% 25%,78% 57%,100% 100%);
-}
-.dune,.dune::before,.dune::after{
-  position:absolute;content:"";left:-12%;right:-12%;bottom:-14%;height:56%;
-  border-radius:50% 50% 0 0/35% 35% 0 0;background:#b85c2e;transform:rotate(-3deg)
-}
-.dune::before{bottom:23%;left:-6%;right:36%;height:61%;background:#dc8742;transform:rotate(8deg)}
-.dune::after{bottom:8%;left:43%;right:-12%;height:73%;background:#8c4025;transform:rotate(-8deg)}
+.mountains:before,.mountains:after{content:"";position:absolute;bottom:0;left:-6%;width:65%;height:100%;background:#814026;clip-path:polygon(0 100%,24% 32%,37% 58%,55% 20%,77% 62%,100% 100%);opacity:.78}
+.mountains:after{left:40%;width:70%;background:#9b4b29;opacity:.55;clip-path:polygon(0 100%,18% 55%,32% 28%,45% 66%,64% 25%,78% 57%,100% 100%)}
+.dune,.dune:before,.dune:after{position:absolute;content:"";left:-12%;right:-12%;bottom:-14%;height:56%;border-radius:50% 50% 0 0/35% 35% 0 0;background:#b85c2e;transform:rotate(-3deg)}
+.dune:before{bottom:23%;left:-6%;right:36%;height:61%;background:var(--dune1);transform:rotate(8deg)}
+.dune:after{bottom:8%;left:43%;right:-12%;height:73%;background:var(--dune2);transform:rotate(-8deg)}
+.skyline{position:absolute;left:9%;right:9%;bottom:23%;height:110px;opacity:.48;filter:drop-shadow(0 8px 8px rgba(0,0,0,.28))}
+.skyline span{position:absolute;bottom:0;background:#332019;border-radius:3px 3px 0 0}
+.skyline .burj{left:46%;width:9px;height:108px;clip-path:polygon(45% 0,65% 22%,57% 38%,72% 57%,62% 100%,28% 100%,40% 55%,33% 38%)}
+.skyline .tower1{left:10%;width:24px;height:52px}.skyline .tower2{left:20%;width:17px;height:74px}.skyline .tower3{right:12%;width:30px;height:46px}
+.skyline .frame{right:28%;width:42px;height:66px;background:transparent;border:8px solid #332019}
 .palms{position:absolute;left:0;right:0;bottom:18%;display:flex;justify-content:space-between;padding:0 4%}
-.palm{width:76px;height:120px;position:relative;opacity:.72}
-.palm::before{content:"";position:absolute;left:35px;bottom:0;width:8px;height:82px;background:#472416;transform:skew(-6deg);border-radius:8px}
-.palm::after{content:"🌴";position:absolute;left:0;top:-6px;font-size:64px;filter:sepia(1) saturate(.7) brightness(.55)}
-.grain{position:absolute;inset:0;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
-.app{position:relative;z-index:3;width:min(1040px,100%);min-height:100svh;margin:auto;padding:max(16px,env(safe-area-inset-top)) 12px max(18px,env(safe-area-inset-bottom))}
+.palm{width:76px;height:120px;position:relative;opacity:.72;animation:palmSway 3.8s ease-in-out infinite alternate;transform-origin:50% 100%}
+.palm:before{content:"";position:absolute;left:35px;bottom:0;width:8px;height:82px;background:#472416;transform:skew(-6deg);border-radius:8px}
+.palm:after{content:"🌴";position:absolute;left:0;top:-6px;font-size:64px;filter:sepia(1) saturate(.7) brightness(.55)}
+@keyframes palmSway{to{transform:rotate(2deg)}}
+.camp{position:absolute;bottom:20%;left:5%;right:5%;height:58px}
+.tent{position:absolute;bottom:0;width:72px;height:42px;background:#8f3f26;clip-path:polygon(50% 0,100% 100%,0 100%);filter:drop-shadow(0 5px 6px rgba(0,0,0,.3))}
+.tent:after{content:"";position:absolute;left:48%;top:11px;width:4px;height:31px;background:#3a1d14}
+.tent.t1{left:6%}.tent.t2{right:8%;transform:scale(.8)}
+.suv{position:absolute;bottom:0;width:76px;height:26px;background:#2d211d;border-radius:10px 14px 4px 4px}
+.suv:before{content:"";position:absolute;left:12px;top:-15px;width:42px;height:19px;background:#40302a;clip-path:polygon(15% 100%,28% 0,78% 0,100% 100%)}
+.suv:after{content:"●   ●";position:absolute;left:7px;bottom:-13px;color:#17100d;font-size:22px;letter-spacing:25px}
+.suv.s1{left:26%}.suv.s2{right:25%;transform:scale(.86)}
+.birds{position:absolute;top:20%;left:-20%;font-size:22px;opacity:.65;animation:birdsFly 18s linear infinite}
+@keyframes birdsFly{to{left:110%;transform:translateY(-30px)}}
+.grain{position:absolute;inset:0;opacity:.11;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.sandstorm{position:fixed;inset:0;z-index:45;pointer-events:none;opacity:0;background:linear-gradient(90deg,transparent,rgba(210,137,64,.72),rgba(255,218,145,.34),transparent);filter:blur(8px);transform:translateX(-110%);transition:opacity .25s}
+.sandstorm.active{opacity:.85;animation:stormSweep 2.2s ease-in-out}
+@keyframes stormSweep{to{transform:translateX(110%)}}
+
+body.theme-night{--sky1:#07172e;--sky2:#313255;--dune1:#795235;--dune2:#342017}
+body.theme-night .sun{display:none}body.theme-night .moon,body.theme-night .stars{display:block}
+body.theme-oasis{--sky1:#146080;--sky2:#d88541;--dune1:#d49a50;--dune2:#6e452a}
+body.theme-red{--sky1:#3c1a29;--sky2:#a83f31;--dune1:#ba4b31;--dune2:#5d271f}
+body.theme-day{--sky1:#48a6d3;--sky2:#dca14b;--dune1:#e4b35d;--dune2:#9a6338}
+
+.app{position:relative;z-index:3;width:min(1080px,100%);min-height:100svh;margin:auto;padding:max(16px,env(safe-area-inset-top)) 12px max(18px,env(safe-area-inset-bottom))}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
-.brand{
-  display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.5px;
-  text-shadow:0 5px 18px rgba(0,0,0,.36)
-}
-.brand-badge{
-  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(135deg,#fff0b4,#efaa42);color:#30160b;
-  box-shadow:0 10px 28px rgba(73,31,8,.3)
-}
-.back{
-  border:1px solid rgba(255,255,255,.26);background:rgba(31,16,13,.52);color:#fff;
-  border-radius:999px;padding:11px 15px;font-weight:900;text-decoration:none;backdrop-filter:blur(12px)
-}
-.panel{
-  width:min(700px,100%);margin:5vh auto 0;padding:24px;border-radius:30px;
-  background:linear-gradient(180deg,rgba(42,20,14,.78),rgba(25,12,10,.74));
-  border:1px solid var(--line);box-shadow:0 28px 80px rgba(0,0,0,.38);backdrop-filter:blur(18px)
-}
-.logo-lockup{text-align:center;margin-bottom:18px}
-.cup-logo{
-  display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;
-  background:rgba(255,234,182,.1);border:1px solid rgba(255,234,182,.2);
-  color:#ffe6a1;font-weight:1000;letter-spacing:1px;text-transform:uppercase;font-size:13px
-}
-.panel h1,.panel h2{margin:10px 0}
-.panel h1{font-size:clamp(34px,7vw,62px);line-height:.95;letter-spacing:-2px;text-align:center}
-.panel p{color:rgba(255,255,255,.82);line-height:1.55}
-.input{
-  width:100%;padding:15px 16px;margin:12px 0;border-radius:17px;border:1px solid rgba(255,229,169,.31);
-  background:rgba(255,255,255,.1);color:#fff;font-size:17px;outline:none
-}
-.input::placeholder{color:rgba(255,255,255,.52)}
-.primary,.secondary{
-  width:100%;border:0;border-radius:999px;padding:15px 18px;font-size:16px;font-weight:1000;cursor:pointer
-}
-.primary{
-  background:linear-gradient(135deg,#fff0b8,#f2b047 55%,#cf702e);color:#2b160c;
-  box-shadow:0 16px 38px rgba(72,31,10,.3),inset 0 1px 0 rgba(255,255,255,.7)
-}
+.brand{display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.5px;text-shadow:0 5px 18px rgba(0,0,0,.36)}
+.brand-badge{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#fff0b4,#efaa42);color:#30160b;box-shadow:0 10px 28px rgba(73,31,8,.3)}
+.back{border:1px solid rgba(255,255,255,.26);background:rgba(31,16,13,.52);color:#fff;border-radius:999px;padding:11px 15px;font-weight:900;text-decoration:none;backdrop-filter:blur(12px)}
+.panel{width:min(760px,100%);margin:4vh auto 0;padding:24px;border-radius:30px;background:linear-gradient(180deg,rgba(42,20,14,.8),rgba(25,12,10,.76));border:1px solid var(--line);box-shadow:0 28px 80px rgba(0,0,0,.38);backdrop-filter:blur(18px)}
+.logo-lockup{text-align:center;margin-bottom:18px}.cup-logo{display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;background:rgba(255,234,182,.1);border:1px solid rgba(255,234,182,.2);color:#ffe6a1;font-weight:1000;letter-spacing:1px;text-transform:uppercase;font-size:13px}
+.panel h1,.panel h2{margin:10px 0}.panel h1{font-size:clamp(34px,7vw,62px);line-height:.95;letter-spacing:-2px;text-align:center}.panel p{color:rgba(255,255,255,.82);line-height:1.55}
+.primary,.secondary{width:100%;border:0;border-radius:999px;padding:15px 18px;font-size:16px;font-weight:1000;cursor:pointer}
+.primary{background:linear-gradient(135deg,#fff0b8,#f2b047 55%,#cf702e);color:#2b160c;box-shadow:0 16px 38px rgba(72,31,10,.3),inset 0 1px 0 rgba(255,255,255,.7)}
 .secondary{margin-top:10px;background:rgba(255,255,255,.085);color:#fff;border:1px solid rgba(255,255,255,.17)}
-.board{margin-top:20px;border-top:1px solid rgba(255,255,255,.13);padding-top:15px}
-.row{display:grid;grid-template-columns:42px 1fr auto;gap:8px;padding:9px 4px;border-bottom:1px solid rgba(255,255,255,.08);align-items:center}
-.empty{padding:16px 0;color:rgba(255,255,255,.6)}
+.input{width:100%;padding:15px 16px;margin:12px 0;border-radius:17px;border:1px solid rgba(255,229,169,.31);background:rgba(255,255,255,.1);color:#fff;font-size:17px;outline:none}.input::placeholder{color:rgba(255,255,255,.52)}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.menu-grid .full{grid-column:1/-1}
+.story{padding:12px 14px;border-radius:17px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-style:italic}
+.meta-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.chip{padding:7px 10px;border-radius:999px;background:rgba(255,231,171,.09);border:1px solid rgba(255,231,171,.16);font-size:12px;font-weight:800}
+.board{margin-top:18px;border-top:1px solid rgba(255,255,255,.13);padding-top:14px}.row{display:grid;grid-template-columns:42px 1fr auto;gap:8px;padding:9px 4px;border-bottom:1px solid rgba(255,255,255,.08);align-items:center}.empty{padding:16px 0;color:rgba(255,255,255,.6)}
+.selection-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.camel-card{position:relative;border-radius:20px;padding:12px 8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);text-align:center;cursor:pointer;transition:.2s}
+.camel-card.selected{border-color:#ffe19a;box-shadow:0 0 0 3px rgba(255,218,124,.16),0 15px 35px rgba(0,0,0,.2);transform:translateY(-3px)}
+.camel-card.locked{opacity:.45;filter:grayscale(.6)}.camel-card .mini{height:58px}.camel-card b{display:block;font-size:12px}.camel-card small{color:rgba(255,255,255,.6)}
+.medal-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.medal{padding:8px 10px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);font-size:12px}
+.achievements{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.achievement{padding:11px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}.achievement.locked{opacity:.42}.achievement b{display:block}.achievement small{color:rgba(255,255,255,.62)}
+
 .race{display:none}.race.active{display:block}
-.hud{
-  display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0;
-  padding:10px 14px;border-radius:18px;background:rgba(36,16,10,.56);border:1px solid rgba(255,231,178,.18);
-  font-weight:1000;backdrop-filter:blur(12px)
-}
-.track{
-  position:relative;height:min(73svh,650px);min-height:500px;border-radius:30px;overflow:hidden;
-  border:1px solid rgba(255,235,190,.28);
-  background:
-    linear-gradient(180deg,rgba(40,18,11,.08),rgba(62,28,14,.35)),
-    repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 16.666%);
-  box-shadow:0 28px 70px rgba(0,0,0,.3);touch-action:none
-}
-.track::before{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse at 50% 103%,rgba(255,223,158,.16),transparent 42%),
-    repeating-linear-gradient(0deg,transparent 0 10%,rgba(255,255,255,.02) 10.2% 10.6%);
-  pointer-events:none
-}
-.flagline{position:absolute;left:0;right:0;top:5%;height:30px;display:flex;justify-content:space-around;z-index:5}
-.flag{width:18px;height:22px;background:linear-gradient(135deg,#fff,#df6d2c);clip-path:polygon(0 0,100% 12%,72% 50%,100% 88%,0 100%);filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
-.finish{
-  position:absolute;left:0;right:0;top:8%;height:15px;z-index:4;
-  background:repeating-conic-gradient(#fff 0 25%,#151515 0 50%) 0/24px 24px;
-  box-shadow:0 4px 12px rgba(0,0,0,.35)
-}
-.lane{
-  position:absolute;bottom:0;top:0;width:16.666%;
-  border-right:1px dashed rgba(255,255,255,.13)
-}
-.runner{
-  position:absolute;left:50%;bottom:3%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;will-change:bottom;z-index:6
-}
+.hud{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0;padding:10px 14px;border-radius:18px;background:rgba(36,16,10,.56);border:1px solid rgba(255,231,178,.18);font-weight:1000;backdrop-filter:blur(12px)}
+.track{position:relative;height:min(73svh,650px);min-height:510px;border-radius:30px;overflow:hidden;border:1px solid rgba(255,235,190,.28);background:linear-gradient(180deg,rgba(40,18,11,.08),rgba(62,28,14,.35)),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 16.666%);box-shadow:0 28px 70px rgba(0,0,0,.3);touch-action:none}
+.start-gate{position:absolute;left:4%;right:4%;bottom:12%;height:58px;z-index:18;border-left:8px solid #6d341f;border-right:8px solid #6d341f;border-top:8px solid #f0b14c;box-shadow:0 8px 18px rgba(0,0,0,.3)}
+.start-gate:before{content:"SECRET CAMEL CUP";position:absolute;left:50%;top:-31px;transform:translateX(-50%);white-space:nowrap;background:#5f2a19;color:#ffe7a3;padding:7px 15px;border-radius:8px;font-weight:1000;letter-spacing:1px;font-size:12px;border:2px solid #d8973b}
+.flagline{position:absolute;left:0;right:0;top:5%;height:30px;display:flex;justify-content:space-around;z-index:5}.flag{width:18px;height:22px;background:linear-gradient(135deg,#fff,#df6d2c);clip-path:polygon(0 0,100% 12%,72% 50%,100% 88%,0 100%);filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
+.finish{position:absolute;left:0;right:0;top:8%;height:15px;z-index:4;background:repeating-conic-gradient(#fff 0 25%,#151515 0 50%) 0/24px 24px;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.lane{position:absolute;bottom:0;top:0;width:16.666%;border-right:1px dashed rgba(255,255,255,.13)}
+.runner{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;will-change:bottom;z-index:6}
 .runner.player{filter:drop-shadow(0 0 15px rgba(255,229,135,.85))}
-.camel-wrap{position:relative;width:72px;height:56px}
-.camel-svg{width:72px;height:56px;overflow:visible;animation:gallop .27s ease-in-out infinite alternate;transform-origin:50% 80%}
-.camel-body{fill:#b8743d;stroke:#6b371f;stroke-width:2}
-.camel-dark{fill:#8e552d}
-.camel-light{fill:#d99a5a}
-.camel-leg{stroke:#6b371f;stroke-width:5;stroke-linecap:round}
-.camel-eye{fill:#1b0e0a}
-.player .camel-body{fill:#f0b958}.player .camel-light{fill:#ffd98e}.player .camel-dark{fill:#c98a39}
-.label{
-  max-width:125px;padding:4px 8px;border-radius:999px;background:rgba(31,16,13,.72);
-  font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid rgba(255,255,255,.1)
-}
-@keyframes gallop{to{transform:translateY(-5px) rotate(2deg)}}
-.dust{
-  position:absolute;left:50%;bottom:0;width:8px;height:8px;border-radius:50%;
-  background:rgba(255,224,164,.75);filter:blur(.5px);opacity:0;pointer-events:none
-}
-.runner.moving .dust{animation:dustPop .55s ease-out infinite}
-.runner.moving .dust:nth-of-type(2){animation-delay:.16s}
-.runner.moving .dust:nth-of-type(3){animation-delay:.32s}
-@keyframes dustPop{
-  0%{opacity:.8;transform:translate(-50%,0) scale(.5)}
-  100%{opacity:0;transform:translate(calc(-50% - 22px),18px) scale(2.2)}
-}
-.count{
-  position:absolute;inset:0;display:none;place-items:center;z-index:20;
-  font-size:clamp(70px,20vw,150px);font-weight:1000;text-shadow:0 10px 30px rgba(0,0,0,.5);
-  background:rgba(26,13,9,.24);backdrop-filter:blur(2px)
-}
-.count.show{display:grid}
-.tap{
-  position:absolute;left:14px;right:14px;bottom:12px;z-index:25;padding:15px;
-  border:1px solid rgba(255,243,203,.34);border-radius:999px;
-  background:linear-gradient(135deg,rgba(58,25,13,.86),rgba(94,42,17,.83));
-  color:#fff;font-weight:1000;font-size:16px;backdrop-filter:blur(12px);
-  box-shadow:0 14px 30px rgba(0,0,0,.25)
-}
-.tap:active{transform:scale(.985)}
-.flash{position:absolute;inset:0;z-index:30;background:white;opacity:0;pointer-events:none}
-.flash.active{animation:photoFlash .55s ease}
-@keyframes photoFlash{0%{opacity:0}20%{opacity:.95}100%{opacity:0}}
-.result{display:none;text-align:center}
-.result .big{font-size:70px;margin:4px 0;animation:trophyPop .9s cubic-bezier(.2,1.4,.3,1)}
-@keyframes trophyPop{0%{transform:scale(.2) rotate(-18deg);opacity:0}100%{transform:scale(1);opacity:1}}
-.confetti{position:fixed;inset:0;z-index:50;pointer-events:none;overflow:hidden}
-.confetti i{
-  position:absolute;top:-20px;width:10px;height:18px;background:var(--c);
-  left:var(--x);transform:rotate(var(--r));animation:confettiFall var(--d) linear forwards
-}
-@keyframes confettiFall{to{transform:translate(var(--dx),110vh) rotate(760deg);opacity:.8}}
-.portal-in{
-  position:fixed;inset:0;z-index:100;pointer-events:none;
-  background:linear-gradient(#173b59,#d46f3a 48%,#efad58);animation:reveal 1s ease forwards
-}
-.portal-in:before{content:"🐪";position:absolute;left:50%;top:50%;font-size:86px;transform:translate(-50%,-50%)}
-@keyframes reveal{0%{opacity:1}100%{opacity:0;visibility:hidden}}
-.sound-note{font-size:12px;color:rgba(255,255,255,.56);text-align:center;margin-top:10px}
-@media(max-width:600px){
-  .panel{margin-top:2vh;padding:19px}
-  .track{height:70svh;min-height:510px}
-  .app{padding-left:9px;padding-right:9px}
-  .brand{font-size:13px}
-  .camel-wrap,.camel-svg{width:58px;height:48px}
-  .label{font-size:9px;max-width:82px}
-  .palms{bottom:16%}
-}
+.camel-wrap{position:relative;width:72px;height:56px}.camel-svg{width:72px;height:56px;overflow:visible;animation:gallop .27s ease-in-out infinite alternate;transform-origin:50% 80%}.camel-body{fill:var(--camel,#b8743d);stroke:#5f301c;stroke-width:2}.camel-dark{fill:var(--camel-dark,#8e552d)}.camel-light{fill:var(--camel-light,#d99a5a)}.camel-leg{stroke:#5f301c;stroke-width:5;stroke-linecap:round}.camel-eye{fill:#1b0e0a}.camel-saddle{fill:var(--saddle,#7f1938)}
+.label{max-width:125px;padding:4px 8px;border-radius:999px;background:rgba(31,16,13,.72);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid rgba(255,255,255,.1)}
+@keyframes gallop{to{transform:translateY(-5px) rotate(2deg)}}.dust{position:absolute;left:50%;bottom:0;width:8px;height:8px;border-radius:50%;background:rgba(255,224,164,.75);filter:blur(.5px);opacity:0;pointer-events:none}.runner.moving .dust{animation:dustPop .55s ease-out infinite}.runner.moving .dust:nth-of-type(2){animation-delay:.16s}.runner.moving .dust:nth-of-type(3){animation-delay:.32s}@keyframes dustPop{0%{opacity:.8;transform:translate(-50%,0) scale(.5)}100%{opacity:0;transform:translate(calc(-50% - 22px),18px) scale(2.2)}}
+.count{position:absolute;inset:0;display:none;place-items:center;z-index:20;font-size:clamp(70px,20vw,150px);font-weight:1000;text-shadow:0 10px 30px rgba(0,0,0,.5);background:rgba(26,13,9,.24);backdrop-filter:blur(2px)}.count.show{display:grid}
+.tap{position:absolute;left:14px;right:14px;bottom:12px;z-index:25;padding:15px;border:1px solid rgba(255,243,203,.34);border-radius:999px;background:linear-gradient(135deg,rgba(58,25,13,.86),rgba(94,42,17,.83));color:#fff;font-weight:1000;font-size:16px;backdrop-filter:blur(12px);box-shadow:0 14px 30px rgba(0,0,0,.25)}.tap:active{transform:scale(.985)}
+.flash{position:absolute;inset:0;z-index:30;background:white;opacity:0;pointer-events:none}.flash.active{animation:photoFlash .55s ease}@keyframes photoFlash{0%{opacity:0}20%{opacity:.95}100%{opacity:0}}
+.photo-finish{position:absolute;inset:0;z-index:29;display:none;place-items:center;background:rgba(18,9,7,.4);font-size:clamp(34px,10vw,74px);font-weight:1000;letter-spacing:3px;text-shadow:0 9px 22px rgba(0,0,0,.55)}.photo-finish.show{display:grid;animation:photoZoom .9s ease}@keyframes photoZoom{from{transform:scale(1.35);opacity:0}to{transform:scale(1);opacity:1}}
+.result{text-align:center}.result .big{font-size:70px;margin:4px 0;animation:trophyPop .9s cubic-bezier(.2,1.4,.3,1)}@keyframes trophyPop{0%{transform:scale(.2) rotate(-18deg);opacity:0}100%{transform:scale(1);opacity:1}}
+.trophy{width:130px;height:150px;margin:0 auto;position:relative;filter:drop-shadow(0 18px 18px rgba(0,0,0,.35))}
+.trophy .cup{position:absolute;left:25px;top:5px;width:80px;height:65px;background:linear-gradient(135deg,#fff3b7,#e7a72c 55%,#a65b18);border-radius:8px 8px 38px 38px}
+.trophy .cup:before,.trophy .cup:after{content:"";position:absolute;top:12px;width:30px;height:35px;border:8px solid #d79526;border-radius:50%}.trophy .cup:before{left:-23px}.trophy .cup:after{right:-23px}
+.trophy .stem{position:absolute;left:58px;top:68px;width:14px;height:42px;background:#d49124}.trophy .base{position:absolute;left:31px;bottom:10px;width:68px;height:26px;border-radius:6px;background:#6a2c17;color:#ffe7a3;font-size:8px;display:grid;place-items:center;text-align:center}
+.confetti{position:fixed;inset:0;z-index:50;pointer-events:none;overflow:hidden}.confetti i{position:absolute;top:-20px;width:10px;height:18px;background:var(--c);left:var(--x);transform:rotate(var(--r));animation:confettiFall var(--d) linear forwards}@keyframes confettiFall{to{transform:translate(var(--dx),110vh) rotate(760deg);opacity:.8}}
+.portal-in{position:fixed;inset:0;z-index:100;pointer-events:none;background:linear-gradient(#173b59,#d46f3a 48%,#efad58);animation:reveal 1s ease forwards}.portal-in:before{content:"🐪";position:absolute;left:50%;top:50%;font-size:86px;transform:translate(-50%,-50%)}@keyframes reveal{0%{opacity:1}100%{opacity:0;visibility:hidden}}
+.intro{position:fixed;inset:0;z-index:90;display:grid;place-items:center;background:linear-gradient(180deg,#111827,#8b4529 62%,#d78b40);animation:introAway 1s 3.1s forwards}
+.intro-card{text-align:center;padding:22px}.intro-camel{font-size:90px;animation:introRun 1.4s ease-in-out}.intro h1{font-size:clamp(38px,10vw,78px);margin:4px 0;letter-spacing:-3px}.intro p{color:rgba(255,255,255,.72)}@keyframes introRun{0%{transform:translateX(-60vw) rotate(-6deg)}100%{transform:translateX(0)}}@keyframes introAway{to{opacity:0;visibility:hidden}}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);z-index:80;padding:12px 16px;border-radius:16px;background:rgba(24,12,9,.92);border:1px solid rgba(255,229,169,.25);opacity:0;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){.selection-grid{grid-template-columns:repeat(2,1fr)}.achievements{grid-template-columns:1fr}.menu-grid{grid-template-columns:1fr}.panel{margin-top:2vh;padding:18px}.track{height:70svh}.camel-wrap,.camel-svg{width:58px;height:48px}.label{font-size:9px;max-width:82px}.camp{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
 </style>
 </head>
 <body>
+<div class="intro" id="intro">
+  <div class="intro-card">
+    <div class="intro-camel">🐪</div>
+    <h1>SECRET CAMEL CUP</h1>
+    <p>Csak az igazi felfedezők találják meg.</p>
+  </div>
+</div>
+
 <div class="world">
-  <div class="skyglow"></div><div class="sun"></div><div class="mountains"></div>
+  <div class="skyglow"></div><div class="sun"></div><div class="moon"></div><div class="stars"></div>
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="mountains"></div>
+  <div class="birds">⌁ ⌁ ⌁</div>
+  <div class="skyline"><span class="tower1"></span><span class="tower2"></span><span class="burj"></span><span class="frame"></span><span class="tower3"></span></div>
   <div class="palms"><div class="palm"></div><div class="palm"></div></div>
+  <div class="camp"><div class="tent t1"></div><div class="suv s1"></div><div class="suv s2"></div><div class="tent t2"></div></div>
   <div class="dune"></div><div class="grain"></div>
 </div>
-<div class="portal-in"></div>
+<div id="sandstorm" class="sandstorm"></div>
 <div id="confetti" class="confetti"></div>
+<div id="toast" class="toast"></div>
 
 <main class="app">
   <div class="top">
@@ -231,197 +146,222 @@ button{-webkit-tap-highlight-color:transparent}
     <a class="back" href="index.html">← Vissza</a>
   </div>
 
-  <section id="startPanel" class="panel">
+  <section id="homePanel" class="panel">
     <div class="logo-lockup">
       <div class="cup-logo">Dubai Magyaroknak • Easter Egg</div>
       <h1>Secret Camel Cup</h1>
     </div>
-    <p>Írd be a neved, majd koppints minél gyorsabban. A Top 10 ezen a telefonon és ebben a böngészőben marad meg.</p>
+    <div class="story">„A legenda szerint Dubajban létezik egy titkos teveverseny, amelyet csak azok találnak meg, akik valóban felfedezik a sivatagot…”</div>
+    <div class="meta-row">
+      <span class="chip" id="raceCountChip">0 verseny</span>
+      <span class="chip" id="winCountChip">0 győzelem</span>
+      <span class="chip" id="bestChip">Nincs rekord</span>
+    </div>
     <input id="playerName" class="input" maxlength="18" autocomplete="nickname" placeholder="Versenyzői neved">
+    <div class="menu-grid">
+      <button id="chooseBtn" class="primary full">Teve kiválasztása</button>
+      <button id="achBtn" class="secondary">Achievementek</button>
+      <button id="boardBtn" class="secondary">Ranglista</button>
+    </div>
+    <div class="medal-strip" id="medalStrip"></div>
+    <div class="board" id="homeBoard"><h2>🏆 Helyi Top 10</h2><div id="leaderboard"></div></div>
+  </section>
+
+  <section id="selectPanel" class="panel" hidden>
+    <h2>Válaszd ki a tevédet!</h2>
+    <p>Mindegyik teve más megjelenésű. A Golden Camel achievementtel nyitható meg.</p>
+    <div class="selection-grid" id="camelGrid"></div>
     <button id="startBtn" class="primary">Induljon a verseny!</button>
-    <div class="sound-note">A rajtnál arab dobhang és közönségzaj indul.</div>
-    <div class="board"><h2>🏆 Helyi Top 10</h2><div id="leaderboard"></div></div>
+    <button class="secondary" data-home>Vissza</button>
+  </section>
+
+  <section id="achievementPanel" class="panel" hidden>
+    <h2>🏅 Achievementek</h2>
+    <div class="achievements" id="achievementList"></div>
+    <button class="secondary" data-home>Vissza</button>
   </section>
 
   <section id="raceView" class="race">
-    <div class="hud"><span id="hudName">🐪 Versenyző</span><span id="timer">0.00 mp</span></div>
+    <div class="hud"><span id="hudName">🐪 Versenyző</span><span id="hudTheme">Naplemente</span><span id="timer">0.00 mp</span></div>
     <div id="track" class="track">
-      <div class="flagline">
-        <span class="flag"></span><span class="flag"></span><span class="flag"></span>
-        <span class="flag"></span><span class="flag"></span><span class="flag"></span>
-      </div>
+      <div class="start-gate"></div>
+      <div class="flagline"><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span></div>
       <div class="finish"></div>
       <div id="countdown" class="count"></div>
+      <div id="photoFinish" class="photo-finish">PHOTO FINISH</div>
       <div id="flash" class="flash"></div>
       <button id="tapZone" class="tap">KOPPINTS GYORSAN!</button>
     </div>
   </section>
 
-  <section id="resultPanel" class="panel result">
-    <div class="big" id="resultEmoji">🏆</div>
+  <section id="resultPanel" class="panel result" hidden>
+    <div id="trophyWrap"></div>
     <h2 id="resultTitle">Eredmény</h2>
     <p id="resultText"></p>
+    <div id="newAchievements"></div>
     <button id="replayBtn" class="primary">Újra</button>
-    <button id="boardBtn" class="secondary">Ranglista</button>
+    <button id="resultBoardBtn" class="secondary">Ranglista</button>
     <a class="secondary" style="display:block;text-align:center;text-decoration:none" href="index.html">Vissza a főoldalra</a>
   </section>
 </main>
 
 <script>
 (() => {
-  const KEY='camelRaceScoresV1', NAME_KEY='camelLastName';
+  const SCORE_KEY='camelRaceScoresV2', PROFILE_KEY='camelCupProfileV2', NAME_KEY='camelLastName';
   const rivals=['Sivatagi Villám','Datolya Király','Dűne Herceg','Marina Szél','Arany Homok'];
-  const startPanel=document.getElementById('startPanel'),raceView=document.getElementById('raceView'),resultPanel=document.getElementById('resultPanel');
-  const track=document.getElementById('track'),countdown=document.getElementById('countdown'),timerEl=document.getElementById('timer');
-  const nameInput=document.getElementById('playerName'),board=document.getElementById('leaderboard'),flash=document.getElementById('flash');
-  let runners=[],running=false,startTime=0,lastFrame=0,raf=0,playerProgress=0,playerName='Versenyző',audioCtx=null;
+  const camels=[
+    {id:'classic',name:'Desert King',c:'#b8743d',d:'#8e552d',l:'#d99a5a',s:'#7f1938'},
+    {id:'white',name:'Pearl Dune',c:'#e5d9c5',d:'#b8aa94',l:'#fff4df',s:'#1c7584'},
+    {id:'black',name:'Sand Ghost',c:'#3b302b',d:'#211b18',l:'#66544a',s:'#d29b2c'},
+    {id:'red',name:'Sahara Storm',c:'#9e4b2f',d:'#6f2f21',l:'#ce744a',s:'#203b75'},
+    {id:'royal',name:'Royal Mirage',c:'#c48948',d:'#8f5b2d',l:'#e8b86f',s:'#6d2389'},
+    {id:'spotted',name:'Golden Dune',c:'#d6a25c',d:'#8b6432',l:'#f0c47c',s:'#0e6d59'},
+    {id:'racer',name:'Arabian Wind',c:'#ae7b4f',d:'#795031',l:'#d9a875',s:'#b21f32'},
+    {id:'gold',name:'Golden Camel',c:'#efbd42',d:'#b77916',l:'#ffe192',s:'#7a1d1d',locked:true}
+  ];
+  const themes=[
+    {id:'sunset',label:'Naplemente',className:''},
+    {id:'night',label:'Csillagos éjszaka',className:'theme-night'},
+    {id:'oasis',label:'Oázis',className:'theme-oasis'},
+    {id:'red',label:'Vörös homok',className:'theme-red'},
+    {id:'day',label:'Nappali futam',className:'theme-day'}
+  ];
+  const achievements=[
+    {id:'explorer',name:'Secret Explorer',desc:'Megtaláltad a titkos játékot.',icon:'🏅',test:p=>true},
+    {id:'firstRace',name:'Első futam',desc:'Teljesíts 1 versenyt.',icon:'🥉',test:p=>p.races>=1},
+    {id:'firstWin',name:'Első győzelem',desc:'Nyerd meg az első futamodat.',icon:'🥇',test:p=>p.wins>=1},
+    {id:'tenRaces',name:'Camel Trainer',desc:'Teljesíts 10 futamot.',icon:'🐪',test:p=>p.races>=10},
+    {id:'threeWins',name:'Desert Master',desc:'Szerezz 3 győzelmet.',icon:'🏆',test:p=>p.wins>=3},
+    {id:'tenWins',name:'Sultan of the Desert',desc:'Szerezz 10 győzelmet.',icon:'👑',test:p=>p.wins>=10},
+    {id:'fast',name:'Arabian Lightning',desc:'Érj célba 7 másodperc alatt.',icon:'⚡',test:p=>p.best&&p.best<7}
+  ];
 
+  const $=id=>document.getElementById(id);
+  const homePanel=$('homePanel'),selectPanel=$('selectPanel'),achievementPanel=$('achievementPanel'),raceView=$('raceView'),resultPanel=$('resultPanel');
+  const track=$('track'),countdown=$('countdown'),timerEl=$('timer'),nameInput=$('playerName'),board=$('leaderboard'),flash=$('flash'),photoFinish=$('photoFinish');
+  let runners=[],running=false,startTime=0,lastFrame=0,raf=0,playerProgress=0,playerName='Versenyző',selectedCamel='classic',audioCtx=null,currentTheme=null,stormTimer=null;
+
+  function loadProfile(){try{return Object.assign({races:0,wins:0,best:null,selected:'classic',unlocked:['explorer'],medals:[]},JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}'))}catch{return {races:0,wins:0,best:null,selected:'classic',unlocked:['explorer'],medals:[]}}}
+  function saveProfile(p){localStorage.setItem(PROFILE_KEY,JSON.stringify(p))}
+  function scores(){try{return JSON.parse(localStorage.getItem(SCORE_KEY)||'[]')}catch{return[]}}
+  function saveScore(name,time,place){const data=scores();data.push({name,time,place,date:Date.now()});data.sort((a,b)=>a.time-b.time);localStorage.setItem(SCORE_KEY,JSON.stringify(data.slice(0,10)))}
   const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  function scores(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return[]}}
-  function renderBoard(){
-    const data=scores().sort((a,b)=>a.time-b.time).slice(0,10);
-    board.innerHTML=data.length?data.map((s,i)=>`<div class="row"><b>${i+1}.</b><span>${esc(s.name)}</span><strong>${Number(s.time).toFixed(2)} mp</strong></div>`).join(''):'<div class="empty">Még nincs eredmény. Légy te az első!</div>';
-  }
-  function saveScore(name,time,place){
-    const data=scores();data.push({name,time,place,date:Date.now()});data.sort((a,b)=>a.time-b.time);
-    localStorage.setItem(KEY,JSON.stringify(data.slice(0,10)));
+
+  function camelSVG(c,mini=false){
+    return `<svg class="camel-svg" viewBox="0 0 100 76" aria-hidden="true" style="--camel:${c.c};--camel-dark:${c.d};--camel-light:${c.l};--saddle:${c.s};${mini?'width:72px;height:54px':''}">
+      <ellipse class="camel-dark" cx="48" cy="66" rx="34" ry="5" opacity=".22"/>
+      <path class="camel-body" d="M19 46c5-15 15-22 27-22 6-15 19-17 27-4 8 1 14 7 15 16l-7 3c-2-5-5-8-10-8-1 8-7 15-17 17l-1 16-6 0-2-15-14 1-4 15-6 0 0-19z"/>
+      <path class="camel-light" d="M43 26c4-11 13-14 20-7 4 4 5 9 4 14-7-5-15-7-24-7z"/>
+      <path class="camel-body" d="M79 32c4-9 7-18 3-25 7 2 11 8 11 14 0 7-5 12-12 15z"/>
+      <path class="camel-saddle" d="M34 28h29l-4 15H37z"/>
+      <circle class="camel-eye" cx="89" cy="16" r="1.7"/>
+      <path class="camel-leg" d="M28 51l-2 18M48 50l1 18M66 44l4 22" fill="none"/>
+    </svg>`;
   }
 
-  function camelSVG(){
-    return `<div class="camel-wrap">
-      <svg class="camel-svg" viewBox="0 0 100 76" aria-hidden="true">
-        <ellipse class="camel-dark" cx="48" cy="66" rx="34" ry="5" opacity=".22"/>
-        <path class="camel-body" d="M19 46c5-15 15-22 27-22 6-15 19-17 27-4 8 1 14 7 15 16l-7 3c-2-5-5-8-10-8-1 8-7 15-17 17l-1 16-6 0-2-15-14 1-4 15-6 0 0-19z"/>
-        <path class="camel-light" d="M43 26c4-11 13-14 20-7 4 4 5 9 4 14-7-5-15-7-24-7z"/>
-        <path class="camel-body" d="M79 32c4-9 7-18 3-25 7 2 11 8 11 14 0 7-5 12-12 15z"/>
-        <circle class="camel-eye" cx="89" cy="16" r="1.7"/>
-        <path class="camel-leg" d="M28 51l-2 18M48 50l1 18M66 44l4 22" fill="none"/>
-      </svg>
-      <i class="dust"></i><i class="dust"></i><i class="dust"></i>
-    </div>`;
+  function renderBoard(){const data=scores();board.innerHTML=data.length?data.map((s,i)=>`<div class="row"><b>${i+1}.</b><span>${esc(s.name)}</span><strong>${Number(s.time).toFixed(2)} mp</strong></div>`).join(''):'<div class="empty">Még nincs eredmény. Légy te az első!</div>'}
+  function renderProfile(){
+    const p=loadProfile();
+    $('raceCountChip').textContent=p.races+' verseny';
+    $('winCountChip').textContent=p.wins+' győzelem';
+    $('bestChip').textContent=p.best?('Rekord: '+p.best.toFixed(2)+' mp'):'Nincs rekord';
+    $('medalStrip').innerHTML=(p.medals||[]).length?p.medals.map(m=>`<span class="medal">${m}</span>`).join(''):'<span class="medal">Még nincs érem</span>';
   }
-
-  function ensureAudio(){
-    try{
-      if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-      if(audioCtx.state==='suspended') audioCtx.resume();
-    }catch(e){}
+  function renderCamels(){
+    const p=loadProfile();selectedCamel=p.selected||'classic';
+    $('camelGrid').innerHTML=camels.map(c=>{
+      const locked=c.locked&&!p.unlocked.includes('threeWins');
+      return `<button class="camel-card ${selectedCamel===c.id?'selected':''} ${locked?'locked':''}" data-camel="${c.id}" ${locked?'disabled':''}>
+        <div class="mini">${camelSVG(c,true)}</div><b>${c.name}</b><small>${locked?'🔒 3 győzelem után':'Elérhető'}</small>
+      </button>`;
+    }).join('');
+    document.querySelectorAll('[data-camel]').forEach(btn=>btn.addEventListener('click',()=>{
+      selectedCamel=btn.dataset.camel;const p=loadProfile();p.selected=selectedCamel;saveProfile(p);renderCamels()
+    }));
   }
-  function drum(t=0,vol=.18){
-    if(!audioCtx)return;
-    const o=audioCtx.createOscillator(),g=audioCtx.createGain();
-    o.type='sine';o.frequency.setValueAtTime(115,audioCtx.currentTime+t);o.frequency.exponentialRampToValueAtTime(48,audioCtx.currentTime+t+.16);
-    g.gain.setValueAtTime(vol,audioCtx.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+t+.18);
-    o.connect(g).connect(audioCtx.destination);o.start(audioCtx.currentTime+t);o.stop(audioCtx.currentTime+t+.2);
+  function renderAchievements(){
+    const p=loadProfile();
+    $('achievementList').innerHTML=achievements.map(a=>`<div class="achievement ${p.unlocked.includes(a.id)?'':'locked'}"><b>${a.icon} ${a.name}</b><small>${a.desc}</small></div>`).join('');
   }
-  function crowd(){
-    if(!audioCtx)return;
-    const len=audioCtx.sampleRate*.8,buf=audioCtx.createBuffer(1,len,audioCtx.sampleRate),data=buf.getChannelData(0);
-    for(let i=0;i<len;i++)data[i]=(Math.random()*2-1)*(1-i/len);
-    const src=audioCtx.createBufferSource(),filter=audioCtx.createBiquadFilter(),g=audioCtx.createGain();
-    filter.type='bandpass';filter.frequency.value=1000;filter.Q.value=.8;g.gain.value=.035;
-    src.buffer=buf;src.connect(filter).connect(g).connect(audioCtx.destination);src.start();
+  function checkAchievements(p){
+    const newly=[];
+    achievements.forEach(a=>{if(!p.unlocked.includes(a.id)&&a.test(p)){p.unlocked.push(a.id);newly.push(a)}});
+    if(p.unlocked.includes('threeWins')&&!p.medals.includes('🥇 Gold Camel Medal'))p.medals.push('🥇 Gold Camel Medal');
+    if(p.unlocked.includes('tenWins')&&!p.medals.includes('💎 Diamond Camel'))p.medals.push('💎 Diamond Camel');
+    saveProfile(p);return newly;
   }
-  function victorySound(){
-    if(!audioCtx)return;
-    [0,.16,.32].forEach((t,i)=>{
-      const o=audioCtx.createOscillator(),g=audioCtx.createGain();
-      o.type='triangle';o.frequency.value=[523,659,784][i];
-      g.gain.setValueAtTime(.12,audioCtx.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+t+.45);
-      o.connect(g).connect(audioCtx.destination);o.start(audioCtx.currentTime+t);o.stop(audioCtx.currentTime+t+.5);
-    });
-  }
+  function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2200)}
+  function showOnly(panel){[homePanel,selectPanel,achievementPanel,resultPanel].forEach(p=>p.hidden=true);raceView.classList.remove('active');panel.hidden=false}
+  function showHome(){running=false;cancelAnimationFrame(raf);clearTimeout(stormTimer);showOnly(homePanel);renderBoard();renderProfile()}
+  function applyTheme(){document.body.className='';currentTheme=themes[Math.floor(Math.random()*themes.length)];if(currentTheme.className)document.body.classList.add(currentTheme.className);$('hudTheme').textContent=currentTheme.label}
+  function ensureAudio(){try{if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume()}catch(e){}}
+  function drum(t=0,vol=.18){if(!audioCtx)return;const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.setValueAtTime(115,audioCtx.currentTime+t);o.frequency.exponentialRampToValueAtTime(48,audioCtx.currentTime+t+.16);g.gain.setValueAtTime(vol,audioCtx.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+t+.18);o.connect(g).connect(audioCtx.destination);o.start(audioCtx.currentTime+t);o.stop(audioCtx.currentTime+t+.2)}
+  function crowd(){if(!audioCtx)return;const len=audioCtx.sampleRate*.7,buf=audioCtx.createBuffer(1,len,audioCtx.sampleRate),data=buf.getChannelData(0);for(let i=0;i<len;i++)data[i]=(Math.random()*2-1)*(1-i/len);const src=audioCtx.createBufferSource(),filter=audioCtx.createBiquadFilter(),g=audioCtx.createGain();filter.type='bandpass';filter.frequency.value=900;g.gain.value=.03;src.buffer=buf;src.connect(filter).connect(g).connect(audioCtx.destination);src.start()}
+  function victorySound(){if(!audioCtx)return;[0,.16,.32].forEach((t,i)=>{const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='triangle';o.frequency.value=[523,659,784][i];g.gain.setValueAtTime(.12,audioCtx.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+t+.45);o.connect(g).connect(audioCtx.destination);o.start(audioCtx.currentTime+t);o.stop(audioCtx.currentTime+t+.5)})}
 
   function createRunners(){
     track.querySelectorAll('.lane').forEach(x=>x.remove());runners=[];
+    const playerCamel=camels.find(c=>c.id===selectedCamel)||camels[0];
+    const shuffled=camels.filter(c=>c.id!==selectedCamel&&c.id!=='gold').sort(()=>Math.random()-.5);
     for(let i=0;i<6;i++){
       const lane=document.createElement('div');lane.className='lane';lane.style.left=(i*16.666)+'%';
       const r=document.createElement('div');r.className='runner moving'+(i===0?' player':'');
-      const nm=i===0?playerName:rivals[i-1];
-      r.innerHTML=camelSVG()+`<span class="label">${esc(nm)}</span>`;
+      const nm=i===0?playerName:rivals[i-1],c=i===0?playerCamel:shuffled[i-1];
+      r.innerHTML=`<div class="camel-wrap">${camelSVG(c)}<i class="dust"></i><i class="dust"></i><i class="dust"></i></div><span class="label">${esc(nm)}</span>`;
       lane.appendChild(r);track.insertBefore(lane,countdown);
-      runners.push({el:r,progress:0,speed:i===0?0:5.5+Math.random()*2.1,boost:Math.random()*.7});
+      runners.push({el:r,progress:0,speed:i===0?0:5.6+Math.random()*2.0,boost:Math.random()*.65})
     }
   }
-  function showStart(){
-    running=false;cancelAnimationFrame(raf);raceView.classList.remove('active');resultPanel.style.display='none';
-    startPanel.style.display='block';renderBoard()
-  }
+  function maybeStorm(){stormTimer=setTimeout(()=>{if(!running)return;$('sandstorm').classList.add('active');setTimeout(()=>$('sandstorm').classList.remove('active'),2200)},2800+Math.random()*2600)}
   function begin(){
-    ensureAudio();
-    playerName=(nameInput.value||localStorage.getItem(NAME_KEY)||'Versenyző').trim().slice(0,18)||'Versenyző';
-    localStorage.setItem(NAME_KEY,playerName);playerProgress=0;timerEl.textContent='0.00 mp';
-    document.getElementById('hudName').textContent='🐪 '+playerName;
-    startPanel.style.display='none';resultPanel.style.display='none';raceView.classList.add('active');createRunners();
+    ensureAudio();playerName=(nameInput.value||localStorage.getItem(NAME_KEY)||'Versenyző').trim().slice(0,18)||'Versenyző';localStorage.setItem(NAME_KEY,playerName);
+    playerProgress=0;timerEl.textContent='0.00 mp';$('hudName').textContent='🐪 '+playerName;applyTheme();
+    [homePanel,selectPanel,achievementPanel,resultPanel].forEach(p=>p.hidden=true);raceView.classList.add('active');createRunners();
     countdown.classList.add('show');let n=3;countdown.textContent=n;drum(0);
-    const ci=setInterval(()=>{
-      n--;
-      if(n>0){countdown.textContent=n;drum(0)}
-      else if(n===0){countdown.textContent='RAJT!';drum(0,.28);drum(.11,.18);crowd()}
-      else{
-        clearInterval(ci);countdown.classList.remove('show');running=true;
-        startTime=performance.now();lastFrame=startTime;raf=requestAnimationFrame(loop)
-      }
-    },700);
+    const ci=setInterval(()=>{n--;if(n>0){countdown.textContent=n;drum(0)}else if(n===0){countdown.textContent='RAJT!';drum(0,.28);drum(.11,.18);crowd()}else{clearInterval(ci);countdown.classList.remove('show');running=true;startTime=performance.now();lastFrame=startTime;raf=requestAnimationFrame(loop);maybeStorm()}},700)
   }
-  function tap(e){
-    if(e)e.preventDefault();if(!running)return;
-    playerProgress=Math.min(100,playerProgress+1.5);
-    runners[0].progress=playerProgress;runners[0].el.style.bottom=(3+playerProgress*.84)+'%'
-  }
+  function tap(e){if(e)e.preventDefault();if(!running)return;playerProgress=Math.min(100,playerProgress+1.5);runners[0].progress=playerProgress;runners[0].el.style.bottom=(3+playerProgress*.84)+'%';runners[0].el.style.transform=`translateX(calc(-50% + ${Math.sin(playerProgress)*2}px))`}
   function loop(now){
-    if(!running)return;
-    const dt=Math.min(.04,(now-lastFrame)/1000);lastFrame=now;const elapsed=(now-startTime)/1000;
-    timerEl.textContent=elapsed.toFixed(2)+' mp';
-    for(let i=1;i<runners.length;i++){
-      const r=runners[i],pulse=(Math.sin(now/420+i*1.8)+1)*.28;
-      r.progress=Math.min(100,r.progress+(r.speed+r.boost+pulse)*dt);
-      r.el.style.bottom=(3+r.progress*.84)+'%'
-    }
-    const finished=runners.filter(r=>r.progress>=100).length;
-    if(playerProgress>=100||finished>=5){finish(elapsed);return}
-    raf=requestAnimationFrame(loop)
+    if(!running)return;const dt=Math.min(.04,(now-lastFrame)/1000);lastFrame=now;const elapsed=(now-startTime)/1000;timerEl.textContent=elapsed.toFixed(2)+' mp';
+    for(let i=1;i<runners.length;i++){const r=runners[i],pulse=(Math.sin(now/420+i*1.8)+1)*.28;r.progress=Math.min(100,r.progress+(r.speed+r.boost+pulse)*dt);r.el.style.bottom=(3+r.progress*.84)+'%';r.el.style.transform=`translateX(calc(-50% + ${Math.sin(now/250+i)*3}px))`}
+    const finished=runners.filter(r=>r.progress>=100).length;if(playerProgress>=100||finished>=5){finish(elapsed);return}raf=requestAnimationFrame(loop)
   }
-  function confetti(){
-    const c=document.getElementById('confetti');c.innerHTML='';
-    for(let i=0;i<55;i++){
-      const p=document.createElement('i');
-      p.style.setProperty('--x',Math.random()*100+'vw');
-      p.style.setProperty('--dx',(Math.random()*180-90)+'px');
-      p.style.setProperty('--r',(Math.random()*180)+'deg');
-      p.style.setProperty('--d',(1.8+Math.random()*2.4)+'s');
-      p.style.setProperty('--c',['#ffe8a3','#f0ad43','#ffffff','#d66e31'][i%4]);
-      c.appendChild(p)
-    }
-    setTimeout(()=>c.innerHTML='',4500)
-  }
+  function confetti(){const c=$('confetti');c.innerHTML='';for(let i=0;i<60;i++){const p=document.createElement('i');p.style.setProperty('--x',Math.random()*100+'vw');p.style.setProperty('--dx',(Math.random()*180-90)+'px');p.style.setProperty('--r',(Math.random()*180)+'deg');p.style.setProperty('--d',(1.8+Math.random()*2.4)+'s');p.style.setProperty('--c',['#ffe8a3','#f0ad43','#ffffff','#d66e31'][i%4]);c.appendChild(p)}setTimeout(()=>c.innerHTML='',4500)}
   function finish(time){
-    running=false;cancelAnimationFrame(raf);
-    const place=Math.min(6,runners.slice(1).filter(r=>r.progress>=100).length+1);
+    running=false;cancelAnimationFrame(raf);clearTimeout(stormTimer);
+    const ahead=runners.slice(1).filter(r=>r.progress>=100).length,place=Math.min(6,ahead+1);
+    const nearest=Math.min(...runners.slice(1).map(r=>Math.abs(r.progress-playerProgress))),close=nearest<4.5;
     saveScore(playerName,time,place);
-    flash.classList.remove('active');void flash.offsetWidth;flash.classList.add('active');
-    setTimeout(()=>{
-      raceView.classList.remove('active');resultPanel.style.display='block';
-      document.getElementById('resultEmoji').textContent=place===1?'🏆':'🐪';
-      document.getElementById('resultTitle').textContent=place===1?'A sivatag bajnoka!':place+'. hely';
-      const msg=place===1?'Legendás futás a dűnék között!':place<=3?'Dobogó! A tevéd megérdemel egy extra datolyát.':'A tevéd szerint a kilátás fontosabb volt.';
-      document.getElementById('resultText').innerHTML=`<strong>${time.toFixed(2)} másodperc</strong><br>${msg}`;
-      if(place===1){confetti();victorySound()} renderBoard()
-    },420)
+    const proceed=()=>{flash.classList.remove('active');void flash.offsetWidth;flash.classList.add('active');setTimeout(()=>showResult(time,place),420)};
+    if(close){photoFinish.classList.add('show');setTimeout(()=>{photoFinish.classList.remove('show');proceed()},850)}else proceed()
+  }
+  function showResult(time,place){
+    raceView.classList.remove('active');resultPanel.hidden=false;
+    const p=loadProfile();p.races++;if(place===1)p.wins++;if(!p.best||time<p.best)p.best=time;
+    const newly=checkAchievements(p);
+    $('trophyWrap').innerHTML=place===1?`<div class="trophy"><div class="cup"></div><div class="stem"></div><div class="base">SECRET CAMEL CUP<br>DUBAI MAGYAROKNAK</div></div>`:`<div class="big">🐪</div>`;
+    $('resultTitle').textContent=place===1?'A sivatag bajnoka!':place+'. hely';
+    const msg=place===1?'A legenda szerint aki megnyeri a Secret Camel Cupot, egyszer biztosan visszatér Dubajba.':place<=3?'Dobogó! A tevéd megérdemel egy extra datolyát.':'A tevéd szerint a kilátás fontosabb volt.';
+    $('resultText').innerHTML=`<strong>${time.toFixed(2)} másodperc</strong><br>${msg}`;
+    $('newAchievements').innerHTML=newly.length?`<div class="board"><h3>Új achievement!</h3>${newly.map(a=>`<div class="medal">${a.icon} ${a.name}</div>`).join('')}</div>`:'';
+    if(place===1){confetti();victorySound()}renderProfile();renderBoard()
   }
 
-  document.getElementById('startBtn').addEventListener('click',begin);
-  document.getElementById('replayBtn').addEventListener('click',begin);
-  document.getElementById('boardBtn').addEventListener('click',showStart);
-  document.getElementById('tapZone').addEventListener('pointerdown',tap,{passive:false});
+  $('chooseBtn').addEventListener('click',()=>{renderCamels();showOnly(selectPanel)});
+  $('achBtn').addEventListener('click',()=>{renderAchievements();showOnly(achievementPanel)});
+  $('boardBtn').addEventListener('click',()=>{$('homeBoard').scrollIntoView({behavior:'smooth'})});
+  $('resultBoardBtn').addEventListener('click',showHome);
+  $('startBtn').addEventListener('click',begin);
+  $('replayBtn').addEventListener('click',()=>{renderCamels();showOnly(selectPanel)});
+  document.querySelectorAll('[data-home]').forEach(b=>b.addEventListener('click',showHome));
+  $('tapZone').addEventListener('pointerdown',tap,{passive:false});
   track.addEventListener('pointerdown',e=>{if(e.target.id!=='tapZone')tap(e)},{passive:false});
-  nameInput.addEventListener('keydown',e=>{if(e.key==='Enter')begin()});
-  nameInput.value=localStorage.getItem(NAME_KEY)||'';renderBoard();
+  nameInput.addEventListener('keydown',e=>{if(e.key==='Enter'){renderCamels();showOnly(selectPanel)}});
 
-  window.addEventListener('pageshow',()=>{
-    document.querySelector('.portal-in')?.remove();
-    showStart()
-  });
+  const p=loadProfile();checkAchievements(p);selectedCamel=p.selected||'classic';nameInput.value=localStorage.getItem(NAME_KEY)||'';
+  renderBoard();renderProfile();renderCamels();
+  setTimeout(()=>$('intro').remove(),4300);
+  window.addEventListener('pageshow',()=>{showHome()});
 })();
 </script>
 </body>
