@@ -4050,6 +4050,19 @@ function closeFbPopup() {
   });
   trigger.addEventListener('keyup', cancelHold);
   trigger.addEventListener('blur', cancelHold);
+
+  function resetCamelPortal() {
+    opened = false;
+    cancelHold();
+    transition.classList.remove('active');
+    transition.setAttribute('aria-hidden', 'true');
+    if (toast) toast.classList.remove('show');
+  }
+
+  window.addEventListener('pageshow', resetCamelPortal);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) resetCamelPortal();
+  });
 })();
 
 </script>
