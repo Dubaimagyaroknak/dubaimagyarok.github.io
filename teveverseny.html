@@ -87,6 +87,147 @@ body.theme-day{--sky1:#48a6d3;--sky2:#dca14b;--dune1:#e4b35d;--dune2:#9a6338}
 .medal-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.medal{padding:8px 10px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);font-size:12px}
 .achievements{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.achievement{padding:11px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}.achievement.locked{opacity:.42}.achievement b{display:block}.achievement small{color:rgba(255,255,255,.62)}
 
+
+.track-scenery{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  overflow:hidden;
+}
+.track-palm{
+  position:absolute;
+  bottom:10%;
+  width:64px;
+  height:118px;
+  filter:drop-shadow(0 8px 8px rgba(0,0,0,.35));
+  opacity:.96;
+}
+.track-palm.left{left:1%}
+.track-palm.right{right:1%;transform:scaleX(-1)}
+.track-palm .trunk{
+  position:absolute;
+  left:29px;
+  bottom:0;
+  width:8px;
+  height:78px;
+  border-radius:8px;
+  background:linear-gradient(90deg,#5a2f18,#8c552d,#4b2515);
+  transform:skew(-6deg);
+}
+.track-palm .leaves{
+  position:absolute;
+  left:1px;
+  top:0;
+  width:62px;
+  height:54px;
+}
+.track-palm .leaves:before,
+.track-palm .leaves:after{
+  content:"";
+  position:absolute;
+  left:28px;
+  top:22px;
+  width:44px;
+  height:10px;
+  border-radius:100% 0 100% 0;
+  background:#234c2e;
+  box-shadow:
+    -34px -7px 0 #2a5d35,
+    -20px -22px 0 #315f38,
+    -4px -31px 0 #244e2f,
+    16px -24px 0 #2d6038,
+    27px -8px 0 #244d2f;
+  transform:rotate(-16deg);
+}
+.track-palm .leaves:after{
+  transform:scaleX(-1) rotate(-16deg);
+  left:-8px;
+}
+.track-tent{
+  position:absolute;
+  bottom:8%;
+  width:86px;
+  height:50px;
+  background:linear-gradient(135deg,#a8492b,#6f2d20);
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+  filter:drop-shadow(0 7px 6px rgba(0,0,0,.35));
+  z-index:1;
+}
+.track-tent.left{left:10%}
+.track-tent.right{right:10%;transform:scale(.88)}
+.track-tent:before{
+  content:"";
+  position:absolute;
+  left:48%;
+  top:13px;
+  width:4px;
+  height:37px;
+  background:#321710;
+}
+.track-tent:after{
+  content:"";
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:0;
+  height:7px;
+  background:#d18b48;
+}
+.track-suv{
+  position:absolute;
+  bottom:7%;
+  width:96px;
+  height:33px;
+  border-radius:11px 16px 5px 5px;
+  background:linear-gradient(180deg,#e8d7b8,#9e8a6c);
+  border:2px solid rgba(42,26,18,.55);
+  box-shadow:0 7px 8px rgba(0,0,0,.3);
+}
+.track-suv.one{left:23%}
+.track-suv.two{right:23%;transform:scale(.9)}
+.track-suv:before{
+  content:"";
+  position:absolute;
+  left:16px;
+  top:-19px;
+  width:54px;
+  height:22px;
+  background:linear-gradient(180deg,#c4e2ea,#617985);
+  border:2px solid rgba(42,26,18,.65);
+  clip-path:polygon(14% 100%,28% 0,78% 0,100% 100%);
+}
+.track-suv:after{
+  content:"●      ●";
+  position:absolute;
+  left:7px;
+  bottom:-15px;
+  color:#17100d;
+  font-size:24px;
+  letter-spacing:29px;
+}
+.track-crowd{
+  position:absolute;
+  left:5%;
+  right:5%;
+  bottom:4%;
+  display:flex;
+  justify-content:space-between;
+  font-size:22px;
+  opacity:.8;
+  filter:drop-shadow(0 3px 3px rgba(0,0,0,.45));
+}
+@media(max-width:600px){
+  .track-palm{width:48px;height:92px}
+  .track-palm .trunk{left:21px;height:62px}
+  .track-palm .leaves{transform:scale(.75);transform-origin:top left}
+  .track-tent{width:60px;height:36px}
+  .track-suv{width:68px;height:25px}
+  .track-suv:before{left:11px;top:-15px;width:40px;height:18px}
+  .track-suv:after{font-size:18px;letter-spacing:18px;bottom:-12px}
+  .track-crowd{font-size:16px}
+}
+
 .race{display:none}.race.active{display:block}
 .hud{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0;padding:10px 14px;border-radius:18px;background:rgba(36,16,10,.56);border:1px solid rgba(255,231,178,.18);font-weight:1000;backdrop-filter:blur(12px)}
 .track{position:relative;height:min(73svh,650px);min-height:510px;border-radius:30px;overflow:hidden;border:1px solid rgba(255,235,190,.28);background:linear-gradient(180deg,rgba(40,18,11,.08),rgba(62,28,14,.35)),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 16.666%);box-shadow:0 28px 70px rgba(0,0,0,.3);touch-action:none}
@@ -97,7 +238,7 @@ body.theme-day{--sky1:#48a6d3;--sky2:#dca14b;--dune1:#e4b35d;--dune2:#9a6338}
 .lane{position:absolute;bottom:0;top:0;width:16.666%;border-right:1px dashed rgba(255,255,255,.13)}
 .runner{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;will-change:bottom;z-index:6}
 .runner.player{filter:drop-shadow(0 0 15px rgba(255,229,135,.85))}
-.camel-wrap{position:relative;width:72px;height:56px}.camel-svg{width:72px;height:56px;overflow:visible;animation:gallop .27s ease-in-out infinite alternate;transform-origin:50% 80%}.camel-body{fill:var(--camel,#b8743d);stroke:#5f301c;stroke-width:2}.camel-dark{fill:var(--camel-dark,#8e552d)}.camel-light{fill:var(--camel-light,#d99a5a)}.camel-leg{stroke:#5f301c;stroke-width:5;stroke-linecap:round}.camel-eye{fill:#1b0e0a}.camel-saddle{fill:var(--saddle,#7f1938)}
+.camel-wrap{position:relative;width:82px;height:62px}.camel-svg{width:82px;height:62px;overflow:visible;animation:gallop .27s ease-in-out infinite alternate;transform-origin:50% 80%}.camel-body{fill:var(--camel,#b8743d);stroke:#5f301c;stroke-width:2}.camel-dark{fill:var(--camel-dark,#8e552d)}.camel-light{fill:var(--camel-light,#d99a5a)}.camel-leg{stroke:#5f301c;stroke-width:6;stroke-linecap:round}.camel-eye{fill:#1b0e0a}.camel-saddle{fill:var(--saddle,#7f1938)}
 .label{max-width:125px;padding:4px 8px;border-radius:999px;background:rgba(31,16,13,.72);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid rgba(255,255,255,.1)}
 @keyframes gallop{to{transform:translateY(-5px) rotate(2deg)}}.dust{position:absolute;left:50%;bottom:0;width:8px;height:8px;border-radius:50%;background:rgba(255,224,164,.75);filter:blur(.5px);opacity:0;pointer-events:none}.runner.moving .dust{animation:dustPop .55s ease-out infinite}.runner.moving .dust:nth-of-type(2){animation-delay:.16s}.runner.moving .dust:nth-of-type(3){animation-delay:.32s}@keyframes dustPop{0%{opacity:.8;transform:translate(-50%,0) scale(.5)}100%{opacity:0;transform:translate(calc(-50% - 22px),18px) scale(2.2)}}
 .count{position:absolute;inset:0;display:none;place-items:center;z-index:20;font-size:clamp(70px,20vw,150px);font-weight:1000;text-shadow:0 10px 30px rgba(0,0,0,.5);background:rgba(26,13,9,.24);backdrop-filter:blur(2px)}.count.show{display:grid}
@@ -114,7 +255,7 @@ body.theme-day{--sky1:#48a6d3;--sky2:#dca14b;--dune1:#e4b35d;--dune2:#9a6338}
 .intro{position:fixed;inset:0;z-index:90;display:grid;place-items:center;background:linear-gradient(180deg,#111827,#8b4529 62%,#d78b40);animation:introAway 1s 3.1s forwards}
 .intro-card{text-align:center;padding:22px}.intro-camel{font-size:90px;animation:introRun 1.4s ease-in-out}.intro h1{font-size:clamp(38px,10vw,78px);margin:4px 0;letter-spacing:-3px}.intro p{color:rgba(255,255,255,.72)}@keyframes introRun{0%{transform:translateX(-60vw) rotate(-6deg)}100%{transform:translateX(0)}}@keyframes introAway{to{opacity:0;visibility:hidden}}
 .toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);z-index:80;padding:12px 16px;border-radius:16px;background:rgba(24,12,9,.92);border:1px solid rgba(255,229,169,.25);opacity:0;transition:.3s}.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:700px){.selection-grid{grid-template-columns:repeat(2,1fr)}.achievements{grid-template-columns:1fr}.menu-grid{grid-template-columns:1fr}.panel{margin-top:2vh;padding:18px}.track{height:70svh}.camel-wrap,.camel-svg{width:58px;height:48px}.label{font-size:9px;max-width:82px}.camp{display:none}}
+@media(max-width:700px){.selection-grid{grid-template-columns:repeat(2,1fr)}.achievements{grid-template-columns:1fr}.menu-grid{grid-template-columns:1fr}.panel{margin-top:2vh;padding:18px}.track{height:70svh}.camel-wrap,.camel-svg{width:66px;height:52px}.label{font-size:9px;max-width:82px}.camp{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
 </style>
 </head>
@@ -184,6 +325,15 @@ body.theme-day{--sky1:#48a6d3;--sky2:#dca14b;--dune1:#e4b35d;--dune2:#9a6338}
   <section id="raceView" class="race">
     <div class="hud"><span id="hudName">🐪 Versenyző</span><span id="hudTheme">Naplemente</span><span id="timer">0.00 mp</span></div>
     <div id="track" class="track">
+      <div class="track-scenery">
+        <div class="track-palm left"><span class="trunk"></span><span class="leaves"></span></div>
+        <div class="track-palm right"><span class="trunk"></span><span class="leaves"></span></div>
+        <div class="track-tent left"></div>
+        <div class="track-tent right"></div>
+        <div class="track-suv one"></div>
+        <div class="track-suv two"></div>
+        <div class="track-crowd"><span>🧍🏽</span><span>🧍🏻</span><span>🧍🏾</span><span>🧍🏼</span><span>🧍🏽</span></div>
+      </div>
       <div class="start-gate"></div>
       <div class="flagline"><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span><span class="flag"></span></div>
       <div class="finish"></div>
@@ -248,14 +398,42 @@ body.theme-day{--sky1:#48a6d3;--sky2:#dca14b;--dune1:#e4b35d;--dune2:#9a6338}
   const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
   function camelSVG(c,mini=false){
-    return `<svg class="camel-svg" viewBox="0 0 100 76" aria-hidden="true" style="--camel:${c.c};--camel-dark:${c.d};--camel-light:${c.l};--saddle:${c.s};${mini?'width:72px;height:54px':''}">
-      <ellipse class="camel-dark" cx="48" cy="66" rx="34" ry="5" opacity=".22"/>
-      <path class="camel-body" d="M19 46c5-15 15-22 27-22 6-15 19-17 27-4 8 1 14 7 15 16l-7 3c-2-5-5-8-10-8-1 8-7 15-17 17l-1 16-6 0-2-15-14 1-4 15-6 0 0-19z"/>
-      <path class="camel-light" d="M43 26c4-11 13-14 20-7 4 4 5 9 4 14-7-5-15-7-24-7z"/>
-      <path class="camel-body" d="M79 32c4-9 7-18 3-25 7 2 11 8 11 14 0 7-5 12-12 15z"/>
-      <path class="camel-saddle" d="M34 28h29l-4 15H37z"/>
-      <circle class="camel-eye" cx="89" cy="16" r="1.7"/>
-      <path class="camel-leg" d="M28 51l-2 18M48 50l1 18M66 44l4 22" fill="none"/>
+    return `<svg class="camel-svg" viewBox="0 0 120 86" aria-hidden="true" style="--camel:${c.c};--camel-dark:${c.d};--camel-light:${c.l};--saddle:${c.s};${mini?'width:82px;height:58px':''}">
+      <ellipse class="camel-dark" cx="57" cy="78" rx="42" ry="5" opacity=".22"/>
+      <!-- Thick camel body with two clear humps -->
+      <path class="camel-body" d="M18 51
+        C22 39 31 34 43 34
+        C46 22 54 16 63 18
+        C70 19 75 25 78 33
+        C83 24 90 21 97 24
+        C105 27 107 36 104 45
+        C101 52 94 57 84 59
+        L79 76 L71 76 L70 58
+        C61 61 50 62 40 60
+        L36 77 L28 77 L29 57
+        C23 57 19 55 18 51 Z"/>
+      <!-- Long curved neck and unmistakable camel head -->
+      <path class="camel-body" d="M91 43
+        C96 33 100 22 98 12
+        C97 7 100 3 106 4
+        C112 5 116 11 115 17
+        C114 24 109 28 104 29
+        C103 37 100 44 96 50 Z"/>
+      <path class="camel-light" d="M101 8 C106 5 112 9 112 14 C112 18 109 21 104 21 C101 18 100 13 101 8 Z"/>
+      <!-- Muzzle and ears -->
+      <path class="camel-dark" d="M109 15 C116 14 120 17 119 21 C117 25 111 25 106 22 Z"/>
+      <path class="camel-dark" d="M102 5 L99 0 L106 4 Z M110 6 L115 2 L113 9 Z"/>
+      <!-- Saddle -->
+      <path class="camel-saddle" d="M39 34 C51 28 67 28 82 34 L78 48 C63 45 50 45 36 49 Z"/>
+      <path class="camel-light" d="M46 31 C49 22 55 19 62 21 C68 22 72 27 75 35 C65 32 56 31 46 31 Z"/>
+      <!-- Tail -->
+      <path class="camel-leg" d="M20 47 C10 43 8 36 12 31" fill="none"/>
+      <circle class="camel-dark" cx="11" cy="30" r="4"/>
+      <!-- Legs -->
+      <path class="camel-leg" d="M31 58 L27 80 M45 60 L44 80 M72 58 L74 80 M84 56 L88 79" fill="none"/>
+      <!-- Hooves -->
+      <path class="camel-dark" d="M22 78 H32 V83 H21 Z M40 78 H49 V83 H39 Z M70 78 H79 V83 H69 Z M84 77 H93 V82 H83 Z"/>
+      <circle class="camel-eye" cx="108" cy="14" r="1.8"/>
     </svg>`;
   }
 
