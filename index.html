@@ -2708,6 +2708,72 @@ header::after {
     box-shadow: 0 24px 54px rgba(34,217,210,0.28), inset 0 1px 0 rgba(255,255,255,0.55);
   }
 
+
+/* ==========================================================
+   TITKOS TEVEVERSENY EASTER EGG
+========================================================== */
+body.camel-game-open { overflow: hidden !important; touch-action: none; }
+.camel-game-overlay {
+  position: fixed; inset: 0; z-index: 20000; display: none;
+  color: #fff; overflow: hidden; isolation: isolate;
+  background: linear-gradient(180deg,#122c42 0%,#d87437 48%,#f2b35e 76%,#b7652d 100%);
+  font-family: Inter, Arial, sans-serif;
+}
+.camel-game-overlay.active { display: block; animation: camelWorldIn .85s cubic-bezier(.2,.8,.2,1) both; }
+.camel-game-overlay.closing { animation: camelWorldOut .55s ease both; }
+@keyframes camelWorldIn { from{opacity:0;transform:translateX(-100%) scale(1.04);filter:blur(12px)} to{opacity:1;transform:none;filter:none} }
+@keyframes camelWorldOut { to{opacity:0;transform:translateX(100%);filter:blur(10px)} }
+.camel-sand-wipe { position:absolute; inset:-20%; z-index:40; pointer-events:none; opacity:0;
+  background: repeating-radial-gradient(ellipse at 0 50%,rgba(255,225,154,.95) 0 3px,rgba(209,136,58,.75) 4px 9px,transparent 10px 18px);
+  filter: blur(7px); transform:translateX(-70%) rotate(-8deg); }
+.camel-game-overlay.active .camel-sand-wipe { animation: camelSandWipe 1.15s ease-out both; }
+@keyframes camelSandWipe { 0%{opacity:1;transform:translateX(-65%) rotate(-8deg)} 75%{opacity:.75} 100%{opacity:0;transform:translateX(75%) rotate(-8deg)} }
+.camel-sun { position:absolute;width:180px;height:180px;border-radius:50%;right:8%;top:8%;background:#ffe8a8;box-shadow:0 0 80px #ffd273;opacity:.88; }
+.camel-dunes,.camel-dunes::before,.camel-dunes::after { position:absolute;left:-10%;right:-10%;bottom:-8%;height:40%;border-radius:50% 50% 0 0;content:""; }
+.camel-dunes { background:#ba642e; transform:rotate(-3deg); z-index:-1; }
+.camel-dunes::before { bottom:35%; background:#d9823e; transform:rotate(7deg); }
+.camel-dunes::after { bottom:62%; background:#eba554; transform:rotate(-4deg); }
+.camel-game-shell { position:relative; z-index:5; height:100%; max-width:980px; margin:auto; padding:20px 14px max(18px,env(safe-area-inset-bottom)); display:flex; flex-direction:column; }
+.camel-game-top { display:flex;justify-content:space-between;align-items:center;gap:12px; }
+.camel-game-brand { font-weight:900;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 3px 18px rgba(0,0,0,.35); }
+.camel-close { width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(7,24,35,.35);color:#fff;font-size:25px;cursor:pointer;backdrop-filter:blur(10px); }
+.camel-panel { margin:auto; width:min(520px,100%); padding:25px; border-radius:28px; background:rgba(8,28,42,.72); border:1px solid rgba(255,255,255,.24); box-shadow:0 28px 80px rgba(0,0,0,.4); backdrop-filter:blur(18px); text-align:center; }
+.camel-panel h2 { color:#fff !important;margin:0 0 10px !important;font-size:clamp(28px,7vw,44px) !important; }
+.camel-panel p { color:rgba(255,255,255,.82);line-height:1.55; }
+.camel-name-input { width:100%;padding:15px 17px;border-radius:16px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.13);color:#fff;font-size:17px;text-align:center;outline:none; }
+.camel-name-input::placeholder{color:rgba(255,255,255,.6)}
+.camel-primary,.camel-secondary { border:0;border-radius:999px;padding:15px 22px;font-weight:900;font-size:16px;cursor:pointer; }
+.camel-primary { width:100%;margin-top:14px;background:linear-gradient(135deg,#fff0a9,#ffb449);color:#48220c;box-shadow:0 15px 34px rgba(87,38,8,.28); }
+.camel-secondary { background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25); }
+.camel-leaderboard { margin-top:18px;text-align:left; }
+.camel-leaderboard h3 { margin:0 0 10px;color:#ffe6a0; }
+.camel-score-row { display:grid;grid-template-columns:34px 1fr auto;gap:8px;padding:8px 4px;border-bottom:1px solid rgba(255,255,255,.1);font-size:14px; }
+.camel-race-view { display:none;flex:1;min-height:0;flex-direction:column; }
+.camel-race-view.active { display:flex; }
+.camel-hud { display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 2px 12px;text-shadow:0 2px 10px rgba(0,0,0,.45); }
+.camel-timer { font-size:22px;font-weight:900;font-variant-numeric:tabular-nums; }
+.camel-track { position:relative;flex:1;min-height:420px;display:grid;grid-template-columns:repeat(6,1fr);gap:5px;border-radius:24px 24px 8px 8px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(91,41,16,.18));border:1px solid rgba(255,255,255,.25);box-shadow:inset 0 0 55px rgba(85,33,8,.16),0 18px 55px rgba(0,0,0,.28);touch-action:manipulation; }
+.camel-track::before { content:"CÉL";position:absolute;left:0;right:0;top:8%;height:28px;z-index:3;display:flex;align-items:center;justify-content:center;color:#44220e;font-weight:1000;letter-spacing:.5em;background:repeating-linear-gradient(90deg,#fff 0 24px,#1c1c1c 24px 48px);box-shadow:0 6px 15px rgba(0,0,0,.3); }
+.camel-lane { position:relative;border-left:1px dashed rgba(255,255,255,.28); }
+.camel-lane:first-child{border-left:0}
+.camel-runner { position:absolute;left:50%;bottom:3%;transform:translateX(-50%);width:100%;text-align:center;will-change:bottom;transition:bottom .08s linear; }
+.camel-runner .camel-emoji { display:block;font-size:clamp(34px,8vw,62px);filter:drop-shadow(0 7px 5px rgba(0,0,0,.35));transform-origin:50% 90%;animation:camelGallop .28s ease-in-out infinite alternate; }
+.camel-runner .camel-label { display:inline-block;max-width:96%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px;padding:3px 6px;border-radius:999px;background:rgba(5,24,35,.7);font-size:11px;font-weight:800; }
+.camel-runner.player .camel-label { background:#ffe17c;color:#47210b;box-shadow:0 0 18px rgba(255,225,124,.7); }
+@keyframes camelGallop { from{transform:rotate(-4deg) translateY(0)} to{transform:rotate(4deg) translateY(-6px)} }
+.camel-tap-zone { margin-top:10px;padding:15px;border-radius:18px;text-align:center;font-weight:900;background:rgba(6,25,38,.66);border:1px solid rgba(255,255,255,.25);user-select:none;-webkit-user-select:none;touch-action:manipulation; }
+.camel-tap-zone:active { transform:scale(.985);background:rgba(255,224,133,.35); }
+.camel-countdown { position:absolute;inset:0;z-index:12;display:none;align-items:center;justify-content:center;font-size:min(35vw,190px);font-weight:1000;text-shadow:0 10px 35px rgba(0,0,0,.45);background:rgba(4,18,28,.22);backdrop-filter:blur(3px); }
+.camel-countdown.show { display:flex; }
+.camel-result-actions { display:flex;gap:10px;margin-top:14px; }
+.camel-result-actions button { flex:1; }
+.camel-secret-toast { position:fixed;left:50%;bottom:22px;z-index:19999;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:10px 16px;border-radius:999px;background:rgba(3,23,34,.88);border:1px solid rgba(142,247,242,.25);color:#eaffff;font-weight:700;transition:.3s; }
+.camel-secret-toast.show { opacity:1;transform:translate(-50%,0); }
+@media(max-width:600px){
+ .camel-game-shell{padding-top:max(14px,env(safe-area-inset-top))}.camel-game-brand{font-size:13px}.camel-panel{padding:22px 17px}.camel-track{min-height:390px;gap:2px}.camel-track::before{font-size:11px;letter-spacing:.25em}.camel-runner .camel-label{font-size:9px;padding:2px 4px}.camel-tap-zone{padding:17px 10px}.camel-sun{width:115px;height:115px;right:4%;top:10%}
+}
+@media(prefers-reduced-motion:reduce){.camel-game-overlay.active,.camel-game-overlay.closing,.camel-sand-wipe,.camel-runner .camel-emoji{animation:none!important}}
+
 </style>
 
   <!-- SEO / közösségi megosztás / strukturált cégadatok -->
@@ -3481,6 +3547,32 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+<!-- Titkos teveverseny easter egg -->
+<div id="camelSecretToast" class="camel-secret-toast">🐪 Titkos teveverseny feloldva!</div>
+<div id="camelGame" class="camel-game-overlay" aria-hidden="true">
+  <div class="camel-sand-wipe"></div><div class="camel-sun"></div><div class="camel-dunes"></div>
+  <div class="camel-game-shell">
+    <div class="camel-game-top"><div class="camel-game-brand">Dubai Desert Dash</div><button class="camel-close" id="camelClose" aria-label="Bezárás">×</button></div>
+    <div id="camelStartPanel" class="camel-panel">
+      <h2>🐪 Titkos teveverseny</h2>
+      <p>Írd be a versenyzői neved, majd koppints minél gyorsabban! A legjobb eredményeidet ez a telefon megőrzi.</p>
+      <input id="camelPlayerName" class="camel-name-input" maxlength="18" autocomplete="nickname" placeholder="Versenyzői neved">
+      <button id="camelStartBtn" class="camel-primary">Induljon a verseny!</button>
+      <div class="camel-leaderboard"><h3>🏆 Helyi Top 10</h3><div id="camelLeaderboard"></div></div>
+    </div>
+    <div id="camelRaceView" class="camel-race-view">
+      <div class="camel-hud"><strong id="camelHudName">Versenyző</strong><div id="camelTimer" class="camel-timer">0.00 mp</div></div>
+      <div id="camelTrack" class="camel-track"><div id="camelCountdown" class="camel-countdown"></div></div>
+      <div id="camelTapZone" class="camel-tap-zone">KOPPINTS GYORSAN! 🐪💨</div>
+    </div>
+    <div id="camelResultPanel" class="camel-panel" style="display:none">
+      <h2 id="camelResultTitle">Célba értél!</h2><p id="camelResultText"></p>
+      <div class="camel-result-actions"><button id="camelReplayBtn" class="camel-primary">Újra</button><button id="camelBackBtn" class="camel-secondary">Ranglista</button></div>
+    </div>
+  </div>
+</div>
+
 </body>
 <script>
 
@@ -3806,5 +3898,42 @@ function closeFbPopup() {
     sessionStorage.setItem("fbPopupClosed", "1");
   }
 }
+
+/* Titkos teveverseny easter egg */
+(function(){
+  const game=document.getElementById('camelGame'); if(!game) return;
+  const startPanel=document.getElementById('camelStartPanel'), raceView=document.getElementById('camelRaceView'), resultPanel=document.getElementById('camelResultPanel');
+  const track=document.getElementById('camelTrack'), countdown=document.getElementById('camelCountdown'), timerEl=document.getElementById('camelTimer');
+  const nameInput=document.getElementById('camelPlayerName'), board=document.getElementById('camelLeaderboard');
+  const names=['Sivatagi Villám','Datolya Király','Dűne Herceg','Marina Szél','Arany Homok'];
+  let runners=[],running=false,startTime=0,raf=0,playerProgress=0,lastFrame=0,playerName='Versenyző';
+  const key='dubaiCamelLeaderboardV1';
+  function scores(){try{return JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return[]}}
+  function saveScore(n,t,p){const s=scores();s.push({name:n,time:+t.toFixed(2),place:p,date:Date.now()});s.sort((a,b)=>a.time-b.time);localStorage.setItem(key,JSON.stringify(s.slice(0,10)));}
+  function renderBoard(){const s=scores();board.innerHTML=s.length?s.map((x,i)=>`<div class="camel-score-row"><b>${i+1}.</b><span>${escapeHtml(x.name)}</span><strong>${x.time.toFixed(2)} mp</strong></div>`).join(''):'<div style="opacity:.72">Még nincs eredmény. Légy te az első!</div>';}
+  function escapeHtml(v){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+  function openGame(){document.body.classList.add('camel-game-open');game.classList.remove('closing');game.classList.add('active');game.setAttribute('aria-hidden','false');document.getElementById('camelSecretToast').classList.add('show');setTimeout(()=>document.getElementById('camelSecretToast').classList.remove('show'),1800);renderBoard();setTimeout(()=>nameInput.focus(),900);}
+  function closeGame(){running=false;cancelAnimationFrame(raf);game.classList.add('closing');setTimeout(()=>{game.classList.remove('active','closing');game.setAttribute('aria-hidden','true');document.body.classList.remove('camel-game-open');showStart();},520);}
+  function showStart(){raceView.classList.remove('active');resultPanel.style.display='none';startPanel.style.display='block';renderBoard();}
+  function createRunners(){track.querySelectorAll('.camel-lane').forEach(e=>e.remove());runners=[];for(let i=0;i<6;i++){const lane=document.createElement('div');lane.className='camel-lane';const r=document.createElement('div');r.className='camel-runner'+(i===0?' player':'');const nm=i===0?playerName:names[i-1];r.innerHTML=`<span class="camel-emoji">🐪</span><span class="camel-label">${escapeHtml(nm)}</span>`;lane.appendChild(r);track.insertBefore(lane,countdown);runners.push({el:r,progress:0,speed:i===0?0:(5.4+Math.random()*2.2),boost:Math.random()*.7});}}
+  function begin(){playerProgress=0;timerEl.textContent='0.00 mp';playerName=(nameInput.value||localStorage.getItem('camelLastName')||'Versenyző').trim().slice(0,18)||'Versenyző';localStorage.setItem('camelLastName',playerName);document.getElementById('camelHudName').textContent='🐪 '+playerName;startPanel.style.display='none';resultPanel.style.display='none';raceView.classList.add('active');createRunners();countdown.classList.add('show');let n=3;countdown.textContent=n;const int=setInterval(()=>{n--;if(n>0)countdown.textContent=n;else if(n===0)countdown.textContent='RAJT!';else{clearInterval(int);countdown.classList.remove('show');running=true;startTime=performance.now();lastFrame=startTime;raf=requestAnimationFrame(loop);}},700);}
+  function tap(e){if(e){e.preventDefault();}if(!running)return;playerProgress=Math.min(100,playerProgress+1.45);runners[0].progress=playerProgress;runners[0].el.style.bottom=(3+playerProgress*.84)+'%';}
+  function loop(now){if(!running)return;const dt=Math.min(.04,(now-lastFrame)/1000);lastFrame=now;const elapsed=(now-startTime)/1000;timerEl.textContent=elapsed.toFixed(2)+' mp';for(let i=1;i<runners.length;i++){const r=runners[i];const pulse=(Math.sin(now/420+i*1.8)+1)*.28;r.progress=Math.min(100,r.progress+(r.speed+r.boost+pulse)*dt);r.el.style.bottom=(3+r.progress*.84)+'%';}
+    const finished=runners.map((r,i)=>({i,p:r.progress})).filter(x=>x.p>=100);
+    if(playerProgress>=100){finish(elapsed);return;}if(finished.length>=5){playerProgress=100;finish(elapsed);return;}raf=requestAnimationFrame(loop);}
+  function finish(t){running=false;cancelAnimationFrame(raf);const ahead=runners.slice(1).filter(r=>r.progress>=100).length;const place=Math.min(6,ahead+1);saveScore(playerName,t,place);raceView.classList.remove('active');resultPanel.style.display='block';document.getElementById('camelResultTitle').textContent=place===1?'🏆 A sivatag bajnoka!':`🐪 ${place}. hely`;
+    const messages=place===1?['A tevéd ma szárnyakat kapott!','Legendás futás a dűnék között!']:place<=3?['Dobogó! A tevéd megérdemel egy extra datolyát.','Nagyon közel volt az arany!']:['A tevéd szerint a kilátás fontosabb volt.','Semmi baj — a sivatag visszavágót kér!'];
+    document.getElementById('camelResultText').innerHTML=`<strong>${t.toFixed(2)} másodperc</strong><br>${messages[Math.floor(Math.random()*messages.length)]}`;renderBoard();}
+  document.getElementById('camelStartBtn').addEventListener('click',begin);nameInput.addEventListener('keydown',e=>{if(e.key==='Enter')begin()});
+  document.getElementById('camelClose').addEventListener('click',closeGame);document.getElementById('camelReplayBtn').addEventListener('click',begin);document.getElementById('camelBackBtn').addEventListener('click',showStart);
+  document.getElementById('camelTapZone').addEventListener('pointerdown',tap,{passive:false});track.addEventListener('pointerdown',tap,{passive:false});
+  let sx=0,sy=0,st=0,tracking=false;
+  document.addEventListener('touchstart',e=>{if(game.classList.contains('active')||e.touches.length!==1)return;const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;},{passive:true});
+  document.addEventListener('touchend',e=>{if(!tracking)return;tracking=false;const t=e.changedTouches[0],dx=t.clientX-sx,dy=Math.abs(t.clientY-sy);if(dx>120&&dy<70&&Date.now()-st<850)openGame();},{passive:true});
+  let md=false,mx=0,my=0;document.addEventListener('mousedown',e=>{if(game.classList.contains('active'))return;md=true;mx=e.clientX;my=e.clientY});document.addEventListener('mouseup',e=>{if(md&&e.clientX-mx>150&&Math.abs(e.clientY-my)<80)openGame();md=false});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&game.classList.contains('active'))closeGame();});
+  nameInput.value=localStorage.getItem('camelLastName')||'';renderBoard();
+})();
+
 </script>
 </html>
