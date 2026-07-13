@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#c56832">
+<title>Dubai Desert Dash – Titkos teveverseny</title>
+<style>
+*{box-sizing:border-box}
+:root{--gold:#ffd98a;--sand:#e5a24d;--dark:#24130f;--glass:rgba(31,16,13,.72)}
+html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:#fff;background:#1e1010;overflow-x:hidden}
+body{min-height:100svh;background:linear-gradient(#173b59 0%,#d46f3a 42%,#efad58 68%,#7b3b22 100%);touch-action:manipulation}
+.sky{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.sun{position:absolute;width:118px;height:118px;border-radius:50%;right:9%;top:8%;background:radial-gradient(circle,#fff7c9 0 18%,#ffd26f 48%,rgba(255,170,66,.12) 70%);box-shadow:0 0 70px rgba(255,210,110,.65)}
+.dunes,.dunes:before,.dunes:after{position:absolute;content:"";left:-10%;right:-10%;bottom:-15%;height:55%;border-radius:50% 50% 0 0/35% 35% 0 0;background:#b75b30;transform:rotate(-3deg)}
+.dunes:before{bottom:22%;left:-10%;right:35%;height:60%;background:#db8341;transform:rotate(7deg)}
+.dunes:after{bottom:10%;left:45%;right:-10%;height:70%;background:#8b4027;transform:rotate(-8deg)}
+.grain{position:absolute;inset:0;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.app{position:relative;z-index:2;width:min(980px,100%);min-height:100svh;margin:auto;padding:max(18px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.brand{font-weight:900;letter-spacing:.4px;text-shadow:0 5px 18px rgba(0,0,0,.35)}
+.back{border:1px solid rgba(255,255,255,.28);background:rgba(31,16,13,.55);color:#fff;border-radius:999px;padding:11px 15px;font-weight:800;text-decoration:none;backdrop-filter:blur(12px)}
+.panel{width:min(680px,100%);margin:7vh auto 0;padding:24px;border-radius:28px;background:var(--glass);border:1px solid rgba(255,229,169,.28);box-shadow:0 28px 80px rgba(0,0,0,.38);backdrop-filter:blur(18px)}
+.panel h1,.panel h2{margin:0 0 10px}.panel p{color:rgba(255,255,255,.82);line-height:1.55}
+.input{width:100%;padding:15px 16px;margin:12px 0;border-radius:16px;border:1px solid rgba(255,229,169,.32);background:rgba(255,255,255,.11);color:#fff;font-size:17px;outline:none}
+.input::placeholder{color:rgba(255,255,255,.55)}
+.primary,.secondary{width:100%;border:0;border-radius:999px;padding:15px 18px;font-size:16px;font-weight:900;cursor:pointer}
+.primary{background:linear-gradient(135deg,#fff0b8,#f0ad43 55%,#cf702e);color:#2b160c;box-shadow:0 16px 38px rgba(72,31,10,.3)}
+.secondary{margin-top:10px;background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.board{margin-top:20px;border-top:1px solid rgba(255,255,255,.13);padding-top:15px}
+.row{display:grid;grid-template-columns:42px 1fr auto;gap:8px;padding:9px 4px;border-bottom:1px solid rgba(255,255,255,.08);align-items:center}
+.empty{padding:16px 0;color:rgba(255,255,255,.6)}
+.race{display:none}
+.race.active{display:block}
+.hud{display:flex;justify-content:space-between;gap:10px;margin:10px 0;font-weight:900}
+.track{position:relative;height:min(70svh,620px);min-height:470px;border-radius:28px;overflow:hidden;border:1px solid rgba(255,235,190,.28);background:linear-gradient(180deg,rgba(45,22,15,.18),rgba(62,28,14,.34)),repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,transparent 1px 16.666%);box-shadow:0 28px 70px rgba(0,0,0,.3);touch-action:none}
+.finish{position:absolute;left:0;right:0;top:6%;height:14px;background:repeating-conic-gradient(#fff 0 25%,#151515 0 50%) 0/24px 24px;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.lane{position:absolute;left:0;right:0;height:16.666%;border-bottom:1px dashed rgba(255,255,255,.16)}
+.runner{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;will-change:bottom}
+.runner.player{filter:drop-shadow(0 0 15px rgba(255,229,135,.85))}
+.camel{font-size:clamp(34px,8vw,58px);line-height:1;animation:gallop .32s ease-in-out infinite alternate}
+.label{max-width:120px;padding:3px 8px;border-radius:999px;background:rgba(31,16,13,.7);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@keyframes gallop{to{transform:translateY(-5px) rotate(2deg)}}
+.count{position:absolute;inset:0;display:none;place-items:center;font-size:clamp(70px,20vw,150px);font-weight:1000;text-shadow:0 10px 30px rgba(0,0,0,.5);background:rgba(26,13,9,.18)}
+.count.show{display:grid}
+.tap{position:absolute;left:14px;right:14px;bottom:12px;padding:14px;border:1px solid rgba(255,243,203,.34);border-radius:999px;background:rgba(39,18,12,.65);color:#fff;font-weight:1000;font-size:16px;backdrop-filter:blur(12px)}
+.result{display:none;text-align:center}
+.result .big{font-size:56px;margin:4px 0}
+.portal-in{position:fixed;inset:0;z-index:10;pointer-events:none;background:linear-gradient(#173b59,#d46f3a 48%,#efad58);animation:reveal 1s ease forwards}
+.portal-in:before{content:"🐪";position:absolute;left:50%;top:50%;font-size:86px;transform:translate(-50%,-50%)}
+@keyframes reveal{0%{opacity:1}100%{opacity:0;visibility:hidden}}
+@media(max-width:600px){.panel{margin-top:3vh;padding:19px}.track{height:68svh;min-height:500px}.app{padding-left:10px;padding-right:10px}.brand{font-size:14px}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="sky"><div class="sun"></div><div class="dunes"></div><div class="grain"></div></div>
+<div class="portal-in"></div>
+<main class="app">
+  <div class="top">
+    <div class="brand">🐪 Dubai Desert Dash</div>
+    <a class="back" href="javascript:history.back()">← Vissza</a>
+  </div>
+
+  <section id="startPanel" class="panel">
+    <h1>Titkos teveverseny</h1>
+    <p>Írd be a neved, majd koppints minél gyorsabban. A Top 10 ezen a telefonon és ebben a böngészőben marad meg.</p>
+    <input id="playerName" class="input" maxlength="18" autocomplete="nickname" placeholder="Versenyzői neved">
+    <button id="startBtn" class="primary">Induljon a verseny!</button>
+    <div class="board"><h2>🏆 Helyi Top 10</h2><div id="leaderboard"></div></div>
+  </section>
+
+  <section id="raceView" class="race">
+    <div class="hud"><span id="hudName">🐪 Versenyző</span><span id="timer">0.00 mp</span></div>
+    <div id="track" class="track">
+      <div class="finish"></div>
+      <div id="countdown" class="count"></div>
+      <button id="tapZone" class="tap">KOPPINTS GYORSAN!</button>
+    </div>
+  </section>
+
+  <section id="resultPanel" class="panel result">
+    <div class="big" id="resultEmoji">🏆</div>
+    <h2 id="resultTitle">Eredmény</h2>
+    <p id="resultText"></p>
+    <button id="replayBtn" class="primary">Újra</button>
+    <button id="boardBtn" class="secondary">Ranglista</button>
+    <a class="secondary" style="display:block;text-align:center;text-decoration:none" href="javascript:history.back()">Vissza a főoldalra</a>
+  </section>
+</main>
+<script>
+(() => {
+  const KEY='camelRaceScoresV1', NAME_KEY='camelLastName';
+  const rivals=['Sivatagi Villám','Datolya Király','Dűne Herceg','Marina Szél','Arany Homok'];
+  const startPanel=document.getElementById('startPanel'),raceView=document.getElementById('raceView'),resultPanel=document.getElementById('resultPanel');
+  const track=document.getElementById('track'),countdown=document.getElementById('countdown'),timerEl=document.getElementById('timer');
+  const nameInput=document.getElementById('playerName'),board=document.getElementById('leaderboard');
+  let runners=[],running=false,startTime=0,lastFrame=0,raf=0,playerProgress=0,playerName='Versenyző';
+
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function scores(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return[]}}
+  function renderBoard(){
+    const data=scores().sort((a,b)=>a.time-b.time).slice(0,10);
+    board.innerHTML=data.length?data.map((s,i)=>`<div class="row"><b>${i+1}.</b><span>${esc(s.name)}</span><strong>${Number(s.time).toFixed(2)} mp</strong></div>`).join(''):'<div class="empty">Még nincs eredmény. Légy te az első!</div>';
+  }
+  function saveScore(name,time,place){
+    const data=scores();data.push({name,time,place,date:Date.now()});data.sort((a,b)=>a.time-b.time);
+    localStorage.setItem(KEY,JSON.stringify(data.slice(0,10)));
+  }
+  function createRunners(){
+    track.querySelectorAll('.lane').forEach(x=>x.remove());runners=[];
+    for(let i=0;i<6;i++){
+      const lane=document.createElement('div');lane.className='lane';lane.style.left=(i*16.666)+'%';lane.style.width='16.666%';lane.style.right='auto';lane.style.height='100%';lane.style.borderRight='1px dashed rgba(255,255,255,.14)';lane.style.borderBottom='0';
+      const r=document.createElement('div');r.className='runner'+(i===0?' player':'');
+      const nm=i===0?playerName:rivals[i-1];
+      r.innerHTML=`<span class="camel">🐪</span><span class="label">${esc(nm)}</span>`;
+      lane.appendChild(r);track.insertBefore(lane,countdown);
+      runners.push({el:r,progress:0,speed:i===0?0:5.5+Math.random()*2.1,boost:Math.random()*.7});
+    }
+  }
+  function showStart(){running=false;cancelAnimationFrame(raf);raceView.classList.remove('active');resultPanel.style.display='none';startPanel.style.display='block';renderBoard()}
+  function begin(){
+    playerName=(nameInput.value||localStorage.getItem(NAME_KEY)||'Versenyző').trim().slice(0,18)||'Versenyző';
+    localStorage.setItem(NAME_KEY,playerName);playerProgress=0;timerEl.textContent='0.00 mp';
+    document.getElementById('hudName').textContent='🐪 '+playerName;
+    startPanel.style.display='none';resultPanel.style.display='none';raceView.classList.add('active');createRunners();
+    countdown.classList.add('show');let n=3;countdown.textContent=n;
+    const ci=setInterval(()=>{n--;if(n>0)countdown.textContent=n;else if(n===0)countdown.textContent='RAJT!';else{clearInterval(ci);countdown.classList.remove('show');running=true;startTime=performance.now();lastFrame=startTime;raf=requestAnimationFrame(loop)}},700);
+  }
+  function tap(e){if(e)e.preventDefault();if(!running)return;playerProgress=Math.min(100,playerProgress+1.5);runners[0].progress=playerProgress;runners[0].el.style.bottom=(3+playerProgress*.84)+'%'}
+  function loop(now){
+    if(!running)return;const dt=Math.min(.04,(now-lastFrame)/1000);lastFrame=now;const elapsed=(now-startTime)/1000;timerEl.textContent=elapsed.toFixed(2)+' mp';
+    for(let i=1;i<runners.length;i++){const r=runners[i],pulse=(Math.sin(now/420+i*1.8)+1)*.28;r.progress=Math.min(100,r.progress+(r.speed+r.boost+pulse)*dt);r.el.style.bottom=(3+r.progress*.84)+'%'}
+    const finished=runners.filter(r=>r.progress>=100).length;
+    if(playerProgress>=100||finished>=5){finish(elapsed);return}
+    raf=requestAnimationFrame(loop)
+  }
+  function finish(time){
+    running=false;cancelAnimationFrame(raf);const place=Math.min(6,runners.slice(1).filter(r=>r.progress>=100).length+1);saveScore(playerName,time,place);
+    raceView.classList.remove('active');resultPanel.style.display='block';
+    document.getElementById('resultEmoji').textContent=place===1?'🏆':'🐪';
+    document.getElementById('resultTitle').textContent=place===1?'A sivatag bajnoka!':place+'. hely';
+    const msg=place===1?'Legendás futás a dűnék között!':place<=3?'Dobogó! A tevéd megérdemel egy extra datolyát.':'A tevéd szerint a kilátás fontosabb volt.';
+    document.getElementById('resultText').innerHTML=`<strong>${time.toFixed(2)} másodperc</strong><br>${msg}`;renderBoard()
+  }
+  document.getElementById('startBtn').addEventListener('click',begin);
+  document.getElementById('replayBtn').addEventListener('click',begin);
+  document.getElementById('boardBtn').addEventListener('click',showStart);
+  document.getElementById('tapZone').addEventListener('pointerdown',tap,{passive:false});
+  track.addEventListener('pointerdown',e=>{if(e.target.id!=='tapZone')tap(e)},{passive:false});
+  nameInput.addEventListener('keydown',e=>{if(e.key==='Enter')begin()});
+  nameInput.value=localStorage.getItem(NAME_KEY)||'';renderBoard();
+})();
+</script>
+</body>
+</html>
