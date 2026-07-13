@@ -3,78 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#c56832">
-<title>Dubai Desert Dash – Titkos teveverseny</title>
+<meta name="theme-color" content="#bf642f">
+<title>Secret Camel Cup – Dubai Magyaroknak</title>
 <style>
 *{box-sizing:border-box}
-:root{--gold:#ffd98a;--sand:#e5a24d;--dark:#24130f;--glass:rgba(31,16,13,.72)}
-html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:#fff;background:#1e1010;overflow-x:hidden}
-body{min-height:100svh;background:linear-gradient(#173b59 0%,#d46f3a 42%,#efad58 68%,#7b3b22 100%);touch-action:manipulation}
-.sky{position:fixed;inset:0;overflow:hidden;pointer-events:none}
-.sun{position:absolute;width:118px;height:118px;border-radius:50%;right:9%;top:8%;background:radial-gradient(circle,#fff7c9 0 18%,#ffd26f 48%,rgba(255,170,66,.12) 70%);box-shadow:0 0 70px rgba(255,210,110,.65)}
-.dunes,.dunes:before,.dunes:after{position:absolute;content:"";left:-10%;right:-10%;bottom:-15%;height:55%;border-radius:50% 50% 0 0/35% 35% 0 0;background:#b75b30;transform:rotate(-3deg)}
-.dunes:before{bottom:22%;left:-10%;right:35%;height:60%;background:#db8341;transform:rotate(7deg)}
-.dunes:after{bottom:10%;left:45%;right:-10%;height:70%;background:#8b4027;transform:rotate(-8deg)}
-.grain{position:absolute;inset:0;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
-.app{position:relative;z-index:2;width:min(980px,100%);min-height:100svh;margin:auto;padding:max(18px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
-.brand{font-weight:900;letter-spacing:.4px;text-shadow:0 5px 18px rgba(0,0,0,.35)}
-.back{border:1px solid rgba(255,255,255,.28);background:rgba(31,16,13,.55);color:#fff;border-radius:999px;padding:11px 15px;font-weight:800;text-decoration:none;backdrop-filter:blur(12px)}
-.panel{width:min(680px,100%);margin:7vh auto 0;padding:24px;border-radius:28px;background:var(--glass);border:1px solid rgba(255,229,169,.28);box-shadow:0 28px 80px rgba(0,0,0,.38);backdrop-filter:blur(18px)}
-.panel h1,.panel h2{margin:0 0 10px}.panel p{color:rgba(255,255,255,.82);line-height:1.55}
-.input{width:100%;padding:15px 16px;margin:12px 0;border-radius:16px;border:1px solid rgba(255,229,169,.32);background:rgba(255,255,255,.11);color:#fff;font-size:17px;outline:none}
-.input::placeholder{color:rgba(255,255,255,.55)}
-.primary,.secondary{width:100%;border:0;border-radius:999px;padding:15px 18px;font-size:16px;font-weight:900;cursor:pointer}
-.primary{background:linear-gradient(135deg,#fff0b8,#f0ad43 55%,#cf702e);color:#2b160c;box-shadow:0 16px 38px rgba(72,31,10,.3)}
-.secondary{margin-top:10px;background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.18)}
+:root{
+  --gold:#ffe7a3;
+  --gold2:#f6b845;
+  --sand:#dfa04d;
+  --sand2:#bd642f;
+  --dark:#21110d;
+  --glass:rgba(30,15,12,.72);
+  --line:rgba(255,235,188,.25);
+}
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:Inter,Arial,sans-serif;
+  color:#fff;
+  background:#1c0f0c;
+  overflow-x:hidden;
+}
+body{
+  min-height:100svh;
+  background:linear-gradient(#103957 0%,#d67038 40%,#eda64f 68%,#71361f 100%);
+  touch-action:manipulation;
+}
+button,input{font:inherit}
+button{-webkit-tap-highlight-color:transparent}
+.world{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.skyglow{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 77% 15%,rgba(255,247,203,.9) 0 4%,rgba(255,205,102,.28) 12%,transparent 28%),
+    linear-gradient(180deg,rgba(17,73,106,.1),transparent 45%);
+}
+.sun{
+  position:absolute;width:110px;height:110px;border-radius:50%;
+  right:8%;top:8%;
+  background:radial-gradient(circle,#fffbd8 0 20%,#ffd873 46%,rgba(255,173,65,.08) 70%);
+  box-shadow:0 0 70px rgba(255,213,112,.62);
+}
+.mountains{position:absolute;inset:auto 0 27% 0;height:28%}
+.mountains::before,.mountains::after{
+  content:"";position:absolute;bottom:0;left:-6%;width:65%;height:100%;
+  background:#814026;clip-path:polygon(0 100%,24% 32%,37% 58%,55% 20%,77% 62%,100% 100%);
+  opacity:.78;
+}
+.mountains::after{
+  left:40%;width:70%;background:#9b4b29;opacity:.55;
+  clip-path:polygon(0 100%,18% 55%,32% 28%,45% 66%,64% 25%,78% 57%,100% 100%);
+}
+.dune,.dune::before,.dune::after{
+  position:absolute;content:"";left:-12%;right:-12%;bottom:-14%;height:56%;
+  border-radius:50% 50% 0 0/35% 35% 0 0;background:#b85c2e;transform:rotate(-3deg)
+}
+.dune::before{bottom:23%;left:-6%;right:36%;height:61%;background:#dc8742;transform:rotate(8deg)}
+.dune::after{bottom:8%;left:43%;right:-12%;height:73%;background:#8c4025;transform:rotate(-8deg)}
+.palms{position:absolute;left:0;right:0;bottom:18%;display:flex;justify-content:space-between;padding:0 4%}
+.palm{width:76px;height:120px;position:relative;opacity:.72}
+.palm::before{content:"";position:absolute;left:35px;bottom:0;width:8px;height:82px;background:#472416;transform:skew(-6deg);border-radius:8px}
+.palm::after{content:"🌴";position:absolute;left:0;top:-6px;font-size:64px;filter:sepia(1) saturate(.7) brightness(.55)}
+.grain{position:absolute;inset:0;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+.app{position:relative;z-index:3;width:min(1040px,100%);min-height:100svh;margin:auto;padding:max(16px,env(safe-area-inset-top)) 12px max(18px,env(safe-area-inset-bottom))}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.brand{
+  display:flex;align-items:center;gap:10px;font-weight:1000;letter-spacing:.5px;
+  text-shadow:0 5px 18px rgba(0,0,0,.36)
+}
+.brand-badge{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#fff0b4,#efaa42);color:#30160b;
+  box-shadow:0 10px 28px rgba(73,31,8,.3)
+}
+.back{
+  border:1px solid rgba(255,255,255,.26);background:rgba(31,16,13,.52);color:#fff;
+  border-radius:999px;padding:11px 15px;font-weight:900;text-decoration:none;backdrop-filter:blur(12px)
+}
+.panel{
+  width:min(700px,100%);margin:5vh auto 0;padding:24px;border-radius:30px;
+  background:linear-gradient(180deg,rgba(42,20,14,.78),rgba(25,12,10,.74));
+  border:1px solid var(--line);box-shadow:0 28px 80px rgba(0,0,0,.38);backdrop-filter:blur(18px)
+}
+.logo-lockup{text-align:center;margin-bottom:18px}
+.cup-logo{
+  display:inline-flex;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;
+  background:rgba(255,234,182,.1);border:1px solid rgba(255,234,182,.2);
+  color:#ffe6a1;font-weight:1000;letter-spacing:1px;text-transform:uppercase;font-size:13px
+}
+.panel h1,.panel h2{margin:10px 0}
+.panel h1{font-size:clamp(34px,7vw,62px);line-height:.95;letter-spacing:-2px;text-align:center}
+.panel p{color:rgba(255,255,255,.82);line-height:1.55}
+.input{
+  width:100%;padding:15px 16px;margin:12px 0;border-radius:17px;border:1px solid rgba(255,229,169,.31);
+  background:rgba(255,255,255,.1);color:#fff;font-size:17px;outline:none
+}
+.input::placeholder{color:rgba(255,255,255,.52)}
+.primary,.secondary{
+  width:100%;border:0;border-radius:999px;padding:15px 18px;font-size:16px;font-weight:1000;cursor:pointer
+}
+.primary{
+  background:linear-gradient(135deg,#fff0b8,#f2b047 55%,#cf702e);color:#2b160c;
+  box-shadow:0 16px 38px rgba(72,31,10,.3),inset 0 1px 0 rgba(255,255,255,.7)
+}
+.secondary{margin-top:10px;background:rgba(255,255,255,.085);color:#fff;border:1px solid rgba(255,255,255,.17)}
 .board{margin-top:20px;border-top:1px solid rgba(255,255,255,.13);padding-top:15px}
 .row{display:grid;grid-template-columns:42px 1fr auto;gap:8px;padding:9px 4px;border-bottom:1px solid rgba(255,255,255,.08);align-items:center}
 .empty{padding:16px 0;color:rgba(255,255,255,.6)}
-.race{display:none}
-.race.active{display:block}
-.hud{display:flex;justify-content:space-between;gap:10px;margin:10px 0;font-weight:900}
-.track{position:relative;height:min(70svh,620px);min-height:470px;border-radius:28px;overflow:hidden;border:1px solid rgba(255,235,190,.28);background:linear-gradient(180deg,rgba(45,22,15,.18),rgba(62,28,14,.34)),repeating-linear-gradient(90deg,rgba(255,255,255,.055) 0 1px,transparent 1px 16.666%);box-shadow:0 28px 70px rgba(0,0,0,.3);touch-action:none}
-.finish{position:absolute;left:0;right:0;top:6%;height:14px;background:repeating-conic-gradient(#fff 0 25%,#151515 0 50%) 0/24px 24px;box-shadow:0 4px 12px rgba(0,0,0,.35)}
-.lane{position:absolute;left:0;right:0;height:16.666%;border-bottom:1px dashed rgba(255,255,255,.16)}
-.runner{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;will-change:bottom}
+.race{display:none}.race.active{display:block}
+.hud{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;margin:8px 0;
+  padding:10px 14px;border-radius:18px;background:rgba(36,16,10,.56);border:1px solid rgba(255,231,178,.18);
+  font-weight:1000;backdrop-filter:blur(12px)
+}
+.track{
+  position:relative;height:min(73svh,650px);min-height:500px;border-radius:30px;overflow:hidden;
+  border:1px solid rgba(255,235,190,.28);
+  background:
+    linear-gradient(180deg,rgba(40,18,11,.08),rgba(62,28,14,.35)),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 16.666%);
+  box-shadow:0 28px 70px rgba(0,0,0,.3);touch-action:none
+}
+.track::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 50% 103%,rgba(255,223,158,.16),transparent 42%),
+    repeating-linear-gradient(0deg,transparent 0 10%,rgba(255,255,255,.02) 10.2% 10.6%);
+  pointer-events:none
+}
+.flagline{position:absolute;left:0;right:0;top:5%;height:30px;display:flex;justify-content:space-around;z-index:5}
+.flag{width:18px;height:22px;background:linear-gradient(135deg,#fff,#df6d2c);clip-path:polygon(0 0,100% 12%,72% 50%,100% 88%,0 100%);filter:drop-shadow(0 3px 4px rgba(0,0,0,.25))}
+.finish{
+  position:absolute;left:0;right:0;top:8%;height:15px;z-index:4;
+  background:repeating-conic-gradient(#fff 0 25%,#151515 0 50%) 0/24px 24px;
+  box-shadow:0 4px 12px rgba(0,0,0,.35)
+}
+.lane{
+  position:absolute;bottom:0;top:0;width:16.666%;
+  border-right:1px dashed rgba(255,255,255,.13)
+}
+.runner{
+  position:absolute;left:50%;bottom:3%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;will-change:bottom;z-index:6
+}
 .runner.player{filter:drop-shadow(0 0 15px rgba(255,229,135,.85))}
-.camel{font-size:clamp(34px,8vw,58px);line-height:1;animation:gallop .32s ease-in-out infinite alternate}
-.label{max-width:120px;padding:3px 8px;border-radius:999px;background:rgba(31,16,13,.7);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.camel-wrap{position:relative;width:72px;height:56px}
+.camel-svg{width:72px;height:56px;overflow:visible;animation:gallop .27s ease-in-out infinite alternate;transform-origin:50% 80%}
+.camel-body{fill:#b8743d;stroke:#6b371f;stroke-width:2}
+.camel-dark{fill:#8e552d}
+.camel-light{fill:#d99a5a}
+.camel-leg{stroke:#6b371f;stroke-width:5;stroke-linecap:round}
+.camel-eye{fill:#1b0e0a}
+.player .camel-body{fill:#f0b958}.player .camel-light{fill:#ffd98e}.player .camel-dark{fill:#c98a39}
+.label{
+  max-width:125px;padding:4px 8px;border-radius:999px;background:rgba(31,16,13,.72);
+  font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:1px solid rgba(255,255,255,.1)
+}
 @keyframes gallop{to{transform:translateY(-5px) rotate(2deg)}}
-.count{position:absolute;inset:0;display:none;place-items:center;font-size:clamp(70px,20vw,150px);font-weight:1000;text-shadow:0 10px 30px rgba(0,0,0,.5);background:rgba(26,13,9,.18)}
+.dust{
+  position:absolute;left:50%;bottom:0;width:8px;height:8px;border-radius:50%;
+  background:rgba(255,224,164,.75);filter:blur(.5px);opacity:0;pointer-events:none
+}
+.runner.moving .dust{animation:dustPop .55s ease-out infinite}
+.runner.moving .dust:nth-of-type(2){animation-delay:.16s}
+.runner.moving .dust:nth-of-type(3){animation-delay:.32s}
+@keyframes dustPop{
+  0%{opacity:.8;transform:translate(-50%,0) scale(.5)}
+  100%{opacity:0;transform:translate(calc(-50% - 22px),18px) scale(2.2)}
+}
+.count{
+  position:absolute;inset:0;display:none;place-items:center;z-index:20;
+  font-size:clamp(70px,20vw,150px);font-weight:1000;text-shadow:0 10px 30px rgba(0,0,0,.5);
+  background:rgba(26,13,9,.24);backdrop-filter:blur(2px)
+}
 .count.show{display:grid}
-.tap{position:absolute;left:14px;right:14px;bottom:12px;padding:14px;border:1px solid rgba(255,243,203,.34);border-radius:999px;background:rgba(39,18,12,.65);color:#fff;font-weight:1000;font-size:16px;backdrop-filter:blur(12px)}
+.tap{
+  position:absolute;left:14px;right:14px;bottom:12px;z-index:25;padding:15px;
+  border:1px solid rgba(255,243,203,.34);border-radius:999px;
+  background:linear-gradient(135deg,rgba(58,25,13,.86),rgba(94,42,17,.83));
+  color:#fff;font-weight:1000;font-size:16px;backdrop-filter:blur(12px);
+  box-shadow:0 14px 30px rgba(0,0,0,.25)
+}
+.tap:active{transform:scale(.985)}
+.flash{position:absolute;inset:0;z-index:30;background:white;opacity:0;pointer-events:none}
+.flash.active{animation:photoFlash .55s ease}
+@keyframes photoFlash{0%{opacity:0}20%{opacity:.95}100%{opacity:0}}
 .result{display:none;text-align:center}
-.result .big{font-size:56px;margin:4px 0}
-.portal-in{position:fixed;inset:0;z-index:10;pointer-events:none;background:linear-gradient(#173b59,#d46f3a 48%,#efad58);animation:reveal 1s ease forwards}
+.result .big{font-size:70px;margin:4px 0;animation:trophyPop .9s cubic-bezier(.2,1.4,.3,1)}
+@keyframes trophyPop{0%{transform:scale(.2) rotate(-18deg);opacity:0}100%{transform:scale(1);opacity:1}}
+.confetti{position:fixed;inset:0;z-index:50;pointer-events:none;overflow:hidden}
+.confetti i{
+  position:absolute;top:-20px;width:10px;height:18px;background:var(--c);
+  left:var(--x);transform:rotate(var(--r));animation:confettiFall var(--d) linear forwards
+}
+@keyframes confettiFall{to{transform:translate(var(--dx),110vh) rotate(760deg);opacity:.8}}
+.portal-in{
+  position:fixed;inset:0;z-index:100;pointer-events:none;
+  background:linear-gradient(#173b59,#d46f3a 48%,#efad58);animation:reveal 1s ease forwards
+}
 .portal-in:before{content:"🐪";position:absolute;left:50%;top:50%;font-size:86px;transform:translate(-50%,-50%)}
 @keyframes reveal{0%{opacity:1}100%{opacity:0;visibility:hidden}}
-@media(max-width:600px){.panel{margin-top:3vh;padding:19px}.track{height:68svh;min-height:500px}.app{padding-left:10px;padding-right:10px}.brand{font-size:14px}}
+.sound-note{font-size:12px;color:rgba(255,255,255,.56);text-align:center;margin-top:10px}
+@media(max-width:600px){
+  .panel{margin-top:2vh;padding:19px}
+  .track{height:70svh;min-height:510px}
+  .app{padding-left:9px;padding-right:9px}
+  .brand{font-size:13px}
+  .camel-wrap,.camel-svg{width:58px;height:48px}
+  .label{font-size:9px;max-width:82px}
+  .palms{bottom:16%}
+}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
 </style>
 </head>
 <body>
-<div class="sky"><div class="sun"></div><div class="dunes"></div><div class="grain"></div></div>
+<div class="world">
+  <div class="skyglow"></div><div class="sun"></div><div class="mountains"></div>
+  <div class="palms"><div class="palm"></div><div class="palm"></div></div>
+  <div class="dune"></div><div class="grain"></div>
+</div>
 <div class="portal-in"></div>
+<div id="confetti" class="confetti"></div>
+
 <main class="app">
   <div class="top">
-    <div class="brand">🐪 Dubai Desert Dash</div>
-    <a class="back" href="javascript:history.back()">← Vissza</a>
+    <div class="brand"><span class="brand-badge">🐪</span><span>Secret Camel Cup</span></div>
+    <a class="back" href="index.html">← Vissza</a>
   </div>
 
   <section id="startPanel" class="panel">
-    <h1>Titkos teveverseny</h1>
+    <div class="logo-lockup">
+      <div class="cup-logo">Dubai Magyaroknak • Easter Egg</div>
+      <h1>Secret Camel Cup</h1>
+    </div>
     <p>Írd be a neved, majd koppints minél gyorsabban. A Top 10 ezen a telefonon és ebben a böngészőben marad meg.</p>
     <input id="playerName" class="input" maxlength="18" autocomplete="nickname" placeholder="Versenyzői neved">
     <button id="startBtn" class="primary">Induljon a verseny!</button>
+    <div class="sound-note">A rajtnál arab dobhang és közönségzaj indul.</div>
     <div class="board"><h2>🏆 Helyi Top 10</h2><div id="leaderboard"></div></div>
   </section>
 
   <section id="raceView" class="race">
     <div class="hud"><span id="hudName">🐪 Versenyző</span><span id="timer">0.00 mp</span></div>
     <div id="track" class="track">
+      <div class="flagline">
+        <span class="flag"></span><span class="flag"></span><span class="flag"></span>
+        <span class="flag"></span><span class="flag"></span><span class="flag"></span>
+      </div>
       <div class="finish"></div>
       <div id="countdown" class="count"></div>
+      <div id="flash" class="flash"></div>
       <button id="tapZone" class="tap">KOPPINTS GYORSAN!</button>
     </div>
   </section>
@@ -85,17 +263,18 @@ body{min-height:100svh;background:linear-gradient(#173b59 0%,#d46f3a 42%,#efad58
     <p id="resultText"></p>
     <button id="replayBtn" class="primary">Újra</button>
     <button id="boardBtn" class="secondary">Ranglista</button>
-    <a class="secondary" style="display:block;text-align:center;text-decoration:none" href="javascript:history.back()">Vissza a főoldalra</a>
+    <a class="secondary" style="display:block;text-align:center;text-decoration:none" href="index.html">Vissza a főoldalra</a>
   </section>
 </main>
+
 <script>
 (() => {
   const KEY='camelRaceScoresV1', NAME_KEY='camelLastName';
   const rivals=['Sivatagi Villám','Datolya Király','Dűne Herceg','Marina Szél','Arany Homok'];
   const startPanel=document.getElementById('startPanel'),raceView=document.getElementById('raceView'),resultPanel=document.getElementById('resultPanel');
   const track=document.getElementById('track'),countdown=document.getElementById('countdown'),timerEl=document.getElementById('timer');
-  const nameInput=document.getElementById('playerName'),board=document.getElementById('leaderboard');
-  let runners=[],running=false,startTime=0,lastFrame=0,raf=0,playerProgress=0,playerName='Versenyző';
+  const nameInput=document.getElementById('playerName'),board=document.getElementById('leaderboard'),flash=document.getElementById('flash');
+  let runners=[],running=false,startTime=0,lastFrame=0,raf=0,playerProgress=0,playerName='Versenyző',audioCtx=null;
 
   const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function scores(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return[]}}
@@ -107,42 +286,130 @@ body{min-height:100svh;background:linear-gradient(#173b59 0%,#d46f3a 42%,#efad58
     const data=scores();data.push({name,time,place,date:Date.now()});data.sort((a,b)=>a.time-b.time);
     localStorage.setItem(KEY,JSON.stringify(data.slice(0,10)));
   }
+
+  function camelSVG(){
+    return `<div class="camel-wrap">
+      <svg class="camel-svg" viewBox="0 0 100 76" aria-hidden="true">
+        <ellipse class="camel-dark" cx="48" cy="66" rx="34" ry="5" opacity=".22"/>
+        <path class="camel-body" d="M19 46c5-15 15-22 27-22 6-15 19-17 27-4 8 1 14 7 15 16l-7 3c-2-5-5-8-10-8-1 8-7 15-17 17l-1 16-6 0-2-15-14 1-4 15-6 0 0-19z"/>
+        <path class="camel-light" d="M43 26c4-11 13-14 20-7 4 4 5 9 4 14-7-5-15-7-24-7z"/>
+        <path class="camel-body" d="M79 32c4-9 7-18 3-25 7 2 11 8 11 14 0 7-5 12-12 15z"/>
+        <circle class="camel-eye" cx="89" cy="16" r="1.7"/>
+        <path class="camel-leg" d="M28 51l-2 18M48 50l1 18M66 44l4 22" fill="none"/>
+      </svg>
+      <i class="dust"></i><i class="dust"></i><i class="dust"></i>
+    </div>`;
+  }
+
+  function ensureAudio(){
+    try{
+      if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+      if(audioCtx.state==='suspended') audioCtx.resume();
+    }catch(e){}
+  }
+  function drum(t=0,vol=.18){
+    if(!audioCtx)return;
+    const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+    o.type='sine';o.frequency.setValueAtTime(115,audioCtx.currentTime+t);o.frequency.exponentialRampToValueAtTime(48,audioCtx.currentTime+t+.16);
+    g.gain.setValueAtTime(vol,audioCtx.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+t+.18);
+    o.connect(g).connect(audioCtx.destination);o.start(audioCtx.currentTime+t);o.stop(audioCtx.currentTime+t+.2);
+  }
+  function crowd(){
+    if(!audioCtx)return;
+    const len=audioCtx.sampleRate*.8,buf=audioCtx.createBuffer(1,len,audioCtx.sampleRate),data=buf.getChannelData(0);
+    for(let i=0;i<len;i++)data[i]=(Math.random()*2-1)*(1-i/len);
+    const src=audioCtx.createBufferSource(),filter=audioCtx.createBiquadFilter(),g=audioCtx.createGain();
+    filter.type='bandpass';filter.frequency.value=1000;filter.Q.value=.8;g.gain.value=.035;
+    src.buffer=buf;src.connect(filter).connect(g).connect(audioCtx.destination);src.start();
+  }
+  function victorySound(){
+    if(!audioCtx)return;
+    [0,.16,.32].forEach((t,i)=>{
+      const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+      o.type='triangle';o.frequency.value=[523,659,784][i];
+      g.gain.setValueAtTime(.12,audioCtx.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+t+.45);
+      o.connect(g).connect(audioCtx.destination);o.start(audioCtx.currentTime+t);o.stop(audioCtx.currentTime+t+.5);
+    });
+  }
+
   function createRunners(){
     track.querySelectorAll('.lane').forEach(x=>x.remove());runners=[];
     for(let i=0;i<6;i++){
-      const lane=document.createElement('div');lane.className='lane';lane.style.left=(i*16.666)+'%';lane.style.width='16.666%';lane.style.right='auto';lane.style.height='100%';lane.style.borderRight='1px dashed rgba(255,255,255,.14)';lane.style.borderBottom='0';
-      const r=document.createElement('div');r.className='runner'+(i===0?' player':'');
+      const lane=document.createElement('div');lane.className='lane';lane.style.left=(i*16.666)+'%';
+      const r=document.createElement('div');r.className='runner moving'+(i===0?' player':'');
       const nm=i===0?playerName:rivals[i-1];
-      r.innerHTML=`<span class="camel">🐪</span><span class="label">${esc(nm)}</span>`;
+      r.innerHTML=camelSVG()+`<span class="label">${esc(nm)}</span>`;
       lane.appendChild(r);track.insertBefore(lane,countdown);
       runners.push({el:r,progress:0,speed:i===0?0:5.5+Math.random()*2.1,boost:Math.random()*.7});
     }
   }
-  function showStart(){running=false;cancelAnimationFrame(raf);raceView.classList.remove('active');resultPanel.style.display='none';startPanel.style.display='block';renderBoard()}
+  function showStart(){
+    running=false;cancelAnimationFrame(raf);raceView.classList.remove('active');resultPanel.style.display='none';
+    startPanel.style.display='block';renderBoard()
+  }
   function begin(){
+    ensureAudio();
     playerName=(nameInput.value||localStorage.getItem(NAME_KEY)||'Versenyző').trim().slice(0,18)||'Versenyző';
     localStorage.setItem(NAME_KEY,playerName);playerProgress=0;timerEl.textContent='0.00 mp';
     document.getElementById('hudName').textContent='🐪 '+playerName;
     startPanel.style.display='none';resultPanel.style.display='none';raceView.classList.add('active');createRunners();
-    countdown.classList.add('show');let n=3;countdown.textContent=n;
-    const ci=setInterval(()=>{n--;if(n>0)countdown.textContent=n;else if(n===0)countdown.textContent='RAJT!';else{clearInterval(ci);countdown.classList.remove('show');running=true;startTime=performance.now();lastFrame=startTime;raf=requestAnimationFrame(loop)}},700);
+    countdown.classList.add('show');let n=3;countdown.textContent=n;drum(0);
+    const ci=setInterval(()=>{
+      n--;
+      if(n>0){countdown.textContent=n;drum(0)}
+      else if(n===0){countdown.textContent='RAJT!';drum(0,.28);drum(.11,.18);crowd()}
+      else{
+        clearInterval(ci);countdown.classList.remove('show');running=true;
+        startTime=performance.now();lastFrame=startTime;raf=requestAnimationFrame(loop)
+      }
+    },700);
   }
-  function tap(e){if(e)e.preventDefault();if(!running)return;playerProgress=Math.min(100,playerProgress+1.5);runners[0].progress=playerProgress;runners[0].el.style.bottom=(3+playerProgress*.84)+'%'}
+  function tap(e){
+    if(e)e.preventDefault();if(!running)return;
+    playerProgress=Math.min(100,playerProgress+1.5);
+    runners[0].progress=playerProgress;runners[0].el.style.bottom=(3+playerProgress*.84)+'%'
+  }
   function loop(now){
-    if(!running)return;const dt=Math.min(.04,(now-lastFrame)/1000);lastFrame=now;const elapsed=(now-startTime)/1000;timerEl.textContent=elapsed.toFixed(2)+' mp';
-    for(let i=1;i<runners.length;i++){const r=runners[i],pulse=(Math.sin(now/420+i*1.8)+1)*.28;r.progress=Math.min(100,r.progress+(r.speed+r.boost+pulse)*dt);r.el.style.bottom=(3+r.progress*.84)+'%'}
+    if(!running)return;
+    const dt=Math.min(.04,(now-lastFrame)/1000);lastFrame=now;const elapsed=(now-startTime)/1000;
+    timerEl.textContent=elapsed.toFixed(2)+' mp';
+    for(let i=1;i<runners.length;i++){
+      const r=runners[i],pulse=(Math.sin(now/420+i*1.8)+1)*.28;
+      r.progress=Math.min(100,r.progress+(r.speed+r.boost+pulse)*dt);
+      r.el.style.bottom=(3+r.progress*.84)+'%'
+    }
     const finished=runners.filter(r=>r.progress>=100).length;
     if(playerProgress>=100||finished>=5){finish(elapsed);return}
     raf=requestAnimationFrame(loop)
   }
-  function finish(time){
-    running=false;cancelAnimationFrame(raf);const place=Math.min(6,runners.slice(1).filter(r=>r.progress>=100).length+1);saveScore(playerName,time,place);
-    raceView.classList.remove('active');resultPanel.style.display='block';
-    document.getElementById('resultEmoji').textContent=place===1?'🏆':'🐪';
-    document.getElementById('resultTitle').textContent=place===1?'A sivatag bajnoka!':place+'. hely';
-    const msg=place===1?'Legendás futás a dűnék között!':place<=3?'Dobogó! A tevéd megérdemel egy extra datolyát.':'A tevéd szerint a kilátás fontosabb volt.';
-    document.getElementById('resultText').innerHTML=`<strong>${time.toFixed(2)} másodperc</strong><br>${msg}`;renderBoard()
+  function confetti(){
+    const c=document.getElementById('confetti');c.innerHTML='';
+    for(let i=0;i<55;i++){
+      const p=document.createElement('i');
+      p.style.setProperty('--x',Math.random()*100+'vw');
+      p.style.setProperty('--dx',(Math.random()*180-90)+'px');
+      p.style.setProperty('--r',(Math.random()*180)+'deg');
+      p.style.setProperty('--d',(1.8+Math.random()*2.4)+'s');
+      p.style.setProperty('--c',['#ffe8a3','#f0ad43','#ffffff','#d66e31'][i%4]);
+      c.appendChild(p)
+    }
+    setTimeout(()=>c.innerHTML='',4500)
   }
+  function finish(time){
+    running=false;cancelAnimationFrame(raf);
+    const place=Math.min(6,runners.slice(1).filter(r=>r.progress>=100).length+1);
+    saveScore(playerName,time,place);
+    flash.classList.remove('active');void flash.offsetWidth;flash.classList.add('active');
+    setTimeout(()=>{
+      raceView.classList.remove('active');resultPanel.style.display='block';
+      document.getElementById('resultEmoji').textContent=place===1?'🏆':'🐪';
+      document.getElementById('resultTitle').textContent=place===1?'A sivatag bajnoka!':place+'. hely';
+      const msg=place===1?'Legendás futás a dűnék között!':place<=3?'Dobogó! A tevéd megérdemel egy extra datolyát.':'A tevéd szerint a kilátás fontosabb volt.';
+      document.getElementById('resultText').innerHTML=`<strong>${time.toFixed(2)} másodperc</strong><br>${msg}`;
+      if(place===1){confetti();victorySound()} renderBoard()
+    },420)
+  }
+
   document.getElementById('startBtn').addEventListener('click',begin);
   document.getElementById('replayBtn').addEventListener('click',begin);
   document.getElementById('boardBtn').addEventListener('click',showStart);
@@ -150,6 +417,11 @@ body{min-height:100svh;background:linear-gradient(#173b59 0%,#d46f3a 42%,#efad58
   track.addEventListener('pointerdown',e=>{if(e.target.id!=='tapZone')tap(e)},{passive:false});
   nameInput.addEventListener('keydown',e=>{if(e.key==='Enter')begin()});
   nameInput.value=localStorage.getItem(NAME_KEY)||'';renderBoard();
+
+  window.addEventListener('pageshow',()=>{
+    document.querySelector('.portal-in')?.remove();
+    showStart()
+  });
 })();
 </script>
 </body>
